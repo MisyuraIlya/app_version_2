@@ -3,7 +3,7 @@ import './styles/main.css'
 
 function App() {
   const [count, setCounter] = useState(0)
-  const name = 'asdaa'
+  const name = "as"
   return (
     <div className="App">
       <header className="App-header">
