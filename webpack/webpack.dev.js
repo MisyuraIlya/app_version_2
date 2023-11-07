@@ -5,6 +5,9 @@ module.exports = {
   mode: 'development',
   devtool: 'cheap-module-source-map',
   devServer: {
+    compress: true,
+    port: 3000,
+    historyApiFallback: true,
     hot: true,
     open: true,
   },
