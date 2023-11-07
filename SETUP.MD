@@ -110,4 +110,5 @@ root:true,
 
 -- OPTIONAL -- 22) npm install --save-dev @babel/runtime @babel/plugin-transform-runtime 23) npm install --save-dev copy-webpack-plugin
 
-22. npm install sass-loader sass webpack --save-dev
+22. npm install --save-dev sass-loader sass webpack --save-dev
+23. npm i --save-dev mini-css-extract-plugin
