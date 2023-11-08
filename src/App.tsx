@@ -1,10 +1,13 @@
 import { BrowserRouter } from 'react-router-dom'
 import RouterApp from './RouterApp'
+import { ModalsProvider } from './modules/Modals/provider/ModalProvider'
 
 function App() {
   return (
     <BrowserRouter>
-      <RouterApp />
+      <ModalsProvider>
+        <RouterApp />
+      </ModalsProvider>
     </BrowserRouter>
   )
 }

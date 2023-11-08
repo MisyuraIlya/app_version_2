@@ -16,40 +16,46 @@ import DocumentsPage from './modules/Documents/pages/DocumentsPage'
 import HistoryItemPage from './modules/Documents/pages/HistoryItemPage'
 import HistoryPage from './modules/Documents/pages/HistoryPage'
 import KartessetPage from './modules/Documents/pages/KartessetPage'
+import Header from './modules/Header/Header'
 
 const RouterApp = () => {
   return (
-    <Routes>
-      <Route>
-        {/* HOME */}
-        <Route path="/" element={<Home />} />
-        {/* CATALOG */}
-        <Route
-          path="/client/:documentType/:lvl1/:lvl2/:lvl3"
-          element={<Catalog />}
-        />
-        <Route path="/CatalogView" element={<CatalogView />} />
-        {/* CART */}
-        <Route path="/CartPage" element={<CartPage />} />
-        {/* AUTH */}
-        <Route path="/ProfilePage" element={<ProfilePage />} />
+    <div>
+      <header>
+        <Header />
+      </header>
+      <Routes>
+        <Route>
+          {/* HOME */}
+          <Route path="/" element={<Home />} />
+          {/* CATALOG */}
+          <Route
+            path="/client/:documentType/:lvl1/:lvl2/:lvl3"
+            element={<Catalog />}
+          />
+          <Route path="/CatalogView" element={<CatalogView />} />
+          {/* CART */}
+          <Route path="/CartPage" element={<CartPage />} />
+          {/* AUTH */}
+          <Route path="/ProfilePage" element={<ProfilePage />} />
 
-        {/* DOCUMENTS */}
-        <Route path="/DocumentsItemPage" element={<DocumentsItemPage />} />
-        <Route path="/DocumentsPage" element={<DocumentsPage />} />
-        <Route path="/HistoryItemPage" element={<HistoryItemPage />} />
-        <Route path="/HistoryPage" element={<HistoryPage />} />
-        <Route path="/KartessetPage" element={<KartessetPage />} />
+          {/* DOCUMENTS */}
+          <Route path="/DocumentsItemPage" element={<DocumentsItemPage />} />
+          <Route path="/DocumentsPage" element={<DocumentsPage />} />
+          <Route path="/HistoryItemPage" element={<HistoryItemPage />} />
+          <Route path="/HistoryPage" element={<HistoryPage />} />
+          <Route path="/KartessetPage" element={<KartessetPage />} />
 
-        {/* ADMINS */}
-        <Route path="/admiCategoryEditn1" element={<CategoryEdit />} />
-        <Route path="/ProductsEdit" element={<ProductsEdit />} />
-        <Route path="/Clients" element={<Clients />} />
-        <Route path="/Orders" element={<Orders />} />
-        <Route path="/OrderItemPage" element={<OrderItemPage />} />
-        <Route path="/NotificationPage" element={<NotificationPage />} />
-      </Route>
-    </Routes>
+          {/* ADMINS */}
+          <Route path="/admiCategoryEditn1" element={<CategoryEdit />} />
+          <Route path="/ProductsEdit" element={<ProductsEdit />} />
+          <Route path="/Clients" element={<Clients />} />
+          <Route path="/Orders" element={<Orders />} />
+          <Route path="/OrderItemPage" element={<OrderItemPage />} />
+          <Route path="/NotificationPage" element={<NotificationPage />} />
+        </Route>
+      </Routes>
+    </div>
   )
 }
 
