@@ -20,10 +20,8 @@ import Header from './modules/Header/Header'
 
 const RouterApp = () => {
   return (
-    <div>
-      <header>
-        <Header />
-      </header>
+    <>
+      <Header />
       <Routes>
         <Route>
           {/* HOME */}
@@ -55,7 +53,7 @@ const RouterApp = () => {
           <Route path="/NotificationPage" element={<NotificationPage />} />
         </Route>
       </Routes>
-    </div>
+    </>
   )
 }
 

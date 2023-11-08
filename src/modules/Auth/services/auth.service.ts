@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 export const AuthService = {
-  async login(username: string, password: string) {
+  async login(username: string, password: string): Promise<IAuthResponse> {
     const response = await axios.post(
       'https://digiaws.net/ceremonitea/api/auth',
       {
@@ -12,7 +12,7 @@ export const AuthService = {
 
     return response.data
   },
-  async getAccessToken(refreshToken: string) {
+  async getAccessToken(refreshToken: string): Promise<IAuthResponse> {
     const response = await axios.post(
       'https://digiaws.net/ceremonitea/api/auth/refresh',
       {
@@ -21,7 +21,10 @@ export const AuthService = {
     )
     return response.data
   },
-  async validation(userExId: string, phone: string) {
+  async validation(
+    userExId: string,
+    phone: string
+  ): Promise<IValidationResponse> {
     const response = await axios.post(
       'https://digiaws.net/ceremonitea/auth/validation',
       {
@@ -31,7 +34,11 @@ export const AuthService = {
     )
     return response.data
   },
-  async registration(extId: string, username: string, password: string) {
+  async registration(
+    extId: string,
+    username: string,
+    password: string
+  ): Promise<IDefaultAuthResponse> {
     const response = await axios.put(
       'https://digiaws.net/ceremonitea/auth/registration',
       {
@@ -43,7 +50,7 @@ export const AuthService = {
     return response.data
   },
 
-  async restorePasswordStepOne(email: string) {
+  async restorePasswordStepOne(email: string): Promise<IDefaultAuthResponse> {
     const response = await axios.post(
       'https://digiaws.net/ceremonitea/auth/restorePasswordStepOne',
       {
@@ -53,7 +60,11 @@ export const AuthService = {
     return response.data
   },
 
-  async restorePasswordStepTwo(email: string, token: string, password: string) {
+  async restorePasswordStepTwo(
+    email: string,
+    token: string,
+    password: string
+  ): Promise<IDefaultAuthResponse> {
     const response = await axios.post(
       'https://digiaws.net/ceremonitea/auth/restorePasswordStepTwo',
       {

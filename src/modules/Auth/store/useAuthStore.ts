@@ -1,5 +1,12 @@
 import { create } from 'zustand'
 import { AuthService } from '../services/auth.service'
+import {
+  getRefreshToken,
+  removeFromStorage,
+  saveToStorage,
+  updateAccessToken,
+} from '../helpers/auth.helper'
+import { onErrorAlert, onSuccessAlert } from '../../../shared/MySweetAlert'
 
 interface AuthState {
   loading: boolean
@@ -61,6 +68,15 @@ export const useAuth = create<AuthState>((set, get) => ({
     try {
       set({ loading: true })
       const response = await AuthService.login(username, password)
+      if (response.status === 'success') {
+        saveToStorage(response)
+        onSuccessAlert('ברוכים הבאים', '')
+        setTimeout(() => {
+          location.reload()
+        }, 1000)
+      } else {
+        onErrorAlert('שגיאה', '')
+      }
     } catch (e) {
       console.error('[ERROR AUTH SERIVEC]', e)
     } finally {
@@ -80,6 +96,11 @@ export const useAuth = create<AuthState>((set, get) => ({
         username,
         password
       )
+      if (response.status === 'success') {
+        get().login(username, password)
+      } else {
+        onErrorAlert('שגיאה', response.message)
+      }
     } catch (e) {
       console.error('[ERROR AUTH SERIVEC]', e)
     } finally {
@@ -91,6 +112,13 @@ export const useAuth = create<AuthState>((set, get) => ({
     try {
       set({ loading: true })
       const response = await AuthService.validation(userExId, phone)
+      if (response.status === 'success') {
+        get().setUserExtId(response.data.exId)
+        get().setAction('register')
+      } else {
+        onErrorAlert('שגיאה', response.message)
+        return false
+      }
     } catch (e) {
       console.error('[ERROR AUTH SERIVEC]', e)
     } finally {
@@ -101,7 +129,15 @@ export const useAuth = create<AuthState>((set, get) => ({
   getAccessToken: async () => {
     try {
       set({ loading: true })
-      const response = await AuthService.getAccessToken('reftesh')
+      const refreshToken = getRefreshToken()
+      if (refreshToken) {
+        const response = await AuthService.getAccessToken(refreshToken)
+        if (response.status === 'success') {
+          updateAccessToken(response)
+        } else {
+          get().logOut()
+        }
+      }
     } catch (e) {
       console.error('[ERROR AUTH SERIVEC]', e)
     } finally {
@@ -113,6 +149,11 @@ export const useAuth = create<AuthState>((set, get) => ({
     try {
       set({ loading: true })
       const response = await AuthService.restorePasswordStepOne(email)
+      if (response.status === 'success') {
+        onSuccessAlert(response.message, '')
+      } else {
+        onErrorAlert('שגיאה', response.message)
+      }
     } catch (e) {
       console.error('[ERROR AUTH SERIVEC]', e)
     } finally {
@@ -132,6 +173,11 @@ export const useAuth = create<AuthState>((set, get) => ({
         token,
         password
       )
+      if (response.status === 'success') {
+        onSuccessAlert(response.message, '')
+      } else {
+        onErrorAlert('שגיאה', response.message)
+      }
     } catch (e) {
       console.error('[ERROR AUTH SERIVEC]', e)
     } finally {
@@ -150,5 +196,8 @@ export const useAuth = create<AuthState>((set, get) => ({
     }
   },
 
-  logOut: () => {},
+  logOut: () => {
+    removeFromStorage()
+    location.reload()
+  },
 }))

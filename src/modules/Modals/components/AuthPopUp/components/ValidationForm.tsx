@@ -13,14 +13,10 @@ const ValidationForm = () => {
     handleSubmit,
     formState: { errors },
   } = useForm<ValidationForm>()
-  const { validation, setAction, setUserExtId } = useAuth()
+  const { validation, setAction } = useAuth()
 
   const handleLogin = async (data: ValidationForm) => {
-    const isValid = await validation(data.userExtId, data.phone)
-    setUserExtId(data.userExtId)
-    if (isValid) {
-      setAction('register')
-    }
+    await validation(data.userExtId, data.phone)
   }
 
   return (
