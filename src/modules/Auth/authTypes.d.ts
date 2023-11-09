@@ -7,13 +7,7 @@ interface IUser {
   phone: string
   createdAt: string
   updatedAt: string
-  roles: UsersTypes
-}
-
-interface UsersTypes {
-  USER: 'ROLE_USER'
-  AGENT: 'ROLE_AGENT'
-  ADMIN: 'ROLE_ADMIN'
+  roles: Array<'ROLE_ADMIN' | 'ROLE_USER' | 'ROLE_AGENT' | 'ROLE_SUPER_AGENT'>
 }
 
 interface ITokens {

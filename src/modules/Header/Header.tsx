@@ -7,7 +7,7 @@ import CenterComponent from './components/CenterComponent/CenterComponent'
 import CategoryNavBar from './components/CategoryNavBar/CategoryNavBar'
 
 const Header = () => {
-  const { user, isAgent } = useAuth()
+  const { user, isAgent, isAdmin } = useAuth()
   const [mobileSearchOn, setMobileSearchOn] = useState(false)
   return (
     <header id="header">

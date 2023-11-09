@@ -2,19 +2,16 @@ import axios from 'axios'
 
 export const AuthService = {
   async login(username: string, password: string): Promise<IAuthResponse> {
-    const response = await axios.post(
-      'https://digiaws.net/ceremonitea/api/auth',
-      {
-        username,
-        password,
-      }
-    )
+    const response = await axios.post('http://localhost:8080/api/auth', {
+      username,
+      password,
+    })
 
     return response.data
   },
   async getAccessToken(refreshToken: string): Promise<IAuthResponse> {
     const response = await axios.post(
-      'https://digiaws.net/ceremonitea/api/auth/refresh',
+      'http://localhost:8080/api/auth/refresh',
       {
         refresh_token: refreshToken,
       }
@@ -25,13 +22,10 @@ export const AuthService = {
     userExId: string,
     phone: string
   ): Promise<IValidationResponse> {
-    const response = await axios.post(
-      'https://digiaws.net/ceremonitea/auth/validation',
-      {
-        exId: userExId,
-        phone,
-      }
-    )
+    const response = await axios.post('http://localhost:8080/auth/validation', {
+      exId: userExId,
+      phone,
+    })
     return response.data
   },
   async registration(
@@ -40,7 +34,7 @@ export const AuthService = {
     password: string
   ): Promise<IDefaultAuthResponse> {
     const response = await axios.put(
-      'https://digiaws.net/ceremonitea/auth/registration',
+      'http://localhost:8080/auth/registration',
       {
         extId,
         username,
@@ -52,7 +46,7 @@ export const AuthService = {
 
   async restorePasswordStepOne(email: string): Promise<IDefaultAuthResponse> {
     const response = await axios.post(
-      'https://digiaws.net/ceremonitea/auth/restorePasswordStepOne',
+      'http://localhost:8080/auth/restorePasswordStepOne',
       {
         email,
       }
@@ -66,7 +60,7 @@ export const AuthService = {
     password: string
   ): Promise<IDefaultAuthResponse> {
     const response = await axios.post(
-      'https://digiaws.net/ceremonitea/auth/restorePasswordStepTwo',
+      'http://localhost:8080/auth/restorePasswordStepTwo',
       {
         email,
         token,
