@@ -54,19 +54,16 @@ const Catalog = () => {
   return (
     <div className="page-container category-page">
       <div className="category-page-subcont">
-        <h1>hello world</h1>
-        {/* <div className='category-page-subcont2 flex-container'>
-                    {(loading || filterLoading)  &&
-                      <Loader/>
-                    }
-                    <BreadCrumbs/>
-                    <div className='slide-menu-cont col-lg-3'>
-                        <RightSide/>
-                    </div>
-                    <div className='category-page-sub col-lg-9'>
-                        <LeftSide/>
-                    </div>
-                </div> */}
+        <div className="category-page-subcont2 flex-container">
+          {(loading || filterLoading) && <Loader />}
+          {/* <BreadCrumbs/> */}
+          <div className="slide-menu-cont col-lg-3">
+            <RightSide />
+          </div>
+          <div className="category-page-sub col-lg-9">
+            <LeftSide />
+          </div>
+        </div>
       </div>
     </div>
   )
