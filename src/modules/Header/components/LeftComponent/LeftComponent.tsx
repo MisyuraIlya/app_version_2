@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useAuth } from '../../../Auth/store/useAuthStore'
 import { useModals } from '../../../Modals/provider/ModalProvider'
+import ProfileMenu from './components/ProfileMenu'
 
 const LeftComponent = () => {
   const { user, isAgent, setAction } = useAuth()
@@ -40,7 +41,7 @@ const LeftComponent = () => {
               <span className="material-symbols-outlined">person</span>
             </div>
           )}
-          {/* {user && <ProfileMenu />} */}
+          {user && <ProfileMenu />}
         </li>
 
         {isAgent ? (

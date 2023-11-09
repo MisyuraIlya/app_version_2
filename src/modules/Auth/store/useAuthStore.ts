@@ -2,6 +2,8 @@ import { create } from 'zustand'
 import { AuthService } from '../services/auth.service'
 import {
   getRefreshToken,
+  getRole,
+  getUserLocalStorage,
   removeFromStorage,
   saveToStorage,
   updateAccessToken,
@@ -47,12 +49,12 @@ type ActionType =
 export const useAuth = create<AuthState>((set, get) => ({
   // STATES
   loading: false,
-  isUser: false,
-  isAdmin: false,
-  isAgent: false,
-  isSuperAgent: false,
-  isUserBlocked: false,
-  user: null,
+  isUser: getRole() === 'USER',
+  isAdmin: getRole() === 'ADMIN',
+  isAgent: getRole() === 'AGENT',
+  isSuperAgent: getRole() === 'SUPER_AGENT',
+  isUserBlocked: getUserLocalStorage()?.isBlocked ?? false,
+  user: getUserLocalStorage(),
 
   // states for auth modals
   action: 'login',

@@ -2,6 +2,7 @@ interface IUser {
   extId: string
   email: string
   isRegistered: boolean
+  isBlocked: boolean
   name: string
   phone: string
   createdAt: string
