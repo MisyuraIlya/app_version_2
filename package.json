@@ -21,9 +21,11 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.48.2",
+    "react-loading-skeleton": "^3.3.1",
     "react-router-dom": "^6.18.0",
     "sweetalert2": "^11.9.0",
     "swiper": "^11.0.3",
+    "use-debounce": "^10.0.0",
     "zustand": "^4.4.6"
   },
   "devDependencies": {
@@ -67,7 +69,6 @@
     "webpack-merge": "^5.10.0"
   },
   "lint-staged": {
-
     "src/**/*.{js,jsx,ts,tsx,json,css,scss,md}": [
       "prettier --write"
     ]

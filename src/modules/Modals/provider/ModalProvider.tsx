@@ -31,7 +31,7 @@ interface ModalContextType {
   setOpenCartSettings: (bool: boolean) => void
   selectedProduct: boolean
   setSelectedProduct: (bool: boolean) => void
-  selectProduct: (product: null) => void
+  selectProduct: (product: IProduct) => void
   setActiveTablePopUp: (bool: boolean) => void
   openPopUpPay: boolean
   setOpenPopUpPay: (bool: boolean) => void
@@ -100,7 +100,7 @@ const ModalsProvider: FC<ModalsProviderProps> = ({ children }) => {
     }, 3000)
   }
 
-  const selectProduct = (product: null) => {
+  const selectProduct = (product: IProduct) => {
     // setSelectedProd(product)
     setSelectedProduct(true)
   }

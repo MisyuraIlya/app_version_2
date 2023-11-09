@@ -63,3 +63,8 @@ export const getRole = () => {
     }
   }
 }
+
+export const getClientExtId = () => {
+  //TODO IMPLEMENT
+  return '9999999'
+}
