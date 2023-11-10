@@ -27,12 +27,7 @@ export const CatalogServices = {
 
   async GetCategories(userExId: string): Promise<GetCategoriesResponse> {
     const response = await axios.get(
-      `http://localhost:8080/api/categoriesApp?userExtId=${userExId}`,
-      {
-        headers: {
-          Accept: 'application/json',
-        },
-      }
+      `http://localhost:8080/api/categoriesApp?userExtId=${userExId}`
     )
     return response.data
   },

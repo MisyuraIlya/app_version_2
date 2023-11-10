@@ -1,6 +1,11 @@
+//MODULES IMPORT
 @import './variables.scss';
 @import './modules/Modals/Modal.styles.scss';
 @import './modules//Header/Header.styles.scss';
+@import './modules/Catalog/catalog.styles.scss';
+
+//SHARED COMPONENTS
+@import './shared/Pagination.style.scss';
 .container {
   clear: both;
   max-width: 1200px;
@@ -60,6 +65,13 @@
   .col-lg-1 {
     width: 8.33333333%;
   }
+}
+
+.page-container {
+  min-height: 90vh;
+  padding-top: 125px;
+  background: $main-bg;
+  padding-bottom: 5px;
 }
 
 input[type='number']::-webkit-inner-spin-button,

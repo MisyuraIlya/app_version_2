@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { useCategories } from '../../../Catalog/store/CategoriesStore'
 const CategoryNavBar = () => {
-  // const { categories, getCategories } = useCategories();
+  const { categories, getCategories } = useCategories()
   const [active, setActive] = useState('')
 
-  //   useEffect(() => {
-  //     if (categories.length === 0) {
-  //       getCategories();
-  //     }
-  //   }, []);
+  useEffect(() => {
+    if (categories.length === 0) {
+      getCategories()
+    }
+  }, [])
 
   return (
     <nav
@@ -20,18 +21,29 @@ const CategoryNavBar = () => {
     >
       <div className="container">
         <ul className="main-menu-ecare">
-          {/* {categories?.map((element, index) => {
-            if(element.lvlNumber === 1 && element.isPublished) {
+          {categories?.map((element, index) => {
+            if (element.lvlNumber === 1 && element.isPublished) {
               return (
-                <li key={index} className={active === element.Id ? 'active main-li' : 'main-li'}>
+                <li
+                  key={index}
+                  className={
+                    active === element.id.toString()
+                      ? 'active main-li'
+                      : 'main-li'
+                  }
+                >
                   <Link to={`/client/catalog/${element.id}/0/0`}>
                     <p>{element.title}</p>
                   </Link>
-  
+
                   <div
-                    id={"sub_menu_" + element.Id}
-                    className={active === element.Id ? "wide-sub-menu active" : "wide-sub-menu"}
-                    onClick={(e) => close("sub_menu_" + element.Id)}
+                    id={'sub_menu_' + element.id}
+                    className={
+                      active === element.id.toString()
+                        ? 'wide-sub-menu active'
+                        : 'wide-sub-menu'
+                    }
+                    // onClick={(e) => close("sub_menu_" + element.id)}
                   >
                     <div className="sub-menu-wrapp scrollbar animated fadeIn">
                       <div className="flex-container">
@@ -52,32 +64,32 @@ const CategoryNavBar = () => {
                                           <Link
                                             to={`/client/catalog/${element.id}/${elem.id}/${e.id}`}
                                           >
-                                            { e.title}
+                                            {e.title}
                                           </Link>
                                         </li>
-                                      );
+                                      )
                                     })}
                                   </ul>
                                 </div>
                               </div>
-                            );
+                            )
                           })}
                         </div>
-  
+
                         <div className="col-lg-3">
                           <div className="banner animated pulse">
-                            <Link to={element.Link ? element.Link : '/'}>
-                              <img src={`${globalFileServer}categories-banner/${element.Banner}`} alt="" />
-                            </Link>
+                            {/* <Link to={element.Link ? element.Link : '/'}> */}
+                            {/* <img src={`${globalFileServer}categories-banner/${element.Banner}`} alt="" /> */}
+                            {/* </Link> */}
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
                 </li>
-              );
+              )
             }
-          })} */}
+          })}
         </ul>
       </div>
     </nav>

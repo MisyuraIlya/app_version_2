@@ -18,6 +18,7 @@ const RightSide = () => {
   const navigate = useNavigate()
 
   const isSearchDocument = documentType === 'search'
+  console.log('categories', categories)
   return (
     <>
       <div
