@@ -9,3 +9,6 @@
 9. npm i axios
 10. npm i zustand
 11. npm i sass
+12. react-calendar
+13. react-beautiful-dnd
+14. npm i --save-dev @types/react-beautiful-dnd
