@@ -24,7 +24,7 @@ interface useCartState {
   totalBasket: number
 
   setCart: (data: ICart[]) => void
-  getCartItem: (product: { sku: string }) => ICart | []
+  getCartItem: (product: { sku: string }) => ICart | null
   addToCart: (product: IProduct) => void
   increaseCart: (sku: string) => void
   decreaseCart: (sku: string) => void
@@ -55,13 +55,13 @@ export const useCart = create<useCartState>((set, get) => ({
     set({ cart: data })
     setProductLocalstorage(data)
   },
-  getCartItem: (product) => {
+  getCartItem: (product): ICart | null => {
     const cart = get().cart
     const itemFind = cart.filter((item) => item.sku === product.sku)
     if (itemFind.length > 0) {
       return itemFind[0]
     } else {
-      return []
+      return null
     }
   },
   addToCart: (product: IProduct) => {

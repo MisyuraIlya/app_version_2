@@ -19,6 +19,7 @@ import Gallery from '../adminComponents/Galerry/Gallery'
 import ClientsInfo from '../adminComponents/ClientsInfo/ClientsInfo'
 import ClientOptions from '../adminComponents/ClientOptions/ClientOptions'
 import AdminRightSideBar from '../adminComponents/AdminRightSideBar/AdminRightSideBar'
+import { useSelectedProduct } from '../store/selecterdProduct.store'
 // Defines
 interface ModalContextType {
   openAuthModal: boolean
@@ -68,7 +69,7 @@ interface ModalsProviderProps {
 }
 const ModalsProvider: FC<ModalsProviderProps> = ({ children }) => {
   const [openAuthModal, setOpenAuthModal] = useState(false)
-  // const {setSelectedProd, loading, clearSubProducts} = useSelectedProduct()
+  const { setSelectedProd, loading } = useSelectedProduct()
   const [stockNotify, setStockNotify] = useState(false)
   const [addToCartNotify, setAddToCartNotify] = useState(false)
   const [openCartSettings, setOpenCartSettings] = useState(false)
@@ -101,7 +102,7 @@ const ModalsProvider: FC<ModalsProviderProps> = ({ children }) => {
   }
 
   const selectProduct = (product: IProduct) => {
-    // setSelectedProd(product)
+    setSelectedProd(product)
     setSelectedProduct(true)
   }
 

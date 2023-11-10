@@ -10,12 +10,7 @@ type ProductPopUpProps = {
 
 const ProductPopUp: FC<ProductPopUpProps> = ({ active, setActive }) => {
   return (
-    <ModalWrapper
-      active={active}
-      setActive={setActive}
-      height={500}
-      width={500}
-    >
+    <ModalWrapper active={active} setActive={setActive} height={90} width={50}>
       <div className="product-page">
         <div className="product-wrapper flex-container">
           <div className="col-lg-5 image flex-container">

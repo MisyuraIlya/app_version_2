@@ -9,12 +9,13 @@ import { useSearchStore } from '../../../../store/SearchStore'
 import { useParams } from 'react-router-dom'
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
+import { useCart } from '../../../../../Cart/store/cart.store'
 
 const ProductList = () => {
   const { products, toShow, listView, loading } = useCatalog()
   const { documentType } = useParams()
   const { productsFilter } = useSearchStore()
-  // const { getCartItem } = useCart();
+  const { getCartItem } = useCart()
   return (
     <div
       className={

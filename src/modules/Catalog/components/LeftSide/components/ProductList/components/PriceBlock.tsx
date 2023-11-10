@@ -29,7 +29,7 @@ const PriceBlock: FC<PriceBlockProps> = ({ product }) => {
             </div>
             <div className="price-cont-sub-right-box  col-lg-4">
               <p className="row-title">{'הנחה'}</p>
-              {isAgent && user && selectedMode ? (
+              {/* {isAgent && user && selectedMode ? (
                 <input
                   id={'inputPrice_' + product.sku}
                   type="number"
@@ -39,12 +39,12 @@ const PriceBlock: FC<PriceBlockProps> = ({ product }) => {
                   value={product.discount}
                 />
               ) : (
-                <p className="row-val percent">{inCart.discount ?? 0}</p>
-              )}
+                <p className="row-val percent">{inCart?.discount ?? 0}</p>
+              )} */}
             </div>
             <div className="price-cont-sub-right-box  col-lg-4">
               <p className="row-title highlight-p-cls">{'סה״כ'}</p>
-              {isAgent && user && selectedMode ? (
+              {/* {isAgent && user && selectedMode ? (
                 <input
                   id={'inputDiscount_' + product.sku}
                   className=""
@@ -60,25 +60,25 @@ const PriceBlock: FC<PriceBlockProps> = ({ product }) => {
                 <p className="row-val price highlight-p-cls">
                   {parseFloat(parseFloat(product.finalPrice).toFixed(1))}
                 </p>
-              )}
+              )} */}
             </div>
           </div>
           <div className="price-cont-sub col-lg-12 flex-container">
             <div className="price-cont-sub-left-box col-lg-6">
               <p className="row-title highlight-p-cls">{"יח' להזמנה"}</p>
               <p className="row-val no-bg highlight-p-cls">
-                {inCart?.sku
+                {/* {inCart?.sku
                   ? (
                       parseFloat(inCart.quantity) *
                       parseInt(product.packQuantity)
                     ).toFixed(1)
-                  : '0'}
+                  : '0'} */}
               </p>
             </div>
             <div className="price-cont-sub-right-box  col-lg-6">
               <p className="row-title">{'סה״כ להזמנה'}</p>
               <p className="row-val no-bg price">
-                {calculateProductByQuantityAndPackage(inCart)}
+                {/* {calculateProductByQuantityAndPackage(inCart)} */}
               </p>
             </div>
           </div>

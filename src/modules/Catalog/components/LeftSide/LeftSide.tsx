@@ -5,19 +5,16 @@ import FiltersBlock from './components/FiltersBlock/FiltersBlock'
 import Pagination from '../../../../shared/Pagination'
 import { useParams } from 'react-router-dom'
 import { useCatalog } from '../../store/CatalogStore'
+import { useSearchStore } from '../../store/SearchStore'
 
 const LeftSide = () => {
   const { categoriesLvl1, hydraPagination } = useCatalog()
-  // const {
-  //     totalPages: filterTotalPages,
-  //     page: filterPage,
-  //     lastPage: filterLastPage,
-  //     nextPage: filterNextPage,
-  //     previousPage: filterPreviousPage
-  // } = useSearchStore()
+  const { hydraPagination: searchHydraPagination } = useSearchStore()
   const { documentType, lvl1 } = useParams()
-  // const currentCategory = (categoriesLvl1?.filter((item) => item.Id == lvl1))[0]
-  // const isSearchDocument = documentType === 'search'
+  const currentCategory = (categoriesLvl1?.filter(
+    (item) => item.id.toString() == lvl1
+  ))[0]
+  const isSearchDocument = documentType === 'search'
   return (
     <div className={'category-page-sub2'}>
       {/* {currentCategory?.Id &&
