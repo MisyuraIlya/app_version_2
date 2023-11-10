@@ -4,6 +4,7 @@
 @import './modules//Header/Header.styles.scss';
 @import './modules/Catalog/catalog.styles.scss';
 @import './modules/Home/pages/Home.styles.scss';
+@import './modules/Cart/pages/CartPage.styles.scss';
 //SHARED COMPONENTS
 @import './shared/Pagination.style.scss';
 .container {
@@ -95,4 +96,10 @@ button {
 
 a {
   text-decoration: none;
+}
+
+.MyCenetred {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

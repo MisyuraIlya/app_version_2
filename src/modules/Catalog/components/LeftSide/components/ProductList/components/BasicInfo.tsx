@@ -20,14 +20,13 @@ const BasicInfo: FC<BasicInfoProps> = ({ product }) => {
     >
       <div className="img-cont">
         {/* SET PLAVEHOLDER IMAGE */}
-        {/* {loading ?
-                <Skeleton style={{height:'120px'}} />
-            :
-            product.defaultImagePath ?
-                <img className="img" src={product.ImgPath ? product.defaultImagePath : globalFileServer + 'products/' + product.defaultImagePath}/>
-            :
-                <img className="img" src={globalFileServer + 'placeholder2.jpg'}/>
-            } */}
+        {loading ? (
+          <Skeleton style={{ height: '120px' }} />
+        ) : product.defaultImagePath ? (
+          <img className="img" src={'products/' + product.defaultImagePath} />
+        ) : (
+          <img className="img" src={'placeholder2.jpg'} />
+        )}
       </div>
       {loading ? (
         <Skeleton style={{ height: '60px' }} count={2} />

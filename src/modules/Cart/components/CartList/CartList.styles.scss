@@ -1,0 +1,262 @@
+.lines-main-cont::-webkit-scrollbar {
+  width: 2px;
+  height: 2px;
+}
+
+.lines-main-cont::-webkit-scrollbar-track {
+  background-color: #fff;
+}
+
+.lines-main-cont::-webkit-scrollbar-thumb {
+  background-color: $c1;
+  outline: 1px solid #fff;
+}
+
+.lines-main-cont {
+  overflow-x: auto;
+  margin-top: 20px;
+  //max-width: fit-content;
+  max-height: calc(100vh - 125px - 280px);
+
+  //max-height: 200px;
+  &.shop-cart-table {
+    max-height: calc(100vh - 280px);
+  }
+
+  &.openDept {
+    max-height: calc(100vh - 125px - 360px);
+  }
+
+  .lines-sub-cont {
+    border-collapse: collapse;
+    width: 100%;
+
+    .heading {
+      background: #fff;
+      margin: 0;
+      margin: 0;
+      position: sticky;
+      top: -1px;
+      z-index: 99;
+      border-bottom: 4px solid #eeeeee;
+
+      th {
+        p {
+          color: $new2;
+          font-weight: 700;
+        }
+      }
+
+      .col-cont {
+        vertical-align: text-top !important;
+
+        p {
+          direction: rtl !important;
+        }
+      }
+    }
+
+    .item:nth-child(odd) {
+      background: #fbfbfb;
+    }
+
+    .item {
+      z-index: 98;
+      border-bottom: 1px solid #eeeeee;
+      cursor: pointer;
+
+      &:hover {
+        background: #eeeeee;
+      }
+
+      &.alert {
+        background: $alert2;
+      }
+    }
+  }
+
+  .col-cont {
+    margin: 0;
+    min-width: 80px;
+    vertical-align: middle;
+    padding: 8px 0;
+    text-align: right;
+    position: relative;
+
+    &.desc {
+      max-width: 150px;
+    }
+
+    span {
+      text-align: center;
+      //width: 100%;
+    }
+
+    .change_price_cont {
+      position: absolute;
+      bottom: 8px;
+      left: 8px;
+
+      span {
+        font-size: 20px;
+        padding: 6px;
+        margin: 4px;
+      }
+    }
+
+    .Discout-cont {
+      position: absolute;
+      top: 8px;
+      left: 8px;
+
+      p {
+        background: $new3;
+        border-radius: 16px;
+        text-align: center;
+        color: #fff;
+        padding: 4px 8px;
+        margin: 0 0 8px 0;
+        font-size: 14px;
+      }
+    }
+
+    &.color {
+      p {
+        color: #974063;
+      }
+    }
+
+    p {
+      margin: 12px 16px;
+      color: $almost-black;
+      font-size: 14px;
+      direction: ltr;
+      text-align: right;
+      font-weight: 500;
+
+      &.grey {
+        color: #888;
+      }
+
+      &.no-margin {
+        margin: 0 24px;
+      }
+
+      &.AccountName {
+        min-width: 100px;
+      }
+
+      &.price-p-cls {
+        text-align: left;
+        margin: 4px 0;
+      }
+
+      &.price {
+        font-size: 16px;
+        line-height: 16px;
+        color: $c1;
+        font-weight: 600;
+
+        &:before {
+          content: '\20AA';
+          padding-right: 4px;
+        }
+      }
+
+      &.greyCls {
+        color: #828181;
+        font-size: 14px;
+        position: relative;
+      }
+
+      &.orgCls {
+        &::after {
+          content: '';
+          position: absolute;
+          top: 8px;
+          left: -8px;
+          width: calc(100%);
+          height: 1px;
+          background: #828181;
+          //transform: rotate(20deg);
+        }
+      }
+    }
+
+    &.sticky-col {
+      position: sticky;
+      right: 0;
+      background: transparent;
+      font-weight: 400;
+      overflow: hidden;
+      z-index: 9;
+    }
+
+    &.title-col {
+      background: #eee;
+      font-weight: 400;
+    }
+
+    &.col-approved {
+      p {
+        color: $new_purple1 !important;
+        background: $new_purple1_fade;
+        padding: 5px 10px;
+        display: inline-block;
+        border-radius: 0.2rem;
+
+        &.Blocked {
+          color: $new_red1 !important;
+          background: $new_red1_fade;
+        }
+
+        &.Active {
+          color: $new_green1 !important;
+          background: $new_green1_fade;
+        }
+
+        &.Waiting {
+          color: $new_orange !important;
+          background: $new_orange_fade;
+        }
+      }
+    }
+
+    &.alert {
+      p {
+        color: red;
+      }
+    }
+
+    &.status-btn {
+      .input {
+        position: relative;
+        background: #e36159;
+        width: 30px;
+        height: 30px;
+        margin: 0 auto;
+        border-radius: 2px;
+        cursor: pointer;
+
+        //margin:0 auto;
+        &.active {
+          background: $new_purple1;
+
+          img {
+            width: 18px;
+          }
+        }
+
+        img {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translateX(-50%) translateY(-50%);
+          display: block;
+          width: 13px;
+          margin: 0 auto;
+        }
+      }
+    }
+  }
+}
