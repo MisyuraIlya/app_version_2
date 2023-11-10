@@ -17,22 +17,25 @@ const Header = () => {
             className={
               mobileSearchOn
                 ? 'main-menu col-lg-4 opened'
-                : 'main-menu col-lg-6 closed'
+                : 'main-menu col-lg-4 closed'
             }
           >
-            {/* <MobileHeader mobileSearchOn={mobileSearchOn} setMobileSearchOn={setMobileSearchOn}/> */}
+            <MobileHeader
+              mobileSearchOn={mobileSearchOn}
+              setMobileSearchOn={setMobileSearchOn}
+            />
             <RightComponent />
           </div>
           <div
             className={
               mobileSearchOn
-                ? 'search-li col-lg-5 hide-mob'
-                : 'search-li col-lg-3 show-mob'
+                ? 'search-li col-lg-4 hide-mob'
+                : 'search-li col-lg-4 show-mob'
             }
           >
             <CenterComponent />
           </div>
-          <div className="actions col-lg-3">
+          <div className="actions col-lg-4">
             <LeftComponent />
           </div>
         </div>
