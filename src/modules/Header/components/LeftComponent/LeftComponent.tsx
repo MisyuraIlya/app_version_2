@@ -2,9 +2,12 @@ import React, { useState } from 'react'
 import { useAuth } from '../../../Auth/store/useAuthStore'
 import { useModals } from '../../../Modals/provider/ModalProvider'
 import ProfileMenu from './components/ProfileMenu'
+import { useCart } from '../../../Cart/store/cart.store'
+import { Link } from 'react-router-dom'
 
 const LeftComponent = () => {
   const { user, isAgent, setAction } = useAuth()
+  const { cart } = useCart()
   const [openProfile, setOpenProfile] = useState<boolean>(false)
   const { setOpenAuthModal } = useModals()
   return (
@@ -52,12 +55,14 @@ const LeftComponent = () => {
         {/* <NotificationIcon /> */}
         {user && (
           <li>
-            <button className="icon">
-              {/* {cart.length > 0 && (
-                    <div className="cart-counter">{cart.length}</div>
-                  )}
-                  <span className="material-symbols-outlined">shopping_cart</span> */}
-            </button>
+            <Link to={'/cart'}>
+              <button className="icon">
+                {cart.length > 0 && (
+                  <div className="cart-counter">{cart.length}</div>
+                )}
+                <span className="material-symbols-outlined">shopping_cart</span>
+              </button>
+            </Link>
           </li>
         )}
       </ul>

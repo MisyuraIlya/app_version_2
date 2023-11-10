@@ -10,7 +10,7 @@ export const getAccessToken = () => {
   return accessToken || null
 }
 
-export const getUserFromStorage = () => {
+export const getUserFromStorage = (): IUser => {
   return JSON.parse(localStorage.getItem('user') || '{}')
 }
 
@@ -67,4 +67,14 @@ export const getRole = () => {
 export const getClientExtId = () => {
   //TODO IMPLEMENT
   return '9999999'
+}
+
+export const getClientName = () => {
+  //TODO IMPLEMENT
+  return 'gogi'
+}
+
+export const getAgentExtId = () => {
+  //TODO IMPLEMENT
+  return 'gogi'
 }

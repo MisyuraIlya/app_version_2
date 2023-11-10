@@ -7,6 +7,7 @@ interface IUser {
   phone: string
   createdAt: string
   updatedAt: string
+  discount: number
   roles: Array<'ROLE_ADMIN' | 'ROLE_USER' | 'ROLE_AGENT' | 'ROLE_SUPER_AGENT'>
 }
 

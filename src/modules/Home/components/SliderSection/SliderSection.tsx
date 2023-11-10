@@ -1,0 +1,110 @@
+import React, { FC, useRef } from 'react'
+import { Swiper, SwiperSlide, useSwiper } from 'swiper/react'
+import { SwiperOptions } from 'swiper/types'
+import { Link } from 'react-router-dom'
+import 'swiper/css'
+import 'swiper/css/navigation'
+import 'swiper/css/pagination'
+import 'swiper/css/scrollbar'
+
+interface SliderSectionProps {
+  title: string
+  array: any[]
+  toShow: number
+  column: number
+}
+
+const SliderSection: FC<SliderSectionProps> = ({
+  title,
+  array,
+  toShow = 5,
+  column = 1,
+}) => {
+  const swiperRef = useRef<null>(null)
+  const params = {
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+    spaceBetween: 30,
+    slidesPerView: toShow,
+    onSwiper: (swiper: any) => {
+      // Store the Swiper instance in the ref
+      swiperRef.current = swiper
+    },
+    breakpoints: {
+      1400: {
+        slidesPerView: 5,
+        slidesPerColumn: 1,
+      },
+      1000: {
+        slidesPerView: 5,
+        slidesPerColumn: 1,
+      },
+      600: {
+        slidesPerView: 2,
+        slidesPerColumn: 1,
+      },
+      0: {
+        slidesPerView: 2,
+        slidesPerColumn: 1,
+      },
+    },
+  }
+
+  return (
+    <div className="products-sale product-list cat-list">
+      <div className="title-wrapper">
+        <h1 className="title">{title && <span>{title}</span>}</h1>
+        <div className="referal-cont">
+          {/* <NavLink to={res.link}>
+                        <p>{res.linkTitle}</p>
+                    </NavLink> */}
+        </div>
+      </div>
+      <div className="items images images-slider images-slider-cont">
+        <Swiper {...params}>
+          {array?.map((element, index) => {
+            return (
+              <SwiperSlide key={index} className="product-item">
+                <div className={'wrapper'}>
+                  <Link to={'/categoryPage/' + element?.id + '/0/0'}>
+                    <div className="img-cont">
+                      .{/* IMPLEMENT IMAGE PATH */}
+                      {/* <img className="img" src={element?.MediaObject?.filePath ? globalFileServer + "categories/" + element?.MediaObject?.filePath : globalFileServer + 'placeholder.jpg'} /> */}
+                    </div>
+                    <div className="prod-data-cont">
+                      <h3 className="p-title">{element?.title}</h3>
+                    </div>
+                  </Link>
+                </div>
+              </SwiperSlide>
+            )
+          })}
+        </Swiper>
+        {array?.length > toShow && (
+          <div className="swiper-navigation">
+            <button
+              className="swiper-nav prev"
+              //@ts-ignore
+              onClick={() => swiperRef.current?.slidePrev()}
+            >
+              <span className="material-symbols-outlined">
+                arrow_forward_ios
+              </span>
+            </button>
+            <button
+              className="swiper-nav next"
+              //@ts-ignore
+              onClick={() => swiperRef.current?.slideNext()}
+            >
+              <span className="material-symbols-outlined">arrow_back_ios</span>
+            </button>
+          </div>
+        )}
+      </div>
+    </div>
+  )
+}
+
+export default SliderSection

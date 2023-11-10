@@ -13,7 +13,7 @@ interface IProduct {
   finalPrice: float
   stock: number
   packQuantity: number
-  discoint: number
+  discount: number
   ordern: number
   productAttributes: ISubAttributes[]
 }
@@ -50,4 +50,14 @@ interface IAttributeMain {
 interface ISubAttributes {
   id: number
   title: string
+}
+
+interface PurchaseHistoryItem {
+  documentNumber: string
+  date: string
+  quantity: number
+  vatPrice: number
+  discount: number
+  totalPrice: number
+  vatTotal: number
 }

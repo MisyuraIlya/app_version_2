@@ -1,0 +1,252 @@
+.products-sale {
+  max-width: 1200px;
+  margin: 60px auto 60px auto;
+
+  .title-wrapper {
+    position: relative;
+    margin: 0 auto 30px auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .title {
+      color: #2e2f4c;
+      text-align: right;
+      position: relative;
+      font-size: 26px;
+      font-weight: 400;
+      margin: 0;
+    }
+
+    .referal-cont {
+      p {
+        color: $new2;
+        text-decoration: underline;
+        font-size: 16px;
+        margin: 0;
+        padding: 8px 16px;
+        border-radius: 8px;
+
+        &:hover {
+          background: $greyBazar;
+        }
+      }
+    }
+  }
+
+  .prod-data-cont {
+    h3 {
+      margin: 0;
+      margin-top: 20px;
+      font-weight: 600;
+      color: #2e2f4c;
+      font-size: 16px;
+      text-align: center;
+      padding: 8px 10px;
+      background: #fff;
+      word-break: break-word;
+      height: 30px;
+    }
+  }
+
+  &.brands {
+    .prod-data-cont {
+      box-shadow: 0px 1px 3px #b6b6b6;
+      background: #fff;
+      border-radius: 8px;
+      transition: all 250ms ease-in-out;
+      margin-bottom: 20px;
+      cursor: pointer;
+      margin: 30px 8px;
+      position: relative;
+      height: 90px;
+
+      &:hover {
+        box-shadow: 0px 8px 25px #b6b4b48c;
+      }
+    }
+
+    h3 {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      height: auto;
+      margin: 0;
+      padding: 0;
+      color: $new2;
+      background: transparent;
+      width: 90%;
+    }
+
+    .img {
+      max-height: 140px;
+      min-height: 140px;
+      margin: 0 auto;
+      display: block;
+    }
+  }
+
+  &.cat-list {
+    .wrapper {
+      margin: 5px;
+
+      .img-cont {
+        img {
+          box-shadow: 0px 1px 4px 0px #bebebe;
+        }
+      }
+    }
+  }
+}
+
+.entry-section {
+  background: $header;
+  position: relative;
+
+  .video-wrapper {
+    margin-top: 125px;
+    //height:60vh;
+    width: 100vw;
+    overflow: hidden;
+
+    &.no-margin {
+      margin-top: 85px;
+    }
+
+    .scroll-down-cont {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+
+      img {
+        width: 40px;
+      }
+    }
+  }
+
+  video {
+    display: block;
+    width: 100%;
+    height: calc(100vh - 80px);
+    max-height: 600px;
+    object-fit: cover;
+    background: $header;
+    filter: brightness(50%);
+  }
+
+  img {
+    display: block;
+    width: 100%;
+    height: calc(100vh - 80px);
+    max-height: 400px;
+    object-fit: cover;
+    background: $header;
+    filter: brightness(50%);
+  }
+
+  .showcase {
+    position: absolute;
+    bottom: 2%;
+    left: 50%;
+    transform: translateY(-50%) translateX(-50%);
+    width: 50%;
+    text-align: center;
+    text-transform: uppercase;
+
+    &.animated {
+      visibility: visible;
+    }
+
+    h1 {
+      //font-family: 'Montserrat', sans-serif;
+      position: relative;
+      margin: 0;
+      color: #fff;
+      letter-spacing: 5px;
+
+      &.h1-1 {
+        font-size: 3vw;
+        margin-bottom: 25px;
+        font-weight: 600;
+        letter-spacing: 10px;
+      }
+
+      &.h1-2 {
+        font-size: 2vw;
+        font-weight: 400;
+        letter-spacing: 6px;
+      }
+    }
+
+    h3 {
+      margin: 0;
+      margin-top: 30px;
+      font-size: 1.5vw;
+      color: #fff;
+    }
+
+    .button-cls {
+      margin-top: 60px;
+      text-transform: initial;
+      border: 2px solid #fff;
+      display: inline-block;
+      cursor: pointer;
+      border-radius: 5px;
+
+      p {
+        color: #fff;
+        margin: 16px 24px;
+      }
+
+      &:hover {
+        background: #fff;
+
+        p {
+          color: $c1;
+        }
+      }
+    }
+  }
+}
+
+.images-slider-cont {
+  position: relative;
+  width: 95%;
+  margin: 0 auto;
+}
+
+.images-slider {
+  position: relative;
+
+  .swiper-container {
+    margin: 0 auto;
+  }
+
+  button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    cursor: pointer;
+
+    img {
+      display: block;
+      height: 40px;
+    }
+
+    &.prev {
+      right: -6px;
+    }
+
+    &.next {
+      left: -6px;
+    }
+  }
+}
+.images-slider {
+  width: 90%;
+  margin: 0 auto;
+}

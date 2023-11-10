@@ -33,7 +33,7 @@ const RouterApp = () => {
           />
           <Route path="/CatalogView" element={<CatalogView />} />
           {/* CART */}
-          <Route path="/CartPage" element={<CartPage />} />
+          <Route path="/cart" element={<CartPage />} />
           {/* AUTH */}
           <Route path="/ProfilePage" element={<ProfilePage />} />
 

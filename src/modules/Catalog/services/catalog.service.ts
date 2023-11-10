@@ -12,6 +12,10 @@ interface GetCategoriesAttribute extends Hydra {
   'hydra:member': IAttributeMain[]
 }
 
+interface GetPurchaseHistoryItem extends Hydra {
+  'hydra:member': PurchaseHistoryItem[]
+}
+
 export const CatalogServices = {
   async GetCatalog(
     lvl1: string | number,
@@ -69,7 +73,10 @@ export const CatalogServices = {
     return response.data
   },
 
-  async GetPurchaseHistory(userExId: string, sku: string) {
+  async GetPurchaseHistory(
+    userExId: string,
+    sku: string
+  ): Promise<GetPurchaseHistoryItem> {
     const response = await axios.get(
       `http://localhost:8080/api/purchaseHistory/${userExId}/${sku}`
     )
