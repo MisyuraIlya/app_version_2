@@ -41,7 +41,7 @@ const RightComponent = () => {
                 <li>
                   <div className="img" style={{ cursor: 'pointer' }}>
                     <Link to={'/'}>
-                      {/* TODO CHANGE */}
+                      {/* TODO CHANGEee */}
                       <img
                         src={
                           'https://digitrade.com.ua/ceremonitea/src/img/logo.png'

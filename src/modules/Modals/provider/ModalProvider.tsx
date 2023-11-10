@@ -173,13 +173,19 @@ const ModalsProvider: FC<ModalsProviderProps> = ({ children }) => {
       )}
 
       {/* SIDEBARDS */}
-      {/* <AdminRightSideBar active={adminRightSideBar} setActive={setAdminRightSideBar}/> */}
-      {/* <ClientRightSideBar active={clientRightSideBar} setActive={setClientRightSideBar} /> */}
-      {/* <LeftSideBar active={leftSideBar} setActive={setLeftSideBar}/> */}
+      <AdminRightSideBar
+        active={adminRightSideBar}
+        setActive={setAdminRightSideBar}
+      />
+      <ClientRightSideBar
+        active={clientRightSideBar}
+        setActive={setClientRightSideBar}
+      />
+      <LeftSideBar active={leftSideBar} setActive={setLeftSideBar} />
       {/* ADMINS */}
-      {/* <Gallery active={gallery} setActive={setGallery}/> */}
-      {/* <ClientsInfo active={clientsInfo} setActive={setClientsInfo}/> */}
-      {/* <ClientOptions active={clientOptions} setActive={setClientOptions}/> */}
+      <Gallery active={gallery} setActive={setGallery} />
+      <ClientsInfo active={clientsInfo} setActive={setClientsInfo} />
+      <ClientOptions active={clientOptions} setActive={setClientOptions} />
       {children}
     </ModalContext.Provider>
   )
