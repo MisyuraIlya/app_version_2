@@ -29,32 +29,37 @@ const HistoryCardList = () => {
                 <p>סה״כ</p>
               </th>
             </tr>
-            {/* {orderItems?.map((element, index) => {
-                        let docAllowed = true;
-                        if( ( docAllowed == true) ){
-                            if(searchValue && !element.title.includes(searchItemsValue)) return
-                            return(
-                                <tr key={index} className={"item"} id={'docRow_' + index}>
-                                    <th className="col-cont sticky-col">
-                                    <p className='AccountKey  no-margin'>{'#' + element?.product?.sku}</p>
-                                    <p className='AccountName  no-margin'>{element?.product?.title}</p>
-                                    </th>
-                                    <th className="col-cont">
-                                    <p>{element?.quantity}</p>
-                                    </th>
-                                    <th className="col-cont">
-                                    <p>{numberWithCommas(parseFloat(element?.singlePrice).toFixed(1))}</p>
-                                    </th>
-                                    <th className="col-cont">
-                                    <p>{parseFloat(element?.discount).toFixed(1)  + '%'}</p>
-                                    </th>
-                                    <th className="col-cont">
-                                    <p>{numberWithCommas(parseFloat(element?.total).toFixed(1)) }</p>
-                                    </th>
-                                </tr>
-                            );
-                        }
-                        })} */}
+            {(orderItems as IHistoryDetailed[])?.map((element, index) => {
+              let docAllowed = true
+              if (docAllowed == true) {
+                if (searchValue && !element.product.title.includes(searchValue))
+                  return
+                return (
+                  <tr key={index} className={'item'} id={'docRow_' + index}>
+                    <th className="col-cont sticky-col">
+                      <p className="AccountKey  no-margin">
+                        {'#' + element?.product?.sku}
+                      </p>
+                      <p className="AccountName  no-margin">
+                        {element?.product?.title}
+                      </p>
+                    </th>
+                    <th className="col-cont">
+                      <p>{element?.quantity}</p>
+                    </th>
+                    <th className="col-cont">
+                      <p>{numberWithCommas(element?.singlePrice.toFixed(1))}</p>
+                    </th>
+                    <th className="col-cont">
+                      <p>{element?.discount.toFixed(1) + '%'}</p>
+                    </th>
+                    <th className="col-cont">
+                      <p>{numberWithCommas(element?.total.toFixed(1))}</p>
+                    </th>
+                  </tr>
+                )
+              }
+            })}
           </tbody>
         </table>
       </div>

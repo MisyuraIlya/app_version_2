@@ -50,52 +50,72 @@ const DocumentList = () => {
                   <p>סטאטוס</p>
                 </th>
               </tr>
-              {items?.map((element, index) => {
-                let docAllowed = true
-                if (docAllowed == true) {
-                  return (
-                    <>
-                      {/* <tr key={index} className={"item"}  onClick={()=> {navigate(`/documentItemPage/${element?.document_number}`);clerOrderItems()}}>
-                            <th className="col-cont sticky-col">
-                              <p className='AccountKey no-margin'>{'#' + element?.document_number}</p>
-                            </th>
-                            <th className="col-cont sticky-col">
-                              <p className='AccountKey no-margin'>{'#' + element?.userExId}</p>
-                              <p className='AccountName  no-margin'>{element?.user_name}</p>      
-                            </th>
-                            <th className="col-cont">
-                              <p>{element?.type}</p>
-                            </th>
-                            <th className="col-cont">
-                              <p>{moment(element?.date).format('DD-MM-YYYY')}</p>
-                            </th>
-                            <th className="col-cont">
-                              <p>{moment(element?.date_payed).format('DD-MM-YYYY')}</p>
-                            </th>
-                            <th className="col-cont">
-                              <p>{parseFloat(element?.total).toFixed(1)}</p>
-                            </th>
-                            <th className="col-cont col-approved">
-                              {element?.status ?
-                                <p className='Active'>{element?.status ? element?.status : 'אושר'}</p>
-                                :
-                                <p className='NotActive'>ממתין</p>
-                              }
-                            </th>
-                
-                            <th className="col-cont">
+              {(items as IDocument[])?.map(
+                (element: IDocument, index: number) => {
+                  let docAllowed = true
+                  if (docAllowed == true) {
+                    return (
+                      <>
+                        <tr
+                          key={index}
+                          className={'item'}
+                          onClick={() => {
+                            navigate(
+                              `/documentItemPage/${element?.document_number}`
+                            )
+                            clerOrderItems()
+                          }}
+                        >
+                          <th className="col-cont sticky-col">
+                            <p className="AccountKey no-margin">
+                              {'#' + element?.document_number}
+                            </p>
+                          </th>
+                          <th className="col-cont sticky-col">
+                            <p className="AccountKey no-margin">
+                              {'#' + element?.userExId}
+                            </p>
+                            <p className="AccountName  no-margin">
+                              {element?.user_name}
+                            </p>
+                          </th>
+                          <th className="col-cont">
+                            <p>{element?.type}</p>
+                          </th>
+                          <th className="col-cont">
+                            <p>{moment(element?.date).format('DD-MM-YYYY')}</p>
+                          </th>
+                          <th className="col-cont">
+                            <p>
+                              {moment(element?.date_payed).format('DD-MM-YYYY')}
+                            </p>
+                          </th>
+                          <th className="col-cont">
+                            <p>{element?.total.toFixed(1)}</p>
+                          </th>
+                          <th className="col-cont col-approved">
+                            {element?.status ? (
+                              <p className="Active">
+                                {element?.status ? element?.status : 'אושר'}
+                              </p>
+                            ) : (
+                              <p className="NotActive">ממתין</p>
+                            )}
+                          </th>
+
+                          {/* <th className="col-cont">
                               {element?.DocumentID != '31' && element?.DocumentID != '3' ?
                                 <div className="file-cont" onClick={()=> downloadFile(element, 'pdf')}>
                                   <span className="material-symbols-outlined">picture_as_pdf</span>
                                 </div>
                               :null}
-                            </th>
-                           
-                        </tr> */}
-                    </>
-                  )
+                            </th> */}
+                        </tr>
+                      </>
+                    )
+                  }
                 }
-              })}
+              )}
             </tbody>
           </table>
         </div>

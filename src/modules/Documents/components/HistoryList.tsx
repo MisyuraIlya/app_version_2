@@ -50,41 +50,59 @@ const HistoryList = () => {
                   <p>סטאטוס</p>
                 </th>
               </tr>
-              {/* {items?.map((element, index) => {
-                  let docAllowed = true;
-                  if( ( docAllowed == true) ){
-                    return(
-                        <tr key={index} className={"item"} id={'docRow_' + element.id} onClick={()=> {navigate(`/historyItemPage/${element?.id}`);clerOrderItems()}}>
-                            <th className="col-cont sticky-col">
-                              <p className='AccountKey no-margin'>{'#' + element?.id}</p>
-                            </th>
-                            <th className="col-cont sticky-col">
-                              <p className='AccountKey no-margin'>{'#' + element?.user?.extId}</p>
-                              <p className='AccountName  no-margin'>{element?.user?.name}</p>      
-                            </th>
-                            <th className="col-cont">
-                              <p>{element?.documentType}</p>
-                            </th>
-                            <th className="col-cont">
-                              <p>{moment(element?.createdAt).format('DD-MM-YYYY')}</p>
-                            </th>
-                            <th className="col-cont">
-                              <p>{moment(element?.updatedAt).format('DD-MM-YYYY')}</p>
-                            </th>
-                            <th className="col-cont">
-                              <p>{parseFloat(element?.total).toFixed(1)}</p>
-                            </th>
-                            <th className="col-cont col-approved">
-                              {element?.orderStatus ?
-                                <p className='Active'>{element?.orderStatus ? element?.orderStatus : 'אושר'}</p>
-                                :
-                                <p className='NotActive'>ממתין</p>
-                              }
-                            </th>
-                        </tr>
-                    );
-                  }
-                })} */}
+              {(items as IHistory[])?.map((element, index) => {
+                let docAllowed = true
+                if (docAllowed == true) {
+                  return (
+                    <tr
+                      key={index}
+                      className={'item'}
+                      id={'docRow_' + element.id}
+                      onClick={() => {
+                        navigate(`/historyItemPage/${element?.id}`)
+                        clerOrderItems()
+                      }}
+                    >
+                      <th className="col-cont sticky-col">
+                        <p className="AccountKey no-margin">
+                          {'#' + element?.id}
+                        </p>
+                      </th>
+                      <th className="col-cont sticky-col">
+                        <p className="AccountKey no-margin">
+                          {'#' + element?.user?.extId}
+                        </p>
+                        <p className="AccountName  no-margin">
+                          {element?.user?.name}
+                        </p>
+                      </th>
+                      <th className="col-cont">
+                        <p>{element?.documentType}</p>
+                      </th>
+                      <th className="col-cont">
+                        <p>{moment(element?.createdAt).format('DD-MM-YYYY')}</p>
+                      </th>
+                      <th className="col-cont">
+                        <p>{moment(element?.updatedAt).format('DD-MM-YYYY')}</p>
+                      </th>
+                      <th className="col-cont">
+                        <p>{element?.total.toFixed(1)}</p>
+                      </th>
+                      <th className="col-cont col-approved">
+                        {element?.orderStatus ? (
+                          <p className="Active">
+                            {element?.orderStatus
+                              ? element?.orderStatus
+                              : 'אושר'}
+                          </p>
+                        ) : (
+                          <p className="NotActive">ממתין</p>
+                        )}
+                      </th>
+                    </tr>
+                  )
+                }
+              })}
             </tbody>
           </table>
         </div>

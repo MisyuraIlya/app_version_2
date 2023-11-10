@@ -43,7 +43,7 @@ interface DocumentsStore {
   //========================================
 
   //========== DATA ===============
-  items: Array<IDocument | IHistory | ICartesset> // Replace with your actual types
+  items: Array<IDocument | IHistory | ICartessetLine> // Replace with your actual types
   clearItems: () => void
   getItems: () => Promise<void>
   //===============================

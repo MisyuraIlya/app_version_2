@@ -75,7 +75,7 @@ interface ICartessetLine {
 interface ICartesset {
   lines: {
     'hydra:totalItems': number
-    'hydra:member': CartessetLineDto[]
+    'hydra:member': ICartessetLine[]
   }
 }
 
