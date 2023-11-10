@@ -1,5 +1,11 @@
 // Global
-import React, { FC, createContext, useContext, useEffect } from 'react'
+import React, {
+  FC,
+  ReactNode,
+  createContext,
+  useContext,
+  useEffect,
+} from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 // Local
 import { useDocuments } from '../store/DocumentsStore'
@@ -19,7 +25,11 @@ const useDocumentsProvider = () => {
   return context
 }
 
-const DocumentsProvider: FC<DocumentsContextType> = (props) => {
+interface DocumentsProviderProps {
+  children?: ReactNode
+}
+
+const DocumentsProvider: FC<DocumentsProviderProps> = (props) => {
   const {
     setShowCalendar,
     type,
@@ -83,7 +93,11 @@ const DocumentsProvider: FC<DocumentsContextType> = (props) => {
     handleCalendar,
   }
 
-  return <DocumentsContext.Provider value={value} {...props} />
+  return (
+    <DocumentsContext.Provider value={value} {...props}>
+      {props.children}
+    </DocumentsContext.Provider>
+  )
 }
 
 export { useDocumentsProvider, DocumentsProvider }

@@ -2,6 +2,8 @@ import React, { FC, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useModals } from '../../provider/ModalProvider'
 import ModalWrapper from '../ModalWrapper/ModalWrapper'
+import Calendar from 'react-calendar'
+
 type OrderSettingsProps = {
   active: boolean
   setActive: (bool: boolean) => void
@@ -115,15 +117,14 @@ const OrderSettings: FC<OrderSettingsProps> = ({ active, setActive }) => {
                     </div> */}
 
           {/* {activeCalendar && 
-                        <div className='settingsCalendar'>
-                            <Calendar 
-                            onChange={onChange} 
-                            value={value} 
-                            calendarType="Hebrew"
-                            locale="he-IL"
-                            />
-                        </div>    
-                    } */}
+                  <div className='settingsCalendar'>
+                      <Calendar 
+                      onChange={onChange} 
+                      value={value} 
+                      locale="he-IL"
+                      />
+                  </div>    
+              } */}
         </div>
 
         <div className="MyButton">

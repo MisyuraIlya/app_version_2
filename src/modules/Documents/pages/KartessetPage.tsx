@@ -19,7 +19,6 @@ const KartessetPage = () => {
         <Calendar
           onChange={(date) => handleCalendar(date as Date)}
           value={choosedDate ? new Date(choosedDate) : null}
-          calendarType="Hebrew"
           locale="he-IL"
           className={showCalendar ? 'active' : null}
         />

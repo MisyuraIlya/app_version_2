@@ -67,7 +67,6 @@ const Orders = () => {
         <Calendar
           onChange={(date) => handleCalendar(date)}
           value={new Date(choosedDate)}
-          calendarType="Hebrew"
           locale="he-IL"
           className={showCalendar ? 'active' : null}
         />

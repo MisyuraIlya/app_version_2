@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import Calendar from 'react-calendar'
 import Pagination from '../../../shared/Pagination'
 import { useDocuments } from '../store/DocumentsStore'
@@ -12,14 +12,14 @@ const HistoryPage = () => {
   const { loading, totalPages, hydraPagination, showCalendar, choosedDate } =
     useDocuments()
   const { handleCalendar } = useDocumentsProvider()
+
   return (
-    <div className="page-container history admin-history docs ">
+    <div className="page-container history admin-history docs">
       <div className="docs-sub-cont">
         {loading && <Loader />}
         <Calendar
           onChange={(date) => handleCalendar(date as Date)}
-          value={choosedDate ? new Date(choosedDate) : null}
-          calendarType="Hebrew"
+          value={new Date()}
           locale="he-IL"
           className={showCalendar ? 'active' : null}
         />

@@ -18,8 +18,7 @@ const DocumentsPage = () => {
         {loading && <Loader />}
         <Calendar
           onChange={(date) => handleCalendar(date as Date)}
-          value={choosedDate ? new Date(choosedDate) : null}
-          calendarType="Hebrew"
+          value={new Date()}
           locale="he-IL"
           className={showCalendar ? 'active' : null}
         />
