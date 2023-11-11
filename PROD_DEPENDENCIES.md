@@ -12,3 +12,4 @@
 12. react-calendar
 13. react-beautiful-dnd
 14. npm i --save-dev @types/react-beautiful-dnd
+15. npm i react-cropper

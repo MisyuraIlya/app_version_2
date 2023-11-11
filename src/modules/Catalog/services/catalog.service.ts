@@ -37,11 +37,7 @@ export const CatalogServices = {
   },
 
   async GetCategoriesAll(): Promise<GetCategoriesResponse> {
-    const response = await axios.get(`http://localhost:8080/api/categories`, {
-      headers: {
-        Accept: 'application/json',
-      },
-    })
+    const response = await axios.get(`http://localhost:8080/api/categories`)
     return response.data
   },
 

@@ -16,47 +16,44 @@ import HistoryItemPage from './modules/Documents/pages/HistoryItemPage'
 import HistoryPage from './modules/Documents/pages/HistoryPage'
 import KartessetPage from './modules/Documents/pages/KartessetPage'
 import Header from './modules/Header/Header'
-import { DocumentsProvider } from './modules/Documents/provider/DocumentsProvider'
 
 const RouterApp = () => {
   return (
     <>
       <Header />
-      <DocumentsProvider>
-        <Routes>
-          <Route>
-            {/* HOME */}
-            <Route path="/" element={<Home />} />
-            {/* CATALOG */}
-            <Route
-              path="/client/:documentType/:lvl1/:lvl2/:lvl3"
-              element={<Catalog />}
-            />
-            <Route path="/CatalogView" element={<CatalogView />} />
-            {/* CART */}
-            <Route path="/cart" element={<CartPage />} />
-            {/* AUTH */}
-            <Route path="/profile" element={<ProfilePage />} />
+      <Routes>
+        <Route>
+          {/* HOME */}
+          <Route path="/" element={<Home />} />
+          {/* CATALOG */}
+          <Route
+            path="/client/:documentType/:lvl1/:lvl2/:lvl3"
+            element={<Catalog />}
+          />
+          <Route path="/CatalogView" element={<CatalogView />} />
+          {/* CART */}
+          <Route path="/cart" element={<CartPage />} />
+          {/* AUTH */}
+          <Route path="/profile" element={<ProfilePage />} />
 
-            {/* DOCUMENTS */}
-            <Route
-              path="/documentItemPage/:id"
-              element={<DocumentsItemPage />}
-            />
-            <Route path="/documentPage" element={<DocumentsPage />} />
-            <Route path="/historyItemPage/:id" element={<HistoryItemPage />} />
-            <Route path="/historyPage" element={<HistoryPage />} />
-            <Route path="/kartessetPage" element={<KartessetPage />} />
+          {/* DOCUMENTS */}
+          <Route path="/documentItemPage/:id" element={<DocumentsItemPage />} />
+          <Route path="/documentPage" element={<DocumentsPage />} />
+          <Route path="/historyItemPage/:id" element={<HistoryItemPage />} />
+          <Route path="/historyPage" element={<HistoryPage />} />
+          <Route path="/kartessetPage" element={<KartessetPage />} />
 
-            {/* ADMINS */}
-            <Route path="/admiCategoryEditn1" element={<CategoryEdit />} />
-            <Route path="/ProductsEdit" element={<ProductsEdit />} />
-            <Route path="/Clients" element={<Clients />} />
-            <Route path="/Orders" element={<Orders />} />
-            <Route path="/OrderItemPage" element={<OrderItemPage />} />
-          </Route>
-        </Routes>
-      </DocumentsProvider>
+          {/* ADMINS */}
+          <Route
+            path="/admin/category-edit/:lvl1/:lvl2/:lvl3"
+            element={<CategoryEdit />}
+          />
+          <Route path="/ProductsEdit" element={<ProductsEdit />} />
+          <Route path="/Clients" element={<Clients />} />
+          <Route path="/Orders" element={<Orders />} />
+          <Route path="/OrderItemPage" element={<OrderItemPage />} />
+        </Route>
+      </Routes>
     </>
   )
 }

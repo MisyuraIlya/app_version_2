@@ -33,7 +33,7 @@ interface ICategory {
   lvlNumber: number
   parent: ?ICategory
   categories: ?ICategory[]
-  mediaObject: IMediaObject
+  MediaObject: IMediaObject
 }
 
 interface IAttributeMain {
