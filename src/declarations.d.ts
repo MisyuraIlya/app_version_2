@@ -23,6 +23,7 @@ interface Hydra {
 }
 
 interface IMediaObject {
+  '@id': string
   id: number
   file: File
   source: 'product' | 'category' | 'notification'

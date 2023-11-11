@@ -16,6 +16,7 @@ import HistoryItemPage from './modules/Documents/pages/HistoryItemPage'
 import HistoryPage from './modules/Documents/pages/HistoryPage'
 import KartessetPage from './modules/Documents/pages/KartessetPage'
 import Header from './modules/Header/Header'
+import NotificationPage from './modules/PushNotifications/pages/NotificationPage'
 
 const RouterApp = () => {
   return (
@@ -58,6 +59,7 @@ const RouterApp = () => {
             path="/admin/approveDocItems/:id"
             element={<OrderItemPage />}
           />
+          <Route path="/admin/notification" element={<NotificationPage />} />
         </Route>
       </Routes>
     </>
