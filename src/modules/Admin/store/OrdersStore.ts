@@ -37,7 +37,8 @@ export const useAdminOrders = create<useAdminOrdersState>((set, get) => ({
     const response = await AdminOrderService.getOrders(
       moment(get().dateFrom).format('YYYY-MM-DD'),
       moment(get().dateTo).format('YYYY-MM-DD'),
-      get().hydraPagination.page
+      get().hydraPagination.page,
+      get().search
     )
     set({
       orders: response['hydra:member'],

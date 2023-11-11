@@ -1,10 +1,19 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useAdminOrders } from '../../store/OrdersStore'
 import moment from 'moment'
+import { useDebounce } from 'use-debounce'
 
 const OrdersFilter = () => {
-  const { setSearch, dateFrom, dateTo, setType } = useAdminOrders()
+  const { setSearch, search, dateFrom, dateTo, setType, getOrders } =
+    useAdminOrders()
+  const [activeSearch, setActiveSearch] = useState(false)
+  const [valueDebounced] = useDebounce(search, 1000)
 
+  useEffect(() => {
+    if (valueDebounced && activeSearch) {
+      getOrders()
+    }
+  }, [valueDebounced])
   return (
     <div className="for-calendar flex-container card">
       <div className="flex-container right-side-header col-lg-7">
@@ -37,32 +46,40 @@ const OrdersFilter = () => {
               </button>
             </div>
           </div>
-          {/* <div onClick={()=> handleSearchClick()}  className="cal-cls searchBtn-cont">
-                        <p>חפש</p>
-                    </div> */}
+          <div onClick={() => getOrders()} className="cal-cls searchBtn-cont">
+            <p>חפש</p>
+          </div>
         </div>
       </div>
       <div className="flex-container left-side-header col-lg-5">
-        {/* <div className="userInfo-cls flex-container">
-                    <div className="left-side-comp header-btn-cont col-pay">
-                        <div className="clientsAgentSearchWrapper">
-                            <div className="search-cont">
-                                <input
-                                    onChange={(e) => setSearch(e.target.value)}
-                                    value={serach}
-                                    type="text"
-                                    placeholder="חיפוש לקוח..."
-                                />
-                                {serach ?
-                                    <span className="material-symbols-outlined search-img"
-                                    onClick={() => setSearch('')}>close</span>
-                                    :
-                                    <span className="material-symbols-outlined search-img">search</span>
-                                }
-                            </div>
-                        </div>
-                    </div>
-                </div> */}
+        <div className="userInfo-cls flex-container">
+          <div className="left-side-comp header-btn-cont col-pay">
+            <div className="clientsAgentSearchWrapper">
+              <div className="search-cont">
+                <input
+                  onClick={() => setActiveSearch(true)}
+                  onBlur={() => setActiveSearch(false)}
+                  onChange={(e) => setSearch(e.target.value)}
+                  value={search}
+                  type="text"
+                  placeholder="חיפוש לקוח..."
+                />
+                {search ? (
+                  <span
+                    className="material-symbols-outlined search-img"
+                    onClick={() => setSearch('')}
+                  >
+                    close
+                  </span>
+                ) : (
+                  <span className="material-symbols-outlined search-img">
+                    search
+                  </span>
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   )

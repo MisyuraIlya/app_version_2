@@ -12,10 +12,11 @@ export const AdminOrderService = {
   async getOrders(
     dateFrom: string,
     dateTo: string,
-    page: string | number
+    page: string | number,
+    search: string
   ): Promise<orderResponse> {
     const response = await axios.get(
-      `${process.env.API}/api/histories?page=${page}&createdAt[after]=${dateFrom}&createdAt[before]=${dateTo}`
+      `${process.env.API}/api/histories?page=${page}&createdAt[after]=${dateFrom}&createdAt[before]=${dateTo}&user.extId=${search}`
     )
     return response.data
   },
