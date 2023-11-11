@@ -66,15 +66,15 @@ export const getRole = () => {
 
 export const getClientExtId = () => {
   //TODO IMPLEMENT
-  return '9999999'
+  return '800943'
 }
 
 export const getClientName = () => {
   //TODO IMPLEMENT
-  return 'gogi'
+  return '800943'
 }
 
 export const getAgentExtId = () => {
   //TODO IMPLEMENT
-  return 'gogi'
+  return '800943'
 }

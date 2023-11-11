@@ -28,7 +28,7 @@ module.exports = {
 		}),
     new webpack.DefinePlugin({
       'process.env.API': JSON.stringify('https://ctb2b.co.il'),
-      'process.env.MEDIA': JSON.stringify('https://ctb2b.co.il/src/images'),
+      'process.env.MEDIA': JSON.stringify('https://ctb2b.co.il/media'),
     }),
   ],
 

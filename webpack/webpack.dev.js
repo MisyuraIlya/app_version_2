@@ -15,7 +15,7 @@ module.exports = {
     new ReactRefreshWebpackPlugin(),
     new webpack.DefinePlugin({
       'process.env.API': JSON.stringify('http://localhost:8080'),
-      'process.env.MEDIA': JSON.stringify('http://localhost:8080/public/media'),
+      'process.env.MEDIA': JSON.stringify('http://localhost:8080/media'),
     }),
   ],
 }

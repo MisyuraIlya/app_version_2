@@ -67,7 +67,7 @@ const SliderSection: FC<SliderSectionProps> = ({
             return (
               <SwiperSlide key={index} className="product-item">
                 <div className={'wrapper'}>
-                  <Link to={'/categoryPage/' + element?.id + '/0/0'}>
+                  <Link to={`/client/catalog/${element?.id}/0/0?page=1`}>
                     <div className="img-cont">
                       <img
                         className="img"

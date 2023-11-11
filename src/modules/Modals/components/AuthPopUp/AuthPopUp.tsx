@@ -15,7 +15,7 @@ const AuthPopUp: FC<AuthPopUpProps> = ({ active, setActive }) => {
   const { loading, action, login, registration, validation } = useAuth()
   return (
     <div className="popup" id="userEntry">
-      <Loader />
+      {loading && <Loader />}
       <div className="popup-wrapper">
         <div className="wrapp">
           <div onClick={() => setActive(false)} className="close-popup">

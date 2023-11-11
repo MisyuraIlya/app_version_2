@@ -194,7 +194,7 @@ const ProfileMenu = () => {
         </div>
         {user ? (
           <>
-            <Link to={'/profile/'}>
+            <Link to={'/profile'}>
               <div className="MyProfile-row" onClick={() => close()}>
                 <span className="material-symbols-outlined search-img">
                   {'person'}
