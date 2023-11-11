@@ -9,6 +9,7 @@ interface OneSignalStoreState {
   oneSignalNotificationsLength: number
   apiClientName: string
   isOpenModalNotification: boolean
+  isUserRegistered: boolean
 
   setIsOpenModalNotification: (value: boolean) => void
   getOneSignalNotifications: (userExtId: string) => void
@@ -23,6 +24,7 @@ export const useOneSignalStore = create<OneSignalStoreState>((set, get) => ({
   oneSignalNotificationsLength: 0,
   apiClientName: 'bfl',
   isOpenModalNotification: false,
+  isUserRegistered: false,
   setIsOpenModalNotification: (bool: boolean) =>
     set({ isOpenModalNotification: bool }),
 
@@ -59,9 +61,9 @@ export const useOneSignalStore = create<OneSignalStoreState>((set, get) => ({
           true,
           '1'
         )
-        //   if(response.message == 'User ex id with this App id exists') {
-        // setAlreadyRegistered(true)
-        //   }
+        if (response.message == 'User ex id with this App id exists') {
+          set({ isUserRegistered: true })
+        }
       } catch (e) {
         console.log('error register client', e)
       }
