@@ -52,11 +52,10 @@ const NotificationsProvider: FC<NotificationsProviderProps> = ({
       const appId = 'ff5e7738-0527-4d59-9382-13901391053a'
       const requestNotificationPermission = async () => {
         try {
-          if (window.OneSignal) {
-            await window.OneSignal.registerForPushNotifications()
-            const playerId = await window.OneSignal.getUserId()
+          if (window?.OneSignal) {
+            await window?.OneSignal?.registerForPushNotifications()
+            const playerId = await window?.OneSignal?.getUserId()
             if (playerId) {
-              setAppId(playerId)
               localStorage.setItem('appId', playerId)
             }
           } else {
@@ -66,14 +65,14 @@ const NotificationsProvider: FC<NotificationsProviderProps> = ({
           // alert("Error requesting notification permission: "+ error);
         }
       }
-      window.OneSignal.init({
+      window?.OneSignal?.init({
         appId: appId,
       })
 
       requestNotificationPermission()
 
       return () => {
-        window.OneSignal.clearEventHandlers()
+        window?.OneSignal?.clearEventHandlers()
       }
     }, 10000)
   }
