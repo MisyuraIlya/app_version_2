@@ -70,20 +70,25 @@ const CartList = () => {
                         <AddToCart item={element?.product} />
                       </th>
 
-                      {/* <th className="col-cont">
-                                            {element?.product?.defaultImagePath ?
-                                                <img className="img"
-                                                    src={process.env.MEDIA + '/product/' + element?.product?.defaultImagePath}
-                                                    onClick={() => selectProduct(element?.product)} 
-                                                />
-                                            :
-                                                <img className="img"
-                                                    src={process.env.MEDIA + 'placeholder.jpg'}
-                                                    onClick={() => selectProduct(element?.product)} 
-                                                />
-                                            }
-           
-                                        </th> */}
+                      <th className="col-cont">
+                        {element?.product?.defaultImagePath ? (
+                          <img
+                            className="img"
+                            src={
+                              process.env.MEDIA +
+                              '/product/' +
+                              element?.product?.defaultImagePath
+                            }
+                            onClick={() => selectProduct(element?.product)}
+                          />
+                        ) : (
+                          <img
+                            className="img"
+                            src={process.env.MEDIA + 'placeholder.jpg'}
+                            onClick={() => selectProduct(element?.product)}
+                          />
+                        )}
+                      </th>
 
                       <th
                         className="col-cont"

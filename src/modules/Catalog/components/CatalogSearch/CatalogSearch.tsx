@@ -90,9 +90,9 @@ const CatalogSearch = () => {
                         <div className="content col-lg-9">
                           <p className="title">{item.title}</p>
                           <p className="catalog">{'#' + item.sku}</p>
-                          {/* {localStorage.user ?
-                                                <p className="price">{item.Price ? "₪ " + parseFloat(item.Price).toFixed(1) : ''}</p>
-                                                : null} */}
+                          {localStorage.user && (
+                            <p className="price">{'₪ ' + item.finalPrice}</p>
+                          )}
                         </div>
                       </div>
                     )

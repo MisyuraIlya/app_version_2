@@ -70,7 +70,12 @@ const RegistrationForm = () => {
           />
           <label htmlFor="checkbox-3"></label>
         </div>
-        {/* <span>אנא קרא והסכם <a target="_blank" href={process.env.MEDIA + 'privacy_policy.pdf'}>לתנאי השימוש</a></span> */}
+        <span>
+          אנא קרא והסכם{' '}
+          <a target="_blank" href={process.env.MEDIA + '/privacy_policy.pdf'}>
+            לתנאי השימוש
+          </a>
+        </span>
       </div>
 
       <div className="actions">

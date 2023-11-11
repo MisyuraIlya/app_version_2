@@ -23,9 +23,12 @@ const BasicInfo: FC<BasicInfoProps> = ({ product }) => {
         {loading ? (
           <Skeleton style={{ height: '120px' }} />
         ) : product.defaultImagePath ? (
-          <img className="img" src={'products/' + product.defaultImagePath} />
+          <img
+            className="img"
+            src={`${process.env.MEDIA}/product/${product.defaultImagePath}`}
+          />
         ) : (
-          <img className="img" src={'placeholder2.jpg'} />
+          <img className="img" src={`${process.env.MEDIA}/placeholder2.jpg`} />
         )}
       </div>
       {loading ? (

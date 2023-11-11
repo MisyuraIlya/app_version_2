@@ -1,10 +1,8 @@
 import React, { useEffect } from 'react'
 import { useCatalog } from '../../../../store/CatalogStore'
 import { useAuth } from '../../../../../Auth/store/useAuthStore'
-// import { useAuth } from '../../../../../Auth/providers/AuthProvider';
 import { useDebounce } from 'use-debounce'
-// import { useHistory, useParams } from 'react-router-dom/cjs/react-router-dom.min';
-import { useParams, useNavigate, useLocation } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 
 const FiltersBlock = () => {
   const {
@@ -27,11 +25,7 @@ const FiltersBlock = () => {
 
   const location = useLocation()
   const navigate = useNavigate()
-  const { isAgent } = useAuth()
   const [searchDebounce] = useDebounce(searchParam, 1000)
-  const [prodsPerPageDebounce] = useDebounce(prodsPerPage, 1000)
-  const { lang, lvl1, lvl2, lvl3, page, parent, type } = useParams()
-  // const history = useHistory()
 
   const handleOrderBy = (val: string) => {
     const urlSearchParams = new URLSearchParams(location.search)
@@ -122,7 +116,10 @@ const FiltersBlock = () => {
                 onClick={() => setActiveProdsPerPage(!activeProdsPerPage)}
               >
                 <p>{prodsPerPage}</p>
-                {/* <img src={process.env.MEDIA + "icons/down-chevron.svg"} alt=""/> */}
+                <img
+                  src={process.env.MEDIA + '/icon/down-chevron.svg'}
+                  alt=""
+                />
               </div>
               {activeProdsPerPage ? (
                 <div className="drop-down-open-cont">
@@ -146,7 +143,10 @@ const FiltersBlock = () => {
                 onClick={() => setActiveSortPerPage(!activeSortPerPage)}
               >
                 <p>{sortProdSetting}</p>
-                {/* <img src={process.env.MEDIA + "icons/down-chevron.svg"} alt=""/> */}
+                <img
+                  src={process.env.MEDIA + '/icon/down-chevron.svg'}
+                  alt=""
+                />
               </div>
               {activeSortPerPage ? (
                 <div className="drop-down-open-cont">

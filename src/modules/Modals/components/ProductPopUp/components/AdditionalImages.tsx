@@ -4,36 +4,17 @@ import { useSelectedProduct } from '../../../store/selecterdProduct.store'
 
 const AdditionalImages = () => {
   const { selectedProd, changeDefaultImage } = useSelectedProduct()
-  const [activeIndex, setActiveIndex] = useState(0)
-  const ref = useRef(null)
-
-  // useEffect(() => {
-  //     setTimeout(() => {
-  //     ref.current.swiper.update();
-  //     }, 350);
-  // }, [
-  // ]);
-
-  // const goNext = () => {
-  //     if (ref.current !== null && ref.current.swiper !== null) {
-  //     ref.current.swiper.slideNext();
-  //     setActiveIndex(ref.current.swiper.activeIndex);
-  //     }
-  // };
-  // const goPrev = () => {
-  //     if (ref.current !== null && ref.current.swiper !== null) {
-  //     ref.current.swiper.slidePrev();
-  //     setActiveIndex(ref.current.swiper.activeIndex);
-  //     }
-  // };
-  let width = window.innerWidth
-  let toShow = 5
-  let column = 1
-
-  const param = {
-    slidesPerView: toShow,
-    slidesPerColumn: column,
-    slidesPerColumnFill: 'row',
+  const swiperRef = useRef<null>(null)
+  const params = {
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+    spaceBetween: 30,
+    slidesPerView: 3,
+    onSwiper: (swiper: any) => {
+      swiperRef.current = swiper
+    },
     breakpoints: {
       1400: {
         slidesPerView: 5,
@@ -53,32 +34,46 @@ const AdditionalImages = () => {
       },
     },
   }
-
   return (
     <div className="additional-imgs-slider">
       <div className="items images images-slider images-slider-cont">
-        {/* <Swiper ref={ref} {...param} >
-            {selectedProd?.imagePath?.map((element, index) => {
-              return (
-                <SwiperSlide key={index} className="product-item">
-                    <div className={"wrapper sliderImg-main-cont"} onClick={()=> changeDefaultImage(element?.mediaObject?.filePath)}>
-                        <div className="img-cont">
-                            {element?.mediaObject?.filePath ?
-                            <img className="img" src={process.env.MEDIA + '/product/' + element?.mediaObject?.filePath }/>
-                            :
-                            <img className="img" src={process.env.MEDIA + 'placeholder.jpg'}/>
-                            }
-                        </div>
-                    </div>
-                </SwiperSlide>
-              );
-            })}
-          </Swiper> */}
+        <Swiper {...params}>
+          {selectedProd?.imagePath?.map((element, index) => {
+            return (
+              <SwiperSlide key={index} className="product-item">
+                <div
+                  className={'wrapper sliderImg-main-cont'}
+                  onClick={() =>
+                    changeDefaultImage(element?.mediaObject?.filePath)
+                  }
+                >
+                  <div className="img-cont">
+                    {element?.mediaObject?.filePath ? (
+                      <img
+                        className="img"
+                        src={
+                          process.env.MEDIA +
+                          '/product/' +
+                          element?.mediaObject?.filePath
+                        }
+                      />
+                    ) : (
+                      <img
+                        className="img"
+                        src={process.env.MEDIA + 'placeholder.jpg'}
+                      />
+                    )}
+                  </div>
+                </div>
+              </SwiperSlide>
+            )
+          })}
+        </Swiper>
         <div className="swiper-navigation">
           <button
             className="swiper-nav prev"
-            // onClick={goPrev}
-            data-disabled={activeIndex == 0 ? true : false}
+            //@ts-ignore
+            onClick={() => swiperRef.current?.slidePrev()}
           >
             <span
               className="material-symbols-outlined"
@@ -89,10 +84,8 @@ const AdditionalImages = () => {
           </button>
           <button
             className="swiper-nav next"
-            // onClick={goNext}
-            // data-disabled={
-            //   activeIndex == selectedProd?.imagePath - (toShow * column) - 2 ? true : false
-            // }
+            //@ts-ignore
+            onClick={() => swiperRef.current?.slideNext()}
           >
             <span
               className="material-symbols-outlined"

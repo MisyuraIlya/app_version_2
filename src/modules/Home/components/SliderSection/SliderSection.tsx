@@ -29,7 +29,6 @@ const SliderSection: FC<SliderSectionProps> = ({
     spaceBetween: 30,
     slidesPerView: toShow,
     onSwiper: (swiper: any) => {
-      // Store the Swiper instance in the ref
       swiperRef.current = swiper
     },
     breakpoints: {
@@ -57,9 +56,9 @@ const SliderSection: FC<SliderSectionProps> = ({
       <div className="title-wrapper">
         <h1 className="title">{title && <span>{title}</span>}</h1>
         <div className="referal-cont">
-          {/* <NavLink to={res.link}>
+          {/* <Link to={res.link}>
                         <p>{res.linkTitle}</p>
-                    </NavLink> */}
+                    </Link> */}
         </div>
       </div>
       <div className="items images images-slider images-slider-cont">
@@ -70,8 +69,16 @@ const SliderSection: FC<SliderSectionProps> = ({
                 <div className={'wrapper'}>
                   <Link to={'/categoryPage/' + element?.id + '/0/0'}>
                     <div className="img-cont">
-                      .{/* IMPLEMENT IMAGE PATH */}
-                      {/* <img className="img" src={element?.MediaObject?.filePath ? process.env.MEDIA + "/category/" + element?.MediaObject?.filePath : process.env.MEDIA + 'placeholder.jpg'} /> */}
+                      <img
+                        className="img"
+                        src={
+                          element?.MediaObject?.filePath
+                            ? process.env.MEDIA +
+                              '/category/' +
+                              element?.MediaObject?.filePath
+                            : process.env.MEDIA + '/placeholder.jpg'
+                        }
+                      />
                     </div>
                     <div className="prod-data-cont">
                       <h3 className="p-title">{element?.title}</h3>

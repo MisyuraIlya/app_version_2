@@ -29,7 +29,11 @@ const NotificationCard: FC<NotificationCardProps> = ({ element, index }) => {
               <div className="centered pointer">
                 {element.is_read === 1 ? (
                   <div>
-                    {/* <img src={process.env.MEDIA + '/icon/readAll.svg'} className="isRead" onClick={() => NotificationsMethods.handleIsRead(element.id, false)}/> */}
+                    <img
+                      src={process.env.MEDIA + '/icon/readAll.svg'}
+                      className="isRead"
+                      onClick={() => handleIsRead(element.id, false)}
+                    />
                   </div>
                 ) : (
                   <div className="circle" onClick={() => handleDelete()}></div>
@@ -50,11 +54,19 @@ const NotificationCard: FC<NotificationCardProps> = ({ element, index }) => {
                 width={30}
               />
               {element.title}
-              {/* { open ?
-                            <img className='arrow' src={process.env.MEDIA + '/icon/arrow_cat_down.svg'} onClick={() => setOpen(false)}/>
-                        :
-                            <img className='arrow' src={process.env.MEDIA + '/icon/arrow_left.svg'} onClick={() => setOpen(true)}/>
-                        } */}
+              {open ? (
+                <img
+                  className="arrow"
+                  src={process.env.MEDIA + '/icon/arrow_cat_down.svg'}
+                  onClick={() => setOpen(false)}
+                />
+              ) : (
+                <img
+                  className="arrow"
+                  src={process.env.MEDIA + '/icon/arrow_left.svg'}
+                  onClick={() => setOpen(true)}
+                />
+              )}
             </div>
             {open && (
               <div className="description">
@@ -68,7 +80,9 @@ const NotificationCard: FC<NotificationCardProps> = ({ element, index }) => {
 
                 {element.img && (
                   <div>
-                    <img src={element.img} />
+                    <img
+                      src={`${process.env.MEDIA}/notifications/${element.img}`}
+                    />
                   </div>
                 )}
               </div>

@@ -24,7 +24,9 @@ const MobileHeader: FC<MobileHeaderProps> = ({
         <span></span>
       </div>
       <div className="main-logo-mobile">
-        <Link to="/">{/* <img src={process.env.MEDIA + 'logo.png'} /> */}</Link>
+        <Link to="/">
+          <img src={process.env.MEDIA + '/logo.png'} />
+        </Link>
       </div>
       <div>
         <div className="back" onClick={() => navigate(-1)}>

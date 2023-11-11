@@ -30,11 +30,17 @@ const NotificationItem: FC<NotificationItemProps> = ({ element, index }) => {
       <div className="flex-container">
         <div className="col-lg-1 img">
           <div className="wr">
-            {/* {element?.image?.filePath ?
-                            <img src={process.env.MEDIA + '/notifications/' + element?.image?.filePath} />
-                            :
-                            <img src={process.env.MEDIA + 'placeholder.jpg'} />
-                        } */}
+            {element?.image?.filePath ? (
+              <img
+                src={
+                  process.env.MEDIA +
+                  '/notifications/' +
+                  element?.image?.filePath
+                }
+              />
+            ) : (
+              <img src={process.env.MEDIA + '/placeholder.jpg'} />
+            )}
           </div>
         </div>
         <div className="col-lg-3 title">

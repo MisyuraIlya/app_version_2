@@ -29,7 +29,7 @@ const ForgotPasswordStepTwo = () => {
         <div className="forgot-password">
           <div className="cancel">
             <div onClick={() => setOpenAuthModal(false)}>
-              {/* <img src={process.env.MEDIA + '/icon/close.svg'} alt="" /> */}
+              <span className="material-symbols-outlined">close</span>
             </div>
           </div>
           <div>

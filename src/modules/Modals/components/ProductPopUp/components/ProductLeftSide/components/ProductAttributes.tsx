@@ -3,6 +3,7 @@ import { useSelectedProduct } from '../../../../../store/selecterdProduct.store'
 
 const ProductAttributes = () => {
   const { selectedProd } = useSelectedProduct()
+  //   TODO
   return (
     <>
       {/* {this.state.attrObj && this.state.attrObj.length > 0
