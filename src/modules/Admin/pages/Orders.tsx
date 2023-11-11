@@ -38,7 +38,6 @@ const Orders = () => {
     const page = urlSearchParams.get('page')
     const from = urlSearchParams.get('from')
     const to = urlSearchParams.get('to')
-    const updatedUrl = '?' + urlSearchParams.toString()
     if (page) {
       setPage(page?.toString())
     }
