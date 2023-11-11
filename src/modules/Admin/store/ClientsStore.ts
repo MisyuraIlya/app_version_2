@@ -17,7 +17,7 @@ interface useClientStoreActions {
   getClients: (all?: boolean) => Promise<void>
   updateClient: (user: IUser) => Promise<void>
   updateAuth: (username: string, password: string) => Promise<void>
-  //   setPage: (page: number) => void;
+  setPage: (page: string) => void
 }
 
 export const useClientStore = create<
@@ -80,7 +80,14 @@ export const useClientStore = create<
   },
   totalClients: 0,
   //   page: 1,
-  //   setPage: (page) => set({ page: page }),
+  setPage: (page: string) => {
+    set((state) => ({
+      hydraPagination: {
+        ...state.hydraPagination,
+        page: page,
+      },
+    }))
+  },
   hydraPagination: {
     totalPages: '1',
     page: '1',

@@ -6,18 +6,16 @@ import Pagination from '../../../shared/Pagination'
 import { useLocation, useNavigate } from 'react-router-dom'
 
 const Clients = () => {
-  const {
-    getClients,
-    hydraPagination,
-    // setPage
-  } = useClientStore()
+  const { getClients, hydraPagination, setPage } = useClientStore()
   const navigate = useNavigate()
   const location = useLocation()
   useEffect(() => {
     const urlSearchParams = new URLSearchParams(location.search)
     const page = urlSearchParams.get('page')
     const updatedUrl = '?' + urlSearchParams.toString()
-    // setPage(page)
+    if (page) {
+      setPage(page?.toString())
+    }
     navigate(location.pathname + updatedUrl)
     getClients()
   }, [location.search])

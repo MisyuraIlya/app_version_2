@@ -36,7 +36,15 @@ const ClientItem: FC<ClientItemProps> = ({ element, index }) => {
         </div>
         <div className="col-lg-1 info-col MyCenetred">
           <div className="wrapp" style={{ cursor: 'pointer' }}>
-            {/* <span className="material-symbols-outlined MyCenetred googleIconHover" onClick={() => {setClientsInfo(true);setSelectedClient(element)}} src={globalFileServer + 'icons/info.svg'}>info</span> */}
+            <span
+              className="material-symbols-outlined MyCenetred googleIconHover"
+              onClick={() => {
+                setClientsInfo(true)
+                setSelectedClient(element)
+              }}
+            >
+              info
+            </span>
           </div>
         </div>
         <div className="col-lg-1 MyCenetred">
