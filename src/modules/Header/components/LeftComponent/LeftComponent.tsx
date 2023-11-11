@@ -9,7 +9,7 @@ const LeftComponent = () => {
   const { user, isAgent, setAction } = useAuth()
   const { cart } = useCart()
   const [openProfile, setOpenProfile] = useState<boolean>(false)
-  const { setOpenAuthModal } = useModals()
+  const { setOpenAuthModal, leftSideBar, setLeftSideBar } = useModals()
   return (
     <>
       <ul className={!user ? 'prelogIn' : 'afterLog'}>
@@ -52,7 +52,6 @@ const LeftComponent = () => {
             <span className="material-symbols-outlined">StoreFront</span>
           </li>
         ) : null}
-        {/* <NotificationIcon /> */}
         {user && (
           <li>
             <Link to={'/cart'}>
@@ -63,6 +62,21 @@ const LeftComponent = () => {
                 <span className="material-symbols-outlined">shopping_cart</span>
               </button>
             </Link>
+          </li>
+        )}
+
+        {leftSideBar && (
+          <div
+            onClick={() => setLeftSideBar(false)}
+            className="fake-notification"
+          ></div>
+        )}
+
+        {user && (
+          <li className={'left'}>
+            <button className="icon" onClick={() => setLeftSideBar(true)}>
+              <span className="material-symbols-outlined">campaign</span>
+            </button>
           </li>
         )}
       </ul>

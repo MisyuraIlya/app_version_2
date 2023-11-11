@@ -1,4 +1,5 @@
 import React, { FC } from 'react'
+import NotificationContainer from '../../../PushNotifications/components/NotificationContainer/NotificationContainer'
 type LeftSideBarProps = {
   active: boolean
   setActive: (bool: boolean) => void
@@ -14,13 +15,16 @@ const LeftSideBar: FC<LeftSideBarProps> = ({ active, setActive }) => {
     >
       <div className="header-cart-wrapp">
         <div className="header-cart-wrapp-head flex-container">
-          {/* <CloseIcon handleOpen={() => setActive()}/> */}
-
+          <div className="close-cart-cont" onClick={() => setActive(false)}>
+            <span className="close-cart material-symbols-outlined">close</span>
+          </div>
           <div className="col-lg-12 text-cont">
             <p>הודעות</p>
           </div>
         </div>
-        <div>{/* <NotificationsModal/> */}</div>
+        <div className="WrapperNotification">
+          <NotificationContainer />
+        </div>
       </div>
     </div>
   )

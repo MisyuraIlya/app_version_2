@@ -14,12 +14,14 @@ interface LeftSideForm {
 const LeftSide = () => {
   const { choosedItem, createItem, updateItem, fetchItems, setChoosedItem } =
     useNotificationStore()
+
   const {
     register,
     handleSubmit,
     setValue,
     formState: { errors },
   } = useForm<LeftSideForm>()
+
   const handleForm = async (data: LeftSideForm) => {
     if (choosedItem) {
       choosedItem.title = data.title
@@ -29,6 +31,7 @@ const LeftSide = () => {
       setChoosedItem(null)
     }
   }
+
   const uploadImg = async (img: string, fileName: string) => {
     const convertFile = base64ToFile(img, fileName)
     const res = await MediaObjectService.uploadImage(

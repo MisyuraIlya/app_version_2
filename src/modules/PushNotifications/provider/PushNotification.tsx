@@ -7,15 +7,9 @@ import React, {
   useEffect,
   ReactNode,
 } from 'react'
-import { NotificationsServices } from '../services/notifications.service'
-import { BROWSER_TPYES } from '../types/browserTypes'
 import NotificationsModal from '../components/NotificationsModal/NotificationsModal'
-import { CLIENT_NAME, WEB_KEY } from '../config/enums'
 import { useAuth } from '../../Auth/store/useAuthStore'
 import { useOneSignalStore } from '../store/oneSignalStore'
-// import { getCurrentUserId, getCurrentUserType } from '../../Auth/helpers/getCurrentUserId';
-// Local
-// Defines
 
 interface NotificationsContextType {
   handleRemoveIosPromt: () => void
