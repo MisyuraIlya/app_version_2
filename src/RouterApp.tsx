@@ -52,9 +52,12 @@ const RouterApp = () => {
             path="/admin/products-edit/:lvl1/:lvl2/:lvl3"
             element={<ProductsEdit />}
           />
-          <Route path="/Clients" element={<Clients />} />
-          <Route path="/Orders" element={<Orders />} />
-          <Route path="/OrderItemPage" element={<OrderItemPage />} />
+          <Route path="/admin/clients" element={<Clients />} />
+          <Route path="/admin/approveDoc" element={<Orders />} />
+          <Route
+            path="/admin/approveDocItems/:id"
+            element={<OrderItemPage />}
+          />
         </Route>
       </Routes>
     </>
