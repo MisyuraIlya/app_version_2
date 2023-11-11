@@ -11,15 +11,19 @@ interface updateAuthResponse {
 }
 
 export const AdminClinetsService = {
-  async getClients(page: string | number, all = false): Promise<UsersResponse> {
+  async getClients(
+    page: string | number,
+    all = false,
+    search: string
+  ): Promise<UsersResponse> {
     if (all) {
       const response = await axios.get(
-        `${process.env.API}/api/users?itemsPerPage=10000`
+        `${process.env.API}/api/users?itemsPerPage=10000&extId=${search}`
       )
       return response.data
     } else {
       const response = await axios.get(
-        `${process.env.API}/api/users?page=${page}`
+        `${process.env.API}/api/users?page=${page}&extId=${search}`
       )
       return response.data
     }

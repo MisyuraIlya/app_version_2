@@ -9,6 +9,7 @@ interface useClientStoreState {
   selectedClient: IUser | null
   totalClients: number
   hydraPagination: hydraPagination
+  search: string
 }
 
 interface useClientStoreActions {
@@ -17,6 +18,7 @@ interface useClientStoreActions {
   getClients: (all?: boolean) => Promise<void>
   updateClient: (user: IUser) => Promise<void>
   updateAuth: (username: string, password: string) => Promise<void>
+  setSearch: (value: string) => void
   setPage: (page: string) => void
 }
 
@@ -25,6 +27,8 @@ export const useClientStore = create<
 >((set, get) => ({
   loading: false,
   clients: [],
+  search: '',
+  setSearch: (value: string) => set({ search: value }),
   setClients: (arr) => set({ clients: arr }),
   selectedClient: null,
   setSelectedClient: (client) => set({ selectedClient: client }),
@@ -33,7 +37,8 @@ export const useClientStore = create<
       set({ loading: true })
       const response = await AdminClinetsService.getClients(
         get().hydraPagination.page,
-        all
+        all,
+        get().search
       )
       set({
         clients: response['hydra:member'],
