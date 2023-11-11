@@ -64,7 +64,7 @@ const AdditionalImages = () => {
                     <div className={"wrapper sliderImg-main-cont"} onClick={()=> changeDefaultImage(element?.mediaObject?.filePath)}>
                         <div className="img-cont">
                             {element?.mediaObject?.filePath ?
-                            <img className="img" src={process.env.MEDIA + 'products/' + element?.mediaObject?.filePath }/>
+                            <img className="img" src={process.env.MEDIA + '/product/' + element?.mediaObject?.filePath }/>
                             :
                             <img className="img" src={process.env.MEDIA + 'placeholder.jpg'}/>
                             }

@@ -18,7 +18,7 @@ const ClientRightSideBar: FC<ClientRightSideBarProps> = ({
                             <ul className={!active ? 'to-left' : null}>
                                 <li className="logo" onClick={() => this.setState({ toggleMenu: false, showCategories: false })}>
                                 <Link exact to="/">
-                                    <img src={process.env.MEDIA + 'main-logo.png'} />
+                                    <img src={process.env.MEDIA + 'logo.png'} />
                                 </Link>
                                 </li>
                                 <Link exact to="/">

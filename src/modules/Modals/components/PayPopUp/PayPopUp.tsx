@@ -12,7 +12,7 @@ const PayPopUp: FC<PayPopUpProps> = ({ active, setActive }) => {
                 <div className="popup-wrapper">
                     <div className="wrapp">
                         <div onClick={() => setActive(false)} className="close-popup">
-                            <img src={process.env.MEDIA + 'icons/close.svg'} alt="" />
+                            <img src={process.env.MEDIA + '/icon/close.svg'} alt="" />
                         </div>
                         <div className="wrapper">
                             <iframe src={'https://churishop.co.il/iframe?val=' + calculateFinalPrice()} framborder="0"></iframe>

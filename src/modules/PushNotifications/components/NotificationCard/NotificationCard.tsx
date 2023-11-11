@@ -29,7 +29,7 @@ const NotificationCard: FC<NotificationCardProps> = ({ element, index }) => {
               <div className="centered pointer">
                 {element.is_read === 1 ? (
                   <div>
-                    {/* <img src={process.env.MEDIA + 'notificationsIcons/readAll.svg'} className="isRead" onClick={() => NotificationsMethods.handleIsRead(element.id, false)}/> */}
+                    {/* <img src={process.env.MEDIA + '/icon/readAll.svg'} className="isRead" onClick={() => NotificationsMethods.handleIsRead(element.id, false)}/> */}
                   </div>
                 ) : (
                   <div className="circle" onClick={() => handleDelete()}></div>
@@ -51,9 +51,9 @@ const NotificationCard: FC<NotificationCardProps> = ({ element, index }) => {
               />
               {element.title}
               {/* { open ?
-                            <img className='arrow' src={process.env.MEDIA + 'notificationsIcons/arrow_cat_down.svg'} onClick={() => setOpen(false)}/>
+                            <img className='arrow' src={process.env.MEDIA + '/icon/arrow_cat_down.svg'} onClick={() => setOpen(false)}/>
                         :
-                            <img className='arrow' src={process.env.MEDIA + 'notificationsIcons/arrow_left.svg'} onClick={() => setOpen(true)}/>
+                            <img className='arrow' src={process.env.MEDIA + '/icon/arrow_left.svg'} onClick={() => setOpen(true)}/>
                         } */}
             </div>
             {open && (

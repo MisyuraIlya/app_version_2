@@ -37,7 +37,7 @@ const Summary = () => {
                                                 </span>
                                                 <span className="delete"
                                                     onClick={this.removeAddress.bind(this, item)}>
-                                                    <img src={process.env.MEDIA + 'icons/delete.svg'} />
+                                                    <img src={process.env.MEDIA + '/icon/delete.svg'} />
                                                 </span>
                                             </li>
                                         )
