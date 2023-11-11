@@ -5,12 +5,21 @@ interface useProductsEditStoreState {
   loading: boolean
   products: IProduct[]
   setProducts: (arr: IProduct[]) => void
-  currentCategoryId: number
-  getProducts: (lvl1: number, lvl2: number, lvl3: number) => Promise<void>
+  lvls: { lvl1: number | string; lvl2: number | string; lvl3: number | string }
+  setLvls: (
+    lvl1: number | string,
+    lvl2: number | string,
+    lvl3: number | string
+  ) => void
+  getProducts: (
+    lvl1: number | string,
+    lvl2: number | string,
+    lvl3: number | string
+  ) => Promise<void>
   selectedProduct: IProduct | null
   setSelectedProduct: (product: IProduct | null) => void
-  deleteImageFunc: (imageId: number) => Promise<void>
-  updateProduct: (product: IProduct) => Promise<void>
+  deleteImageFunc: (imageId: number | string) => Promise<void>
+  updateProduct: (product: any) => Promise<void>
 }
 
 export const useProductsEditStore = create<useProductsEditStoreState>(
@@ -18,14 +27,24 @@ export const useProductsEditStore = create<useProductsEditStoreState>(
     loading: false,
     products: [],
     setProducts: (arr) => set({ products: arr }),
-    currentCategoryId: 0,
-    getProducts: async (lvl1, lvl2, lvl3) => {
+    getProducts: async (
+      lvl1: string | number,
+      lvl2: string | number,
+      lvl3: string | number
+    ) => {
       const response = await AdminProductService.GetProducts(lvl1, lvl2, lvl3)
       set({ products: response['hydra:member'] })
     },
+    lvls: {
+      lvl1: 0,
+      lvl2: 0,
+      lvl3: 0,
+    },
+    setLvls: (lvl1, lvl2, lvl3) =>
+      set({ lvls: { lvl1: lvl1, lvl2: lvl2, lvl3: lvl3 } }),
     selectedProduct: null,
     setSelectedProduct: (product) => set({ selectedProduct: product }),
-    deleteImageFunc: async (imageId) => {
+    deleteImageFunc: async (imageId: number | string) => {
       let newSelected = get().selectedProduct
       if (newSelected) {
         let newImages = newSelected?.imagePath.filter(
@@ -36,7 +55,7 @@ export const useProductsEditStore = create<useProductsEditStoreState>(
       }
       await AdminProductService.deleteImage(imageId)
     },
-    updateProduct: async (product) => {
+    updateProduct: async (product: any) => {
       try {
         const res = await AdminProductService.updateProduct(product)
         set({ selectedProduct: res })

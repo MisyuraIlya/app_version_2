@@ -5,7 +5,7 @@ interface productResponse extends Hydra {
 }
 
 export const AdminProductService = {
-  async createNewImage(product: IProduct): Promise<IImagePath> {
+  async createNewImage(product: any): Promise<IImagePath> {
     const response = await axios.post(
       `http://localhost:8080/api/product_images`,
       product
@@ -14,7 +14,7 @@ export const AdminProductService = {
     return response.data
   },
 
-  async updateProduct(product: IProduct): Promise<IProduct> {
+  async updateProduct(product: any): Promise<IProduct> {
     const response = await axios.patch(
       `http://localhost:8080/api/products/${product.id}`,
       product,

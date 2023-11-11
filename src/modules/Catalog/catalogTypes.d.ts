@@ -1,4 +1,5 @@
 interface IProduct {
+  '@id': string
   id: number
   sku: string
   title: string

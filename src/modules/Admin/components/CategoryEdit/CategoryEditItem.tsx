@@ -14,10 +14,12 @@ interface CategoryEditItemProps {
 }
 
 const CategoryEditItem: FC<CategoryEditItemProps> = ({ element }) => {
+  const [activeEdit, setActiveEdit] = useState<boolean>(false)
   const { categories, getAllCategories, setCategories } = useCategories()
   const [title, setTitle] = useState(element.title)
   const [valueDebounced] = useDebounce(title, 1000)
   const { lvl1, lvl2, lvl3 } = useParams()
+
   const uploadImg = async (img: string, fileName: string) => {
     const convertFile = base64ToFile(img, fileName)
     const res = await MediaObjectService.uploadImage(convertFile, 'category')
@@ -54,14 +56,13 @@ const CategoryEditItem: FC<CategoryEditItemProps> = ({ element }) => {
   }
 
   useEffect(() => {
-    if (valueDebounced) {
+    if (valueDebounced && activeEdit) {
       AdminCatalogService.updateCategory({
         id: element.id,
         title: valueDebounced,
       })
     }
   }, [valueDebounced])
-  console.log(element?.MediaObject?.filePath)
   return (
     <div className="flex-container">
       <div className="col-lg-1 enter MyCenetred">
@@ -90,7 +91,11 @@ const CategoryEditItem: FC<CategoryEditItemProps> = ({ element }) => {
       <div className={'col-lg-1 title'}>
         <p>{element.id}</p>
       </div>
-      <div className={'col-lg-3 title'}>
+      <div
+        className={'col-lg-3 title'}
+        onClick={() => setActiveEdit(true)}
+        onBlur={() => setActiveEdit(false)}
+      >
         <input
           type="text"
           placeholder="שם הקטגוריה"
