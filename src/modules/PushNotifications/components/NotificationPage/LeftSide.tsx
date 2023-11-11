@@ -72,7 +72,7 @@ const LeftSide = () => {
               <img
                 className="main-img"
                 src={
-                  'http://localhost:8080/media/notifications/' +
+                  `${process.env.MEDIA}/notifications/` +
                   choosedItem?.image?.filePath
                 }
               />

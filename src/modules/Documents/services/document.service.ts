@@ -21,7 +21,7 @@ export const DocumentsService = {
     page: string | number
   ): Promise<DocumentsResponse> {
     const response = await axios.get(
-      `http://localhost:8080/api/documents?userExId=${userExId}&from=${fromDate}&to=${toDate}&documentType=${documentType}&page=${page}`
+      `${process.env.API}/api/documents?userExId=${userExId}&from=${fromDate}&to=${toDate}&documentType=${documentType}&page=${page}`
     )
     return response.data
   },
@@ -30,7 +30,7 @@ export const DocumentsService = {
     documentNumber: number | string
   ): Promise<IDocumentItems> {
     const response = await axios.get(
-      `http://localhost:8080/api/documents/${documentNumber}`
+      `${process.env.API}/api/documents/${documentNumber}`
     )
     return response.data
   },
@@ -41,7 +41,7 @@ export const DocumentsService = {
     toDate: string
   ): Promise<ICartesset> {
     const response = await axios.get(
-      `http://localhost:8080/api/cartessets/${userExId}?from=${fromDate}&to=${toDate}`
+      `${process.env.API}/api/cartessets/${userExId}?from=${fromDate}&to=${toDate}`
     )
     return response.data
   },
@@ -52,7 +52,7 @@ export const DocumentsService = {
     toDate: string
   ): Promise<HistoriesResponse> {
     const response = await axios.get(
-      `http://localhost:8080/api/histories?createdAt[before]=${toDate}&createdAt[after]=${fromDate}&user.extId=${userExId}`
+      `${process.env.API}/api/histories?createdAt[before]=${toDate}&createdAt[after]=${fromDate}&user.extId=${userExId}`
     )
     return response.data
   },
@@ -60,7 +60,7 @@ export const DocumentsService = {
     documentId: string | number
   ): Promise<HistoryDetailedResponse> {
     const response = await axios.get(
-      `http://localhost:8080/api/histories/${documentId}`
+      `${process.env.API}/api/histories/${documentId}`
     )
     return response.data
   },
@@ -71,7 +71,7 @@ export const DocumentsService = {
     documentNumber: string
   ): Promise<ICart[] | null> {
     const response = await axios.get(
-      `http://localhost:8080/api/restoreCart/${documentType}/${userExtId}/${documentNumber}`,
+      `${process.env.API}/api/restoreCart/${documentType}/${userExtId}/${documentNumber}`,
       {
         headers: {
           Accept: 'application/json',
@@ -86,11 +86,11 @@ export const DocumentsService = {
   },
 
   async createPdf(data: IPdfDocument) {
-    const response = await axios.post(`http://localhost:8080/api/pdf`, data)
+    const response = await axios.post(`${process.env.API}/api/pdf`, data)
     return response.data
   },
   async createXl(data: IPdfDocument) {
-    const response = await axios.post(`http://localhost:8080/api/xl`, data)
+    const response = await axios.post(`${process.env.API}/api/xl`, data)
     return response.data
   },
 }

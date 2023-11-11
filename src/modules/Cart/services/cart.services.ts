@@ -25,10 +25,7 @@ const CartServices = {
       deliveryDate,
       products,
     }
-    const response = await axios.post(
-      'http://localhost:8080/api/send_orders',
-      obj
-    )
+    const response = await axios.post(`${process.env.API}/api/send_orders`, obj)
     return response.data
   },
 }

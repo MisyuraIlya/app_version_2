@@ -102,7 +102,7 @@ const Gallery: FC<GalleryProps> = ({ active, setActive }) => {
                 <img
                   className="main-img"
                   src={
-                    'http://localhost:8080/media/product/' +
+                    `${process.env.MEDIA}/product/` +
                     item?.mediaObject?.filePath
                   }
                 />

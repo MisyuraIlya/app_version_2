@@ -2,7 +2,7 @@ import axios from 'axios'
 
 export const AuthService = {
   async login(username: string, password: string): Promise<IAuthResponse> {
-    const response = await axios.post('http://localhost:8080/api/auth', {
+    const response = await axios.post(`${process.env.API}/api/auth`, {
       username,
       password,
     })
@@ -10,19 +10,16 @@ export const AuthService = {
     return response.data
   },
   async getAccessToken(refreshToken: string): Promise<IAuthResponse> {
-    const response = await axios.post(
-      'http://localhost:8080/api/auth/refresh',
-      {
-        refresh_token: refreshToken,
-      }
-    )
+    const response = await axios.post(`${process.env.API}/api/auth/refresh`, {
+      refresh_token: refreshToken,
+    })
     return response.data
   },
   async validation(
     userExId: string,
     phone: string
   ): Promise<IValidationResponse> {
-    const response = await axios.post('http://localhost:8080/auth/validation', {
+    const response = await axios.post(`${process.env.API}/auth/validation`, {
       exId: userExId,
       phone,
     })
@@ -33,20 +30,17 @@ export const AuthService = {
     username: string,
     password: string
   ): Promise<IDefaultAuthResponse> {
-    const response = await axios.put(
-      'http://localhost:8080/auth/registration',
-      {
-        extId,
-        username,
-        password,
-      }
-    )
+    const response = await axios.put(`${process.env.API}/auth/registration`, {
+      extId,
+      username,
+      password,
+    })
     return response.data
   },
 
   async restorePasswordStepOne(email: string): Promise<IDefaultAuthResponse> {
     const response = await axios.post(
-      'http://localhost:8080/auth/restorePasswordStepOne',
+      `${process.env.API}/auth/restorePasswordStepOne`,
       {
         email,
       }
@@ -60,7 +54,7 @@ export const AuthService = {
     password: string
   ): Promise<IDefaultAuthResponse> {
     const response = await axios.post(
-      'http://localhost:8080/auth/restorePasswordStepTwo',
+      `${process.env.API}/auth/restorePasswordStepTwo`,
       {
         email,
         token,

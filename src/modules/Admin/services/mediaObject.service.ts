@@ -13,7 +13,7 @@ export const MediaObjectService = {
     formData.append('file', file)
     formData.append('source', source)
     const response = await axios.post(
-      'http://localhost:8080/api/media_objects',
+      `${process.env.API}/api/media_objects`,
       formData
     )
     return response.data
@@ -25,10 +25,7 @@ export const MediaObjectService = {
       sourceVps1,
       sourceVps3,
     }
-    const response = await axios.post(
-      'http://localhost:8080/ftpFileUploader',
-      obj
-    )
+    const response = await axios.post(`${process.env.API}/ftpFileUploader`, obj)
     return response.data
   },
 }

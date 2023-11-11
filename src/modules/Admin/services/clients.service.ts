@@ -14,27 +14,25 @@ export const AdminClinetsService = {
   async getClients(page: string | number, all = false): Promise<UsersResponse> {
     if (all) {
       const response = await axios.get(
-        `http://localhost:8080/api/users?itemsPerPage=10000`
+        `${process.env.API}/api/users?itemsPerPage=10000`
       )
       return response.data
     } else {
       const response = await axios.get(
-        `http://localhost:8080/api/users?page=${page}`
+        `${process.env.API}/api/users?page=${page}`
       )
       return response.data
     }
   },
 
   async getClientItem(userId: string | number): Promise<IUser> {
-    const response = await axios.get(
-      `http://localhost:8080/api/users/${userId}`
-    )
+    const response = await axios.get(`${process.env.API}/api/users/${userId}`)
     return response.data
   },
 
   async updateClient(user: IUser): Promise<IUser> {
     const response = await axios.patch(
-      `http://localhost:8080/api/users/${user.id}`,
+      `${process.env.API}/api/users/${user.id}`,
       user,
       {
         headers: {
@@ -51,7 +49,7 @@ export const AdminClinetsService = {
     password: string
   ): Promise<updateAuthResponse> {
     const response = await axios.put(
-      `http://localhost:8080/auth/registration`,
+      `${process.env.API}/auth/registration`,
       {
         extId,
         username,

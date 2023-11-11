@@ -14,7 +14,8 @@ module.exports = {
   plugins: [
     new ReactRefreshWebpackPlugin(),
     new webpack.DefinePlugin({
-      'process.env.name': JSON.stringify('Vishwas'),
+      'process.env.API': JSON.stringify('http://localhost:8080'),
+      'process.env.MEDIA': JSON.stringify('http://localhost:8080/public/media'),
     }),
   ],
 }
