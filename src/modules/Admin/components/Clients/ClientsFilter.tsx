@@ -33,7 +33,7 @@ const ClientsFilter = () => {
                 </div>
 
                 <div className="col-lg-7">
-                    <ul className="filter-ul" style={{backgroundImage: 'url(' + globalFileServer + '/icons/filter.svg)'}}>
+                    <ul className="filter-ul" style={{backgroundImage: 'url(' + process.env.MEDIA + '/icons/filter.svg)'}}>
                         <li className={this.state.activeTab == "all" ? "active" : null} onClick={this.updateUserList.bind(this, "all")}>
                             <span>הכל</span>
                         </li>

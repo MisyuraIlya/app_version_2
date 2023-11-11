@@ -131,7 +131,7 @@ const ContactFooter = () => {
                     <div className="img"></div>
                   </div>
                   <div className="col-lg-10 a-class">
-                    {/* <a className="privacy a-class" href={globalFileServer + 'policy_form.pdf'} target="_blank">
+                    {/* <a className="privacy a-class" href={process.env.MEDIA + 'policy_form.pdf'} target="_blank">
                                             <span className="login">{'תנאי שימוש'}</span>
                                         </a> */}
                   </div>
@@ -141,7 +141,7 @@ const ContactFooter = () => {
                     <div className="img"></div>
                   </div>
                   <div className="col-lg-10 a-class">
-                    {/* <a className="privacy" href={globalFileServer + 'negishut.pdf'} target="_blank">
+                    {/* <a className="privacy" href={process.env.MEDIA + 'negishut.pdf'} target="_blank">
                                             <span className="login">{'הצהרת נגישות'}</span>
                                         </a> */}
                   </div>

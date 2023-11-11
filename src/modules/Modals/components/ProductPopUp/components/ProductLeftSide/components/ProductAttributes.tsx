@@ -12,7 +12,7 @@ const ProductAttributes = () => {
                             <div className="col-lg-3">
                                 {attrEle.MainAttr.ExtId == 48 ? (
                                     <a href={attrEle.SubAttr.Val} target="_blank">
-                                        <img src={globalFileServer + 'icons/youtube.jpg'} />
+                                        <img src={process.env.MEDIA + 'icons/youtube.jpg'} />
                                     </a>
                                 ) : (
                                     <p className="c-title">

@@ -31,9 +31,9 @@ const NotificationItem: FC<NotificationItemProps> = ({ element, index }) => {
         <div className="col-lg-1 img">
           <div className="wr">
             {/* {element?.image?.filePath ?
-                            <img src={globalFileServer + 'notifications/' + element?.image?.filePath} />
+                            <img src={process.env.MEDIA + 'notifications/' + element?.image?.filePath} />
                             :
-                            <img src={globalFileServer + 'placeholder.jpg'} />
+                            <img src={process.env.MEDIA + 'placeholder.jpg'} />
                         } */}
           </div>
         </div>

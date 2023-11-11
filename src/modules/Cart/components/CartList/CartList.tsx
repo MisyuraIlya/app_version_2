@@ -73,12 +73,12 @@ const CartList = () => {
                       {/* <th className="col-cont">
                                             {element?.product?.defaultImagePath ?
                                                 <img className="img"
-                                                    src={globalFileServer + 'products/' + element?.product?.defaultImagePath}
+                                                    src={process.env.MEDIA + 'products/' + element?.product?.defaultImagePath}
                                                     onClick={() => selectProduct(element?.product)} 
                                                 />
                                             :
                                                 <img className="img"
-                                                    src={globalFileServer + 'placeholder.jpg'}
+                                                    src={process.env.MEDIA + 'placeholder.jpg'}
                                                     onClick={() => selectProduct(element?.product)} 
                                                 />
                                             }

@@ -15,8 +15,8 @@ const SubProducts = () => {
                         <div className='flex-container' key={index} style={{marginTop:'10px'}}>
                             <div className='col-lg-2' style={{display:'flex',justifyContent:'center',alignItems:'center'}}>
                                 <img className="img" 
-                                    src={item.ImgPath ? item.ImgPath : globalFileServer + 'products/' + item.Img}
-                                    onError={(e) => e.target.src = globalFileServer + 'logo.png'}
+                                    src={item.ImgPath ? item.ImgPath : process.env.MEDIA + 'products/' + item.Img}
+                                    onError={(e) => e.target.src = process.env.MEDIA + 'logo.png'}
                                     onClick={()=> this.setState({imageModal: this.state.chosenImg})}
                                 />
                             </div>    

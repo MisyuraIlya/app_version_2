@@ -76,7 +76,16 @@ const CatalogSearch = () => {
                       >
                         <div className="img-cont col-lg-3">
                           {/* set IMAGE PLACEHOLDER */}
-                          {/* <img className="img" src={item.defaultImagePath ? item.defaultImagePath : globalFileServer + 'products/' + item.defaultImagePath}/> */}
+                          <img
+                            className="img"
+                            src={
+                              item.defaultImagePath
+                                ? item.defaultImagePath
+                                : process.env.MEDIA +
+                                  'products/' +
+                                  item.defaultImagePath
+                            }
+                          />
                         </div>
                         <div className="content col-lg-9">
                           <p className="title">{item.title}</p>

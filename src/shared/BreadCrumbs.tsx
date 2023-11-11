@@ -13,7 +13,7 @@ const BreadCrumbs = () => {
           <div className="col-lg-6">
             <ul>
               <li>
-                {/* <Link to="/"><img src={globalFileServer + 'icons/home.svg'} alt=""/></Link> */}
+                {/* <Link to="/"><img src={process.env.MEDIA + 'icons/home.svg'} alt=""/></Link> */}
               </li>
               {/* {true ?
                             <>

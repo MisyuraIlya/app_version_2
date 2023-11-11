@@ -84,7 +84,7 @@ const FiltersBlock = () => {
           {/* {isAgent && ((params.props.match.params.lvl2 && params.props.match.params.lvl2!='0') || params.props.match.params.type.includes('brand')) ?
               <div className="file-main-cont">
                 <div className="file-cont" onClick={()=> params.downloadExcelPdf('xls', params.breadCrumbsNav)}>
-                  <img src={globalFileServer + 'icons/excel.svg'} />
+                  <img src={process.env.MEDIA + 'icons/excel.svg'} />
                 </div>
                 <div className="file-cont" onClick={()=> params.downloadExcelPdf('pdf', params.breadCrumbsNav)}>
                   <span className="material-symbols-outlined">picture_as_pdf</span>
@@ -122,7 +122,7 @@ const FiltersBlock = () => {
                 onClick={() => setActiveProdsPerPage(!activeProdsPerPage)}
               >
                 <p>{prodsPerPage}</p>
-                {/* <img src={globalFileServer + "icons/down-chevron.svg"} alt=""/> */}
+                {/* <img src={process.env.MEDIA + "icons/down-chevron.svg"} alt=""/> */}
               </div>
               {activeProdsPerPage ? (
                 <div className="drop-down-open-cont">
@@ -146,7 +146,7 @@ const FiltersBlock = () => {
                 onClick={() => setActiveSortPerPage(!activeSortPerPage)}
               >
                 <p>{sortProdSetting}</p>
-                {/* <img src={globalFileServer + "icons/down-chevron.svg"} alt=""/> */}
+                {/* <img src={process.env.MEDIA + "icons/down-chevron.svg"} alt=""/> */}
               </div>
               {activeSortPerPage ? (
                 <div className="drop-down-open-cont">

@@ -29,7 +29,7 @@ const ForgotPasswordStepTwo = () => {
         <div className="forgot-password">
           <div className="cancel">
             <div onClick={() => setOpenAuthModal(false)}>
-              {/* <img src={globalFileServer + 'icons/close.svg'} alt="" /> */}
+              {/* <img src={process.env.MEDIA + 'icons/close.svg'} alt="" /> */}
             </div>
           </div>
           <div>

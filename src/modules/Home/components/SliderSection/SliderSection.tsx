@@ -71,7 +71,7 @@ const SliderSection: FC<SliderSectionProps> = ({
                   <Link to={'/categoryPage/' + element?.id + '/0/0'}>
                     <div className="img-cont">
                       .{/* IMPLEMENT IMAGE PATH */}
-                      {/* <img className="img" src={element?.MediaObject?.filePath ? globalFileServer + "categories/" + element?.MediaObject?.filePath : globalFileServer + 'placeholder.jpg'} /> */}
+                      {/* <img className="img" src={element?.MediaObject?.filePath ? process.env.MEDIA + "categories/" + element?.MediaObject?.filePath : process.env.MEDIA + 'placeholder.jpg'} /> */}
                     </div>
                     <div className="prod-data-cont">
                       <h3 className="p-title">{element?.title}</h3>

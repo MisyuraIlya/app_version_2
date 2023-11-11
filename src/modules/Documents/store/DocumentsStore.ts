@@ -157,7 +157,7 @@ export const useDocuments = create<DocumentsStore>((set, get) => ({
     //                 discount: item.discount,
     //                 totalBeforeTax:  item.total * 0.17,
     //                 totalPrice: item.total,
-    //                 image: globalFileServer + item?.product?.defaultImagePath ,
+    //                 image: process.env.MEDIA + item?.product?.defaultImagePath ,
     //             }
     //             documents.push(obj)
     //         })
