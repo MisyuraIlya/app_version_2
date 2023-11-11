@@ -10,7 +10,7 @@ interface useAdminOrdersState {
   orders: any[] // Change 'any[]' to the actual type of your orders
   getOrders: () => Promise<void>
   totalOrders: number
-  //   setPage: (page: number) => void;
+  setPage: (page: string) => void
   hydraPagination: hydraPagination
   dateFrom: Date
   setDateFrom: (value: Date) => void
@@ -54,7 +54,14 @@ export const useAdminOrders = create<useAdminOrdersState>((set, get) => ({
     nextPage: '1',
     previous: '1',
   },
-  //   setPage: (page) => set({ page: page }),
+  setPage: (page: string) => {
+    set((state) => ({
+      hydraPagination: {
+        ...state.hydraPagination,
+        page: page,
+      },
+    }))
+  },
   dateFrom: new Date(),
   setDateFrom: (value) => {
     set({ dateFrom: value })

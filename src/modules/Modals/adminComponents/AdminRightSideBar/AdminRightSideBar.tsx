@@ -1,5 +1,9 @@
 import React, { FC } from 'react'
 import { Link } from 'react-router-dom'
+import moment from 'moment'
+
+let from = moment().subtract(1, 'months').format('YYYY-MM-DD')
+let to = moment().format('YYYY-MM-DD')
 const sidebarAdmin = [
   /*{
       Title: 'שיוך קטגוריות',
@@ -57,7 +61,7 @@ const sidebarAdmin = [
     },*/
   {
     Title: 'הזמנות',
-    Link: '/admin/approveDoc',
+    Link: `/admin/approveDoc?page=1&from=${from}&to=${to}`,
     Img: 'shopping_cart',
     Password: false,
     Pop: false,

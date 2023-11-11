@@ -16,9 +16,8 @@ const Orders = () => {
     setDateTo,
     setSearch,
     setDocumentType,
-    // setPage
+    setPage,
   } = useAdminOrders()
-  // const history = useHistory()
 
   const location = useLocation()
   const navigate = useNavigate()
@@ -35,29 +34,20 @@ const Orders = () => {
   }
 
   useEffect(() => {
-    // if(!UrlHandler.isThereParams(history.location.search)) {
-    //     let from= moment().subtract(1, 'months').format('YYYY-MM-DD');
-    //     let to =  moment().format('YYYY-MM-DD');
-    //     let search= '';
-    //     let documentType = 'all'
-    //     let page = 1
-    //     const url = UrlHandler.createUrl(history.location.search,page,from,to,documentType,search)
-    //     history.push(history.location.pathname + url);
-    //     setDateFrom(from)
-    //     setDateTo(to)
-    //     setSearch(search)
-    //     setDocumentType(documentType)
-    //     setPage(page)
-    // } else {
-    //     const {page, from, to, documentType, search} = UrlHandler.getUrlParams(history.location.search)
-    //     const url = UrlHandler.createUrl(history.location.search,page,from,to,documentType,search)
-    //     history.push(history.location.pathname + url);
-    //     setDateFrom(from)
-    //     setDateTo(to)
-    //     setSearch(search)
-    //     setDocumentType(documentType)
-    //     setPage(page)
-    // }
+    const urlSearchParams = new URLSearchParams(location.search)
+    const page = urlSearchParams.get('page')
+    const from = urlSearchParams.get('from')
+    const to = urlSearchParams.get('to')
+    const updatedUrl = '?' + urlSearchParams.toString()
+    if (page) {
+      setPage(page?.toString())
+    }
+    if (from) {
+      setDateFrom(new Date(from))
+    }
+    if (to) {
+      setDateTo(new Date(to))
+    }
     getOrders()
   }, [location.search])
   return (
