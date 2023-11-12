@@ -3,50 +3,50 @@ import ReactApexChart from 'react-apexcharts';
 import MyCard from '../../../shared/MyCard';
 import Wrap from '../../../shared/Wrap';
 
-const VisitsDashboard = ({visits, objectives}) => {
-    const total = visits.total
-    const completed = visits.completed
-    const precent = parseFloat((completed / total) * 100).toFixed(1) == 'NaN' ? 0 : parseFloat((completed / total) * 100).toFixed(1)
-    const totalObj = objectives.total
-    const completedObj = objectives.completed
-    const precentObj = parseFloat((completedObj / totalObj) * 100).toFixed(1) == 'NaN' ? 0 : parseFloat((completedObj / totalObj) * 100).toFixed(1)
+const VisitsDashboard = () => {
+    // const total = visits.total
+    // const completed = visits.completed
+    // const precent = parseFloat((completed / total) * 100).toFixed(1) == 'NaN' ? 0 : parseFloat((completed / total) * 100).toFixed(1)
+    // const totalObj = objectives.total
+    // const completedObj = objectives.completed
+    // const precentObj = parseFloat((completedObj / totalObj) * 100).toFixed(1) == 'NaN' ? 0 : parseFloat((completedObj / totalObj) * 100).toFixed(1)
 
 
 
-    const series2 = [precent]
-    const options2 =  {
-        chart: {
-        height: 350,
-        type: 'radialBar',
-        },
-        plotOptions: {
-        radialBar: {
-            hollow: {
-            size: '70%',
-            }
-        },
-        },
-        labels: ['ביקורים'],
-        colors:['#24426b']
+    // const series2 = [precent]
+    // const options2 =  {
+    //     chart: {
+    //     height: 350,
+    //     type: 'radialBar',
+    //     },
+    //     plotOptions: {
+    //     radialBar: {
+    //         hollow: {
+    //         size: '70%',
+    //         }
+    //     },
+    //     },
+    //     labels: ['ביקורים'],
+    //     colors:['#24426b']
 
-    }
-    const series1 = [precentObj]
-    const options1 =  {
-        chart: {
-        height: 350,
-        type: 'radialBar',
-        },
-        plotOptions: {
-        radialBar: {
-            hollow: {
-            size: '70%',
-            }
-        },
-        },
-        labels: ['משימות'],
-        colors:['#24426b']
+    // }
+    // const series1 = [precentObj]
+    // const options1 =  {
+    //     chart: {
+    //     height: 350,
+    //     type: 'radialBar',
+    //     },
+    //     plotOptions: {
+    //     radialBar: {
+    //         hollow: {
+    //         size: '70%',
+    //         }
+    //     },
+    //     },
+    //     labels: ['משימות'],
+    //     colors:['#24426b']
 
-    }
+    // }
     return (
         <div className='myMarginTop'>
             <MyCard>
@@ -57,18 +57,18 @@ const VisitsDashboard = ({visits, objectives}) => {
                             <div className='text-wrap-cont'>
                                 <h4>בוצע</h4>
                                 <Wrap>
-                                    {completed}
+                                    {/* {completed} */}
                                 </Wrap>
                             </div>
                             <div className='text-wrap-cont'>
                                 <h4>לביצוע</h4>
                                 <Wrap>
-                                    {total}
+                                    {/* {total} */}
                                 </Wrap>
                             </div>
                         </div>
                         <div className='apex-cont col-lg-7'>
-                            <ReactApexChart options={options2} series={series2} type="radialBar" height={250} />
+                            {/* <ReactApexChart options={options2} series={series2} type="radialBar" height={250} /> */}
                         </div>
                     </div>
                     <div className='container flex-container col-lg-6'>
@@ -77,18 +77,18 @@ const VisitsDashboard = ({visits, objectives}) => {
                             <div className='text-wrap-cont'>
                                 <h4>בוצע</h4>
                                 <Wrap>
-                                    {completedObj}
+                                    {/* {completedObj} */}
                                 </Wrap>
                             </div>
                             <div className='text-wrap-cont'>
                                 <h4>לביצוע</h4>
                                 <Wrap>
-                                    {totalObj}
+                                    {/* {totalObj} */}
                                 </Wrap>
                             </div>
                         </div>
                         <div className='apex-cont col-lg-7'>
-                            <ReactApexChart options={options1} series={series1} type="radialBar" height={250} />
+                            {/* <ReactApexChart options={options1} series={series1} type="radialBar" height={250} /> */}
                         </div>
                     </div>
                 </div>
