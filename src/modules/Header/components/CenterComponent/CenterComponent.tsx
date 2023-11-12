@@ -3,9 +3,7 @@ import CatalogSearch from '../../../Catalog/components/CatalogSearch/CatalogSear
 
 const CenterComponent = () => {
   return (
-    <div>
       <CatalogSearch />
-    </div>
   )
 }
 

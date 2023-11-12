@@ -16,8 +16,8 @@ const Header = () => {
           <div
             className={
               mobileSearchOn
-                ? 'main-menu col-lg-4 opened'
-                : 'main-menu col-lg-4 closed'
+                ? 'main-menu col-lg-4 closed'
+                : 'main-menu col-lg-4 opened'
             }
           >
             <MobileHeader
@@ -28,7 +28,7 @@ const Header = () => {
           </div>
           <div
             className={
-              mobileSearchOn
+              !mobileSearchOn
                 ? 'search-li col-lg-4 hide-mob'
                 : 'search-li col-lg-4 show-mob'
             }

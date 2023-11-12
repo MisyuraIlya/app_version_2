@@ -181,6 +181,7 @@ const ModalsProvider: FC<ModalsProviderProps> = ({ children }) => {
         active={clientRightSideBar}
         setActive={setClientRightSideBar}
       />
+
       <LeftSideBar active={leftSideBar} setActive={setLeftSideBar} />
       {/* ADMINS */}
       <Gallery active={gallery} setActive={setGallery} />
