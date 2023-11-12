@@ -1,9 +1,11 @@
 import React from 'react'
 import { useAuth } from '../../store/useAuthStore'
 import { Link } from 'react-router-dom'
+import { useAgentStore } from '../../../Agent/store/agent.store'
 
 const MyProfile = () => {
   const { user, logOut } = useAuth()
+  const {selectedClient} = useAgentStore()
   let profileObj: any[] = [
     /*
     {
@@ -129,7 +131,7 @@ const MyProfile = () => {
           <div className="col-lg-12 flex-container box-cont">
             <div className="col-lg-2 col">
               <p className="title">{'שם'}</p>
-              <p className="value">{user?.name}</p>
+              <p className="value">{selectedClient ? selectedClient?.name :user?.name}</p>
             </div>
             {/* <div className="col-lg-2 col">
                     <p className="title">{'איש קשר'}</p>
@@ -138,11 +140,11 @@ const MyProfile = () => {
                     </div> */}
             <div className="col-lg-2 col">
               <p className="title">{'מייל'}</p>
-              <p className="value">{user?.email}</p>
+              <p className="value">{selectedClient? selectedClient.email : user?.email}</p>
             </div>
             <div className="col-lg-2 col">
               <p className="title">{'טלפון'}</p>
-              <p className="value">{user?.phone}</p>
+              <p className="value">{selectedClient? selectedClient?.phone :user?.phone}</p>
             </div>
             {/* <div className="col-lg-1 col">
                     <p className="title">{'עיר'}</p>

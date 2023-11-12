@@ -59,7 +59,7 @@ const profileObj = [
   {
     Title: 'מסמכים לאישור',
     TitleEng: 'Approve Docs',
-    Link: '/approveDoc/1/',
+    Link: '/admin/approveDoc?page=1',
     Img: 'checklist_rtl',
     OnlyAgent: true,
     OnlyAgentSuper: true,

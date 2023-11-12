@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useClientStore } from '../../store/ClientsStore'
 import { useNavigate } from 'react-router-dom'
 import { useDebounce } from 'use-debounce'
+import SearchInput from '../../../../shared/SearchInput'
 
 const ClientsFilter = () => {
   const { totalClients, search, setSearch, getClients } = useClientStore()
@@ -25,28 +26,7 @@ const ClientsFilter = () => {
       </div>
       <div style={{ display: 'flex' }} className="col-lg-10">
         <div className="col-lg-4">
-          <div className="search-cont">
-            <input
-              onClick={() => setActiveSearch(true)}
-              onBlur={() => setActiveSearch(false)}
-              onChange={(e) => setSearch(e.target.value)}
-              value={search}
-              type="text"
-              placeholder="חיפוש לקוח..."
-            />
-            {search ? (
-              <span
-                className="material-symbols-outlined search-img"
-                onClick={() => setSearch('')}
-              >
-                close
-              </span>
-            ) : (
-              <span className="material-symbols-outlined search-img">
-                search
-              </span>
-            )}
-          </div>
+            <SearchInput search={search} setSearch={setSearch} onActive={setActiveSearch} />
         </div>
 
         <div className="col-lg-7">

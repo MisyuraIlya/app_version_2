@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useAdminOrders } from '../../store/OrdersStore'
 import moment from 'moment'
 import { useDebounce } from 'use-debounce'
+import SearchInput from '../../../../shared/SearchInput'
 
 const OrdersFilter = () => {
   const { setSearch, search, dateFrom, dateTo, setType, getOrders } =
@@ -55,28 +56,7 @@ const OrdersFilter = () => {
         <div className="userInfo-cls flex-container">
           <div className="left-side-comp header-btn-cont col-pay">
             <div className="clientsAgentSearchWrapper">
-              <div className="search-cont">
-                <input
-                  onClick={() => setActiveSearch(true)}
-                  onBlur={() => setActiveSearch(false)}
-                  onChange={(e) => setSearch(e.target.value)}
-                  value={search}
-                  type="text"
-                  placeholder="חיפוש לקוח..."
-                />
-                {search ? (
-                  <span
-                    className="material-symbols-outlined search-img"
-                    onClick={() => setSearch('')}
-                  >
-                    close
-                  </span>
-                ) : (
-                  <span className="material-symbols-outlined search-img">
-                    search
-                  </span>
-                )}
-              </div>
+              <SearchInput search={search} setSearch={setSearch} onActive={setActiveSearch} />
             </div>
           </div>
         </div>

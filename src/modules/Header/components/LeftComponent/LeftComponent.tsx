@@ -49,7 +49,9 @@ const LeftComponent = () => {
 
         {isAgent ? (
           <li className={'left'}>
-            <span className="material-symbols-outlined">StoreFront</span>
+            <Link to={'/agentClients'}>
+              <span className="material-symbols-outlined">StoreFront</span>
+            </Link>
           </li>
         ) : null}
         {user && (

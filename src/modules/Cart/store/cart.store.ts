@@ -36,6 +36,7 @@ interface useCartState {
   goToDrafts: () => void
   setSendNoApproval: (bool: boolean) => void
   setSpecialSettingsPop: (bool: boolean) => void
+  setSelectedMode: (type: IDocumentType) => void
   setComment: (value: string) => void
   sendOrder: () => Promise<void>
   calculateProductByQuantityAndPackage: (product: ICart) => string | number
@@ -130,6 +131,7 @@ export const useCart = create<useCartState>((set, get) => ({
   },
 
   selectedMode: 'order', // 1 - order | 2 - Request | 3 - Return
+  setSelectedMode: (type:IDocumentType ) => set({selectedMode: type}),
   CartTitle: () => {
     let totalTitle = 'סיכום'
     if (get().selectedMode == 'order') {
