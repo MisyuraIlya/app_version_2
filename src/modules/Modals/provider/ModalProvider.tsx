@@ -52,6 +52,8 @@ interface ModalContextType {
   setClientRightSideBar: (bool: boolean) => void
   leftSideBar: boolean
   setLeftSideBar: (bool: boolean) => void
+  taskModal: boolean
+  setTaskModal: (bool: boolean) => void
 }
 const ModalContext = createContext<ModalContextType | null>(null)
 
@@ -86,6 +88,9 @@ const ModalsProvider: FC<ModalsProviderProps> = ({ children }) => {
   const [gallery, setGallery] = useState(false)
   const [clientsInfo, setClientsInfo] = useState(false)
   const [clientOptions, setClientOptions] = useState(false)
+
+  //AGENTS
+  const [taskModal, setTaskModal] = useState(false)
 
   const openStockNotify = () => {
     setStockNotify(true)
@@ -144,6 +149,8 @@ const ModalsProvider: FC<ModalsProviderProps> = ({ children }) => {
     setClientRightSideBar,
     leftSideBar,
     setLeftSideBar,
+    taskModal,
+    setTaskModal,
   }
 
   return (
@@ -187,6 +194,8 @@ const ModalsProvider: FC<ModalsProviderProps> = ({ children }) => {
       <Gallery active={gallery} setActive={setGallery} />
       <ClientsInfo active={clientsInfo} setActive={setClientsInfo} />
       <ClientOptions active={clientOptions} setActive={setClientOptions} />
+
+      {/* implement AGENT MODALS */}
       {children}
     </ModalContext.Provider>
   )

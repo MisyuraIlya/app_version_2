@@ -1,100 +1,103 @@
-import React from 'react';
-import ReactApexChart from 'react-apexcharts';
-import MyCard from '../../../shared/MyCard';
-import Wrap from '../../../shared/Wrap';
+import React from 'react'
+import ReactApexChart from 'react-apexcharts'
+import MyCard from '../../../shared/MyCard'
+import Wrap from '../../../shared/Wrap'
+import { useAgentProfileStore } from '../store/agentProfile.store'
 
 const VisitsDashboard = () => {
-    // const total = visits.total
-    // const completed = visits.completed
-    // const precent = parseFloat((completed / total) * 100).toFixed(1) == 'NaN' ? 0 : parseFloat((completed / total) * 100).toFixed(1)
-    // const totalObj = objectives.total
-    // const completedObj = objectives.completed
-    // const precentObj = parseFloat((completedObj / totalObj) * 100).toFixed(1) == 'NaN' ? 0 : parseFloat((completedObj / totalObj) * 100).toFixed(1)
+  const { objectivesToday } = useAgentProfileStore()
+  const total = objectivesToday?.visitsTotal
+  const completed = objectivesToday?.visitsCompleted
+  const precent = completed && total ? (completed / total) * 100 : 0
+  const totalObj = objectivesToday?.objectiveTotal
+  const completedObj = objectivesToday?.objectiveCompleted
+  const precentObj =
+    totalObj && completedObj ? (completedObj / totalObj) * 100 : 0
+  const series2 = [precent]
+  const options2 = {
+    chart: {
+      height: 350,
+      type: 'radialBar',
+    },
+    plotOptions: {
+      radialBar: {
+        hollow: {
+          size: '70%',
+        },
+      },
+    },
+    labels: ['ביקורים'],
+    colors: ['#24426b'],
+  }
 
-
-
-    // const series2 = [precent]
-    // const options2 =  {
-    //     chart: {
-    //     height: 350,
-    //     type: 'radialBar',
-    //     },
-    //     plotOptions: {
-    //     radialBar: {
-    //         hollow: {
-    //         size: '70%',
-    //         }
-    //     },
-    //     },
-    //     labels: ['ביקורים'],
-    //     colors:['#24426b']
-
-    // }
-    // const series1 = [precentObj]
-    // const options1 =  {
-    //     chart: {
-    //     height: 350,
-    //     type: 'radialBar',
-    //     },
-    //     plotOptions: {
-    //     radialBar: {
-    //         hollow: {
-    //         size: '70%',
-    //         }
-    //     },
-    //     },
-    //     labels: ['משימות'],
-    //     colors:['#24426b']
-
-    // }
-    return (
-        <div className='myMarginTop'>
-            <MyCard>
-                <div className='flex-container visit-dash-cont'>
-                    <div className='container flex-container col-lg-6'>
-                        <div className='textAlign col-lg-4'>
-                            <h3>ביקורים</h3>
-                            <div className='text-wrap-cont'>
-                                <h4>בוצע</h4>
-                                <Wrap>
-                                    {/* {completed} */}
-                                </Wrap>
-                            </div>
-                            <div className='text-wrap-cont'>
-                                <h4>לביצוע</h4>
-                                <Wrap>
-                                    {/* {total} */}
-                                </Wrap>
-                            </div>
-                        </div>
-                        <div className='apex-cont col-lg-7'>
-                            {/* <ReactApexChart options={options2} series={series2} type="radialBar" height={250} /> */}
-                        </div>
-                    </div>
-                    <div className='container flex-container col-lg-6'>
-                        <div className='textAlign col-lg-4'>
-                            <h3>משימות</h3>
-                            <div className='text-wrap-cont'>
-                                <h4>בוצע</h4>
-                                <Wrap>
-                                    {/* {completedObj} */}
-                                </Wrap>
-                            </div>
-                            <div className='text-wrap-cont'>
-                                <h4>לביצוע</h4>
-                                <Wrap>
-                                    {/* {totalObj} */}
-                                </Wrap>
-                            </div>
-                        </div>
-                        <div className='apex-cont col-lg-7'>
-                            {/* <ReactApexChart options={options1} series={series1} type="radialBar" height={250} /> */}
-                        </div>
-                    </div>
-                </div>
-            </MyCard>
+  const series1 = [precentObj]
+  const options1 = {
+    chart: {
+      height: 350,
+      type: 'radialBar',
+    },
+    plotOptions: {
+      radialBar: {
+        hollow: {
+          size: '70%',
+        },
+      },
+    },
+    labels: ['משימות'],
+    colors: ['#24426b'],
+  }
+  return (
+    <div className="myMarginTop">
+      <MyCard>
+        <div className="flex-container visit-dash-cont">
+          <div className="container flex-container col-lg-6">
+            <div className="textAlign col-lg-4">
+              <h3>ביקורים</h3>
+              <div className="text-wrap-cont">
+                <h4>בוצע</h4>
+                <Wrap>{objectivesToday?.visitsCompleted}</Wrap>
+              </div>
+              <div className="text-wrap-cont">
+                <h4>לביצוע</h4>
+                <Wrap>{objectivesToday?.visitsTotal}</Wrap>
+              </div>
+            </div>
+            <div className="apex-cont col-lg-7">
+              {/* @ts-ignore */}
+              <ReactApexChart
+                options={options2}
+                series={series2}
+                type="radialBar"
+                height={250}
+              />
+            </div>
+          </div>
+          <div className="container flex-container col-lg-6">
+            <div className="textAlign col-lg-4">
+              <h3>משימות</h3>
+              <div className="text-wrap-cont">
+                <h4>בוצע</h4>
+                <Wrap>{objectivesToday?.objectiveCompleted}</Wrap>
+              </div>
+              <div className="text-wrap-cont">
+                <h4>לביצוע</h4>
+                <Wrap>{objectivesToday?.objectiveTotal}</Wrap>
+              </div>
+            </div>
+            <div className="apex-cont col-lg-7">
+              {/* @ts-ignore */}
+              <ReactApexChart
+                options={options1}
+                series={series1}
+                type="radialBar"
+                height={250}
+              />
+            </div>
+          </div>
         </div>
-    );
-};
+      </MyCard>
+    </div>
+  )
+}
 
-export default VisitsDashboard;
+export default VisitsDashboard
