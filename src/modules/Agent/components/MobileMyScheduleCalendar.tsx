@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import moment from 'moment'
-import Loader from '../../../../../shared/Loader'
-import { useMyScheduleCalendar } from '../../../store/ScheduleCalendar.store'
-import { useModals } from '../../../../Modals/provider/ModalProvider'
+import Loader from '../../../shared/Loader'
+import { useMyScheduleCalendar } from '../store/ScheduleCalendar.store'
+import { useModals } from '../../Modals/provider/ModalProvider'
+import { ConvertHebrewNameDayToWeeksDate } from '../helpers/ScheduleCalendar.helper'
+import { HourOfDay } from '../store/ScheduleCalendar.store'
+
 const MobileMyScheduleCalendar = () => {
-  const [todayName, setTodayName] = useState('')
-  const { ScheduleCalendarInfo, daysOfWeek, hoursOfDay } =
+  const [todayName, setTodayName] = useState<string | null>(null)
+  const { loading, ScheduleCalendarInfo, daysOfWeek, hoursOfDay } =
     useMyScheduleCalendar()
   const { setTaskModal } = useModals()
   const fetchCurrentDay = () => {
@@ -73,7 +76,7 @@ const MobileMyScheduleCalendar = () => {
         <div className="flex-container myCenterAlign">
           <div className="myPadding">
             <img
-              src={globalFileServer + 'agentApp/RightArrow.png'}
+              src={`${process.env.MEDIA}/icon/RightArrow.png`}
               onClick={() => handlePreviousDay()}
             />
           </div>
@@ -82,7 +85,7 @@ const MobileMyScheduleCalendar = () => {
           </div>
           <div className="myPadding">
             <img
-              src={globalFileServer + 'agentApp/LeftArrow.png'}
+              src={`${process.env.MEDIA}/agentApp/LeftArrow.png`}
               onClick={() => handleNextDay()}
             />
           </div>
@@ -92,7 +95,7 @@ const MobileMyScheduleCalendar = () => {
       <div className="weekly-scheduler">
         <div className="header">
           <div className="cell img_time">
-            <img src={globalFileServer + 'agentApp/Time.png'} />
+            <img src={`${process.env.MEDIA}/agentApp/Time.png`} />
           </div>
           {daysOfWeek.map((day, index) => {
             if (day === todayName) {
@@ -127,14 +130,14 @@ const MobileMyScheduleCalendar = () => {
                             event.startHour === hour
                           ) {
                             const eventDuration =
-                              hoursOfDay.indexOf(event.endHour) -
-                              hoursOfDay.indexOf(event.startHour)
+                              hoursOfDay.indexOf(event.endHour as HourOfDay) - 
+                              hoursOfDay.indexOf(event.startHour as HourOfDay);
                             return (
                               <div
                                 key={`${day}-${hour}-${event.startHour} event`}
                                 className={`event_${event.typeId}`}
                                 style={{ height: `${eventDuration * 100}px` }}
-                                onClick={() => setTaskModal(event)}
+                                onClick={() => setTaskModal(true)}
                               >
                                 <div className={`entire`}>
                                   <div className="head">

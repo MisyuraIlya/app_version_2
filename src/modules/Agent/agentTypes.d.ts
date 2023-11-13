@@ -9,6 +9,33 @@ interface IAgentTaget {
   isPublished: boolean
 }
 
+interface IAgnetVisit {
+  id: number;
+  completed: boolean;
+  completedDate: null | string;
+  description: null | string;
+  week1: boolean;
+  week2: boolean;
+  week3: boolean;
+  week4: boolean;
+  choosedDay: string;
+  hourFrom: string;
+  hourTo: string;
+  agentId: string;
+  clientName: string;
+  clientCompany: null | string;
+  clientCode: null | string;
+  clientContact: string;
+  clientBusinessId: null | string;
+  clientAddress: string;
+  clientStatus: null | string;
+  clientPaymentMethod: null | string;
+  clientCreationDate: null | string;
+  clientEmail: null | string;
+  date: string;
+  unpublished: boolean;
+}
+
 interface IPerformanceInfo {
   totalOrderSum: number
   dailySalesSum: number

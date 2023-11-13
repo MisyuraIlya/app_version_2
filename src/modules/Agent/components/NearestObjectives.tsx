@@ -1,5 +1,5 @@
 import React from 'react'
-import Container from '../../../shared/Container'
+import Container from '../layout/AgentContainer'
 import Loader from '../../../shared/Loader'
 import MyCard from '../../../shared/MyCard'
 import { useAgentProfileStore } from '../store/agentProfile.store'

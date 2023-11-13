@@ -6,9 +6,8 @@ import AgentPerformanceInfo from '../components/AgentPerformanceInfo'
 import VisitsDashboard from '../components/VisitsDashboard'
 import NearestObjectives from '../components/NearestObjectives'
 import TargetsDashboard from '../components/TargetsDashboard'
-import EditModal from '../components/Modals/EditModal'
-import Container from '../../../shared/Container'
 import { useMobile } from '../../Mobile/store/mobile.store'
+import AgentContainer from '../layout/AgentContainer'
 
 interface AgentDashboardProps {
   children: ReactNode
@@ -24,7 +23,7 @@ const AgentDashboard: FC<AgentDashboardProps> = () => {
           : 'page-container myMarginTop openAgentListMob'
       }
     >
-      <Container>
+      <AgentContainer>
         {(isSuperAgent || isAdmin) && <AgentsList />}
         <AgentLayout>
           <AgentPerformanceInfo />
@@ -32,7 +31,7 @@ const AgentDashboard: FC<AgentDashboardProps> = () => {
           <NearestObjectives />
           <TargetsDashboard />
         </AgentLayout>
-      </Container>
+      </AgentContainer>
     </div>
   )
 }

@@ -1,53 +1,40 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import AgentLayout from '../layout/AgentLayout';
-import Container from '../../../shared/Container';
-import { useLocation } from 'react-router-dom';
-// import VisitsModule from '../modules/Visits/VisitsModule';
-// import MySideButton from '../ui/MySideButton/MySideButton';
-// import VisitsFilter from '../modules/Visits/components/VisitsFilter';
-// import MyPagination from '../ui/MyPagination/MyPagination';
-// import { useMyVisits } from '../store/VIsitsStore';
-// import { fetchPage } from '../services/localstorage/pagination.service';
-// import { useHistory } from 'react-router-dom';
 import MyCard from '../../../shared/MyCard';
-import AgentsList from '../components/AgentList';
-import { useAuth } from '../../Auth/store/useAuthStore';
+import { useAgentProfileStore } from '../store/agentProfile.store';
+import VisitsList from '../components/VisitsList';
+import MyInputV2 from '../../../shared/MyInputV2';
+import Pagination from '../../../shared/Pagination';
+import AgentContainer from '../layout/AgentContainer';
 
 const Visits = () => {
-    const {isSuperAgent, isAdmin} = useAuth()
-    const location = useLocation()
-    // const history = useHistory()
-    // const {paginationObject,searchValue,searchValueDebounced,MyVisitsMethods} = useMyVisits()
-    useEffect(() => {
-        if(!searchValueDebounced){
-            MyVisitsMethods.fetchVisitsList()
-        }
-    },[searchValueDebounced,location.pathname])
-
+    const {searchValue, setSearchValue, hydraPagination} = useAgentProfileStore()
     return (
         <div className='page-container myMarginTop agentVisitsPage'>
-            <Container>
-                {(isSuperAgent || isAdmin)&& <AgentsList/>}
+            <AgentContainer>
                 <AgentLayout>
                     <div className='myPadding'>
-                        {/* <VisitsFilter/> */}
+                        <MyCard>
+                            <div className='flex-container myPadding'>
+                                <div className='col-lg-3 colMobile12 mobileAlign'>
+                                    <div className=''>
+                                        <MyInputV2 placeholder={'חיפוש לפי לקוח'} value={searchValue} onChange={setSearchValue}/>
+                                    </div>
+                                </div>
+                            </div>
+                        </MyCard>
                     </div>
                     <div className='myPadding'>
                         <MyCard>
-                            {/* <VisitsModule/> */}
+                            <VisitsList/>
                         </MyCard>
                     </div>
 
                     <div className='myMarginTop'>
-                        {/* <MyPagination
-                            paginateObj={paginationObject}
-                            headProps={{page:fetchPage(history), lang:'he'}}
-                            headLocation={searchValue} 
-                            lang={'he'}
-                        /> */}
+                        <Pagination hydraPagination={hydraPagination} />
                     </div>
                 </AgentLayout>
-            </Container>
+            </AgentContainer>
         </div>
     );
 };

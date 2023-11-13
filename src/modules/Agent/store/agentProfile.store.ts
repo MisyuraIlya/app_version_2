@@ -14,6 +14,12 @@ interface AgentProfileStoreState {
   handleTask: (isDone: boolean) => void
   setChoosetYear: (value: string | undefined) => void
   monthAgentSales: IMonthAgenthSale[]
+
+  hydraPagination: hydraPagination
+  targets:IAgentTaget[]
+  visits:IAgnetVisit[]
+  searchValue: string
+  setSearchValue: (value: string) => void
 }
 
 export const useAgentProfileStore = create<AgentProfileStoreState>(
@@ -32,5 +38,20 @@ export const useAgentProfileStore = create<AgentProfileStoreState>(
       set({ choosedYear: value ?? '' }),
 
     monthAgentSales: [],
+
+    targets:[],
+    visits:[],
+
+    searchValue:'',
+    setSearchValue: (value: string) => set({searchValue:value}),
+
+
+    hydraPagination: {
+      totalPages: '1',
+      page: '1',
+      lastPage: '1',
+      nextPage: '1',
+      previous: '1',
+    },
   })
 )

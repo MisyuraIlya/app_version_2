@@ -54,6 +54,13 @@ interface ModalContextType {
   setLeftSideBar: (bool: boolean) => void
   taskModal: boolean
   setTaskModal: (bool: boolean) => void
+  targetModal: boolean
+  setTargetModal: (bool: boolean) => void
+  setTargetModalItem: (item: IAgentTaget) => void
+
+  visitModal: boolean
+  setVisitModal: (bool: boolean) => void
+  setsetVisitModalItem: (item: IAgnetVisit) => void
 }
 const ModalContext = createContext<ModalContextType | null>(null)
 
@@ -91,6 +98,8 @@ const ModalsProvider: FC<ModalsProviderProps> = ({ children }) => {
 
   //AGENTS
   const [taskModal, setTaskModal] = useState(false)
+  const [targetModal, setTargetModal] = useState(false)
+  const [visitModal, setVisitModal] = useState(false)
 
   const openStockNotify = () => {
     setStockNotify(true)
@@ -116,6 +125,14 @@ const ModalsProvider: FC<ModalsProviderProps> = ({ children }) => {
     if (!bool) {
       // clearSubProducts()
     }
+  }
+
+  const setTargetModalItem = (item: IAgentTaget) => {
+    setTargetModal(true)
+  }
+
+  const setsetVisitModalItem = (item: IAgnetVisit) => {
+    setVisitModal(true)
   }
 
   const value = {
@@ -151,6 +168,13 @@ const ModalsProvider: FC<ModalsProviderProps> = ({ children }) => {
     setLeftSideBar,
     taskModal,
     setTaskModal,
+    targetModal,
+    setTargetModal,
+    setTargetModalItem,
+
+    visitModal,
+    setVisitModal,
+    setsetVisitModalItem,
   }
 
   return (

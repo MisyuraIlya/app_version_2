@@ -1,21 +1,27 @@
 import React from 'react';
 import AgentLayout from '../layout/AgentLayout';
-import Container from '../../../shared/Container';
-// import ObjectivesModule from '../modules/Objectives/ObjectivesModule';
-import AgentsList from '../components/AgentList';
-import { useAuth } from '../../Auth/store/useAuthStore';
-import ObjectivesModule from '../components/ObjectivesModule/ObjectivesModule';
+import WeekFilter from '../components/WeekFilter';
+import MyCard from '../../../shared/MyCard';
+import MyScheduleCalendar from '../components/MyScheduleCalendar';
+import AgentContainer from '../layout/AgentContainer';
 
 const Objectives = () => {
-    const {isAdmin, isSuperAgent} = useAuth()
     return (
         <div className='page-container myMarginTop'>
-            <Container>
-                {(isAdmin || isSuperAgent) && <AgentsList/>}
+            <AgentContainer>
                 <AgentLayout>
-                    <ObjectivesModule/>
+                    <div>
+                        <div className="myCenterAlign myWidth">
+                            <WeekFilter />
+                        </div>
+                        <div className="myMarginTop">
+                            <MyCard>
+                                <MyScheduleCalendar />
+                            </MyCard>
+                        </div>
+                    </div>
                 </AgentLayout>
-            </Container>
+            </AgentContainer>
         </div>
 
     );

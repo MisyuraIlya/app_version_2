@@ -1,11 +1,11 @@
 import moment from 'moment'
 import React, { useEffect, useState } from 'react'
 import MobileMyScheduleCalendar from './MobileMyScheduleCalendar'
-import { useMyScheduleCalendar } from '../../../store/ScheduleCalendar.store'
-import Loader from '../../../../../shared/Loader'
-import { ConvertHebrewNameDayToWeekDateByWeekName } from '../../../helpers/ScheduleCalendar.helper'
-import { useModals } from '../../../../Modals/provider/ModalProvider'
-import { useMobile } from '../../../../Mobile/store/mobile.store'
+import { HourOfDay, useMyScheduleCalendar } from '../store/ScheduleCalendar.store'
+import Loader from '../../../shared/Loader'
+import { ConvertHebrewNameDayToWeekDateByWeekName } from '../helpers/ScheduleCalendar.helper'
+import { useModals } from '../../Modals/provider/ModalProvider'
+import { useMobile } from '../../Mobile/store/mobile.store'
 
 const MyScheduleCalendar = () => {
   const {
@@ -58,9 +58,9 @@ const MyScheduleCalendar = () => {
                           event.dayOfWeek === day &&
                           event.startHour === hour
                         ) {
-                          const eventDuration =
-                            hoursOfDay.indexOf(event.endHour) -
-                            hoursOfDay.indexOf(event.startHour)
+                            const eventDuration =
+                              hoursOfDay.indexOf(event.endHour as HourOfDay) - 
+                              hoursOfDay.indexOf(event.startHour as HourOfDay);
                           return (
                             <div
                               key={`${day}-${hour}-${event.startHour} event`}
@@ -100,13 +100,7 @@ const MyScheduleCalendar = () => {
           </div>
         </div>
       ) : (
-        <MobileMyScheduleCalendar
-          daysOfWeek={daysOfWeek}
-          hoursOfDay={hoursOfDay}
-          loading={loading}
-          ScheduleCalendarInfo={ScheduleCalendarInfo}
-          openEditHandler={openEditHandler}
-        />
+        <MobileMyScheduleCalendar/>
       )}
     </>
   )

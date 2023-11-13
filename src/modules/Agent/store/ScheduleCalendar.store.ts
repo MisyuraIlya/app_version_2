@@ -14,7 +14,7 @@ interface ScheduleCalendarState {
 
 type DayOfWeek = 'ראשון' | 'שני' | 'שלישי' | 'רביעי' | 'חמישי' | 'שישי' | 'שבת'
 
-type HourOfDay =
+export type HourOfDay =
   | '06:00'
   | '07:00'
   | '08:00'

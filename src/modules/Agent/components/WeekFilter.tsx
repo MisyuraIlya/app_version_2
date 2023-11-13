@@ -1,6 +1,6 @@
 import React from 'react';
 import moment from 'moment';
-import { useMyScheduleCalendar } from '../../../store/ScheduleCalendar.store';
+import { useMyScheduleCalendar } from '../store/ScheduleCalendar.store';
 const WeekFilter = () => {
 
     const {switchCalendarBackWeek, switchCalendarForwardWeek, weekFrom, weekTo} = useMyScheduleCalendar();
