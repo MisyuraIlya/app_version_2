@@ -13,6 +13,7 @@ type objectiveTypes = 'visit' | 'task'
 interface IAgentObjective {
   id: number
   agent: IUser
+  client: IUser
   isCompleted: boolean
   title: string
   description: string

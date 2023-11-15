@@ -22,6 +22,7 @@ import AdminRightSideBar from '../adminComponents/AdminRightSideBar/AdminRightSi
 import { useSelectedProduct } from '../store/selecterdProduct.store'
 import EditTarget from '../agentComponents/EditTarget'
 import { useAgentProfileStore } from '../../Agent/store/agentProfile.store'
+import EditVisit from '../agentComponents/EditVisit'
 // Defines
 interface ModalContextType {
   openAuthModal: boolean
@@ -62,6 +63,7 @@ interface ModalContextType {
 
   visitModal: boolean
   setVisitModal: (bool: boolean) => void
+  setVisitModalItem: (item: IAgentObjective) => void
 }
 const ModalContext = createContext<ModalContextType | null>(null)
 
@@ -80,7 +82,7 @@ interface ModalsProviderProps {
 const ModalsProvider: FC<ModalsProviderProps> = ({ children }) => {
   const [openAuthModal, setOpenAuthModal] = useState(false)
   const { setSelectedProd, loading } = useSelectedProduct()
-  const { setSelectedTarget } = useAgentProfileStore()
+  const { setSelectedTarget, setSelectedVisit } = useAgentProfileStore()
   const [stockNotify, setStockNotify] = useState(false)
   const [addToCartNotify, setAddToCartNotify] = useState(false)
   const [openCartSettings, setOpenCartSettings] = useState(false)
@@ -141,6 +143,18 @@ const ModalsProvider: FC<ModalsProviderProps> = ({ children }) => {
     }
   }
 
+  const setVisitModalItem = (item: IAgentObjective) => {
+    setVisitModal(true)
+    setSelectedVisit(item)
+  }
+
+  const closeVisitModalItem = (bool: boolean) => {
+    setTargetModal(bool)
+    if (!bool) {
+      setSelectedVisit(null)
+    }
+  }
+
   const value = {
     stockNotify,
     addToCartNotify,
@@ -180,6 +194,7 @@ const ModalsProvider: FC<ModalsProviderProps> = ({ children }) => {
 
     visitModal,
     setVisitModal,
+    setVisitModalItem,
   }
 
   return (
@@ -226,6 +241,7 @@ const ModalsProvider: FC<ModalsProviderProps> = ({ children }) => {
 
       {/* implement AGENT MODALS */}
       <EditTarget active={targetModal} setActive={closeTargetModalItem} />
+      <EditVisit active={visitModal} setActive={closeVisitModalItem} />
       {children}
     </ModalContext.Provider>
   )

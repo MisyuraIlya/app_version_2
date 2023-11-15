@@ -32,6 +32,13 @@ interface AgentProfileStoreState {
   createTarget: (object: IAgentTaget) => void
   updateTarget: (object: IAgentTaget) => void
   //
+
+  //visits
+  selectedVisit: IAgentObjective | null
+  setSelectedVisit: (visit: IAgentObjective | null) => void
+  visits: IAgentObjective[]
+  getVisits: () => void
+  //
   searchValue: string
   setSearchValue: (value: string) => void
 }
@@ -118,9 +125,24 @@ export const useAgentProfileStore = create<AgentProfileStoreState>(
         set({ loading: false })
       }
     },
-    //target
+    //vists
 
     visits: [],
+    selectedVisit: null,
+    setSelectedVisit: (visit: IAgentObjective | null) =>
+      set({ selectedVisit: visit }),
+    getVisits: async () => {
+      try {
+        set({ loading: true })
+        const response = await agentProfileService.getAgentObjective(1, 'visit')
+        const hydraHandler = HydraHandler.paginationHandler(response)
+        set({ visits: response['hydra:member'], hydraPagination: hydraHandler })
+      } catch (e) {
+        console.log('[ERROR FETCH]', e)
+      } finally {
+        set({ loading: false })
+      }
+    },
 
     searchValue: '',
     setSearchValue: (value: string) => set({ searchValue: value }),
