@@ -20,6 +20,8 @@ import ClientsInfo from '../adminComponents/ClientsInfo/ClientsInfo'
 import ClientOptions from '../adminComponents/ClientOptions/ClientOptions'
 import AdminRightSideBar from '../adminComponents/AdminRightSideBar/AdminRightSideBar'
 import { useSelectedProduct } from '../store/selecterdProduct.store'
+import EditTarget from '../agentComponents/EditTarget'
+import { useAgentProfileStore } from '../../Agent/store/agentProfile.store'
 // Defines
 interface ModalContextType {
   openAuthModal: boolean
@@ -60,7 +62,6 @@ interface ModalContextType {
 
   visitModal: boolean
   setVisitModal: (bool: boolean) => void
-  setsetVisitModalItem: (item: IAgnetVisit) => void
 }
 const ModalContext = createContext<ModalContextType | null>(null)
 
@@ -79,6 +80,7 @@ interface ModalsProviderProps {
 const ModalsProvider: FC<ModalsProviderProps> = ({ children }) => {
   const [openAuthModal, setOpenAuthModal] = useState(false)
   const { setSelectedProd, loading } = useSelectedProduct()
+  const { setSelectedTarget } = useAgentProfileStore()
   const [stockNotify, setStockNotify] = useState(false)
   const [addToCartNotify, setAddToCartNotify] = useState(false)
   const [openCartSettings, setOpenCartSettings] = useState(false)
@@ -129,10 +131,14 @@ const ModalsProvider: FC<ModalsProviderProps> = ({ children }) => {
 
   const setTargetModalItem = (item: IAgentTaget) => {
     setTargetModal(true)
+    setSelectedTarget(item)
   }
 
-  const setsetVisitModalItem = (item: IAgnetVisit) => {
-    setVisitModal(true)
+  const closeTargetModalItem = (bool: boolean) => {
+    setTargetModal(bool)
+    if (!bool) {
+      setSelectedTarget(null)
+    }
   }
 
   const value = {
@@ -174,7 +180,6 @@ const ModalsProvider: FC<ModalsProviderProps> = ({ children }) => {
 
     visitModal,
     setVisitModal,
-    setsetVisitModalItem,
   }
 
   return (
@@ -220,6 +225,7 @@ const ModalsProvider: FC<ModalsProviderProps> = ({ children }) => {
       <ClientOptions active={clientOptions} setActive={setClientOptions} />
 
       {/* implement AGENT MODALS */}
+      <EditTarget active={targetModal} setActive={closeTargetModalItem} />
       {children}
     </ModalContext.Provider>
   )

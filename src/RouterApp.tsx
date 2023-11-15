@@ -18,6 +18,10 @@ import KartessetPage from './modules/Documents/pages/KartessetPage'
 import Header from './modules/Header/Header'
 import NotificationPage from './modules/PushNotifications/pages/NotificationPage'
 import AgentClinets from './modules/Agent/pages/AgentClinets'
+import AgentDashboard from './modules/Agent/pages/AgentDashboard'
+import Objectives from './modules/Agent/pages/Objectives'
+import Target from './modules/Agent/pages/Target'
+import Visits from './modules/Agent/pages/Visits'
 
 const RouterApp = () => {
   return (
@@ -45,7 +49,6 @@ const RouterApp = () => {
           <Route path="/historyPage" element={<HistoryPage />} />
           <Route path="/kartessetPage" element={<KartessetPage />} />
 
-
           {/* ADMINS */}
           <Route
             path="/admin/category-edit/:lvl1/:lvl2/:lvl3"
@@ -64,10 +67,12 @@ const RouterApp = () => {
           <Route path="/admin/notification" element={<NotificationPage />} />
           {/* ======================== */}
 
-
           {/* AGENTS */}
-        <Route path="/agentClients" element={<AgentClinets />} />
-
+          <Route path="/agentClients" element={<AgentClinets />} />
+          <Route path="/agentDashboard" element={<AgentDashboard />} />
+          <Route path="/objectives" element={<Objectives />} />
+          <Route path="/target" element={<Target />} />
+          <Route path="/visits" element={<Visits />} />
         </Route>
       </Routes>
     </>

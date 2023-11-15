@@ -2,12 +2,19 @@ import { create } from 'zustand'
 import { agentService } from '../services/agent.service'
 import { HydraHandler } from '../../../helpers/hydraHandler'
 import { removeClientStorage, setClientStorage } from '../helpers/localstorage'
+import { MONTH_HEBREW_1 } from '../helpers/arrayOfMonths'
+import { agentProfileService } from '../services/agentProfile.service'
+import {
+  getAgentExtId,
+  getUserFromStorage,
+} from '../../Auth/helpers/auth.helper'
+import moment from 'moment'
 
 interface AgentProfileStoreState {
   loading: boolean
   agentList: IUser[]
   agentPremormence: IPerformanceInfo | null
-  objectives: IObjective[]
+  objectives: IAgentObjective[]
   objectivesToday: ITodayObjectives | null
   taskToday: IAgentTask[]
   choosedYear: string
@@ -16,8 +23,15 @@ interface AgentProfileStoreState {
   monthAgentSales: IMonthAgenthSale[]
 
   hydraPagination: hydraPagination
-  targets:IAgentTaget[]
-  visits:IAgnetVisit[]
+
+  //targets
+  targets: IAgentTaget[]
+  getTargets: () => void
+  selectedTarget: IAgentTaget | null
+  setSelectedTarget: (target: IAgentTaget | null) => void
+  createTarget: (object: IAgentTaget) => void
+  updateTarget: (object: IAgentTaget) => void
+  //
   searchValue: string
   setSearchValue: (value: string) => void
 }
@@ -33,18 +47,83 @@ export const useAgentProfileStore = create<AgentProfileStoreState>(
 
     handleTask: (isDone: boolean) => {},
 
-    choosedYear: '',
-    setChoosetYear: (value: string | undefined) =>
-      set({ choosedYear: value ?? '' }),
-
     monthAgentSales: [],
+    //target
+    choosedYear: moment().year().toString(),
+    setChoosetYear: (value: string | undefined) => {
+      set({ choosedYear: value ?? '' })
+      get().getTargets()
+    },
+    targets: [],
+    selectedTarget: null,
+    setSelectedTarget: (target: IAgentTaget | null) =>
+      set({ selectedTarget: target }),
+    getTargets: async () => {
+      let res: IAgentTaget[] = MONTH_HEBREW_1.map((item) => {
+        return {
+          id: null,
+          agent: getUserFromStorage(),
+          month: item.name,
+          year: get().choosedYear,
+          currentValue: 0,
+          targetValue: 0,
+          isCompleted: false,
+        }
+      })
+      try {
+        set({ loading: true })
+        const response = await agentProfileService.getAgentTargets(
+          getAgentExtId(),
+          get().choosedYear
+        )
+        res.map((item) => {
+          response['hydra:member'].map((sub) => {
+            if (item.month == sub.month) {
+              item.id = sub.id
+              item.currentValue = sub.currentValue
+              item.targetValue = sub.targetValue
+              item.year = sub.year
+              item.isCompleted = sub.isCompleted
+            }
+          })
+        })
+        set({ targets: res })
+      } catch (e) {
+        console.log('[ERROR] fetch targets', e)
+      } finally {
+        set({ loading: false })
+      }
+    },
 
-    targets:[],
-    visits:[],
+    createTarget: async (object: IAgentTaget) => {
+      try {
+        set({ loading: true })
+        const response = await agentProfileService.createAgentTarget(object)
+        get().getTargets()
+      } catch (e) {
+        console.log('[ERROR] fetch targets', e)
+      } finally {
+        set({ loading: false })
+      }
+    },
 
-    searchValue:'',
-    setSearchValue: (value: string) => set({searchValue:value}),
+    updateTarget: async (object: IAgentTaget) => {
+      try {
+        set({ loading: true })
+        const response = await agentProfileService.updateAgentTarget(object)
+        get().getTargets()
+      } catch (e) {
+        console.log('[ERROR] fetch targets', e)
+      } finally {
+        set({ loading: false })
+      }
+    },
+    //target
 
+    visits: [],
+
+    searchValue: '',
+    setSearchValue: (value: string) => set({ searchValue: value }),
 
     hydraPagination: {
       totalPages: '1',

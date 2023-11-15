@@ -6,6 +6,7 @@ interface MyInputProps {
   name: string
   type: string
   placeholder: string
+  disabled: boolean
 }
 
 const MyInput: FC<MyInputProps> = ({
@@ -18,7 +19,12 @@ const MyInput: FC<MyInputProps> = ({
   return (
     <div className="clientsAgentSearchWrapper">
       <div className="search-cont">
-        <input type={type} {...register(name)} />
+        <input
+          type={type}
+          {...register(name)}
+          placeholder={placeholder}
+          disabled
+        />
         <span className="material-symbols-outlined search-img">
           {googleIcons}
         </span>

@@ -56,7 +56,10 @@
 @import 'scss/adminStatistics/GoogleIcons.scss';
 @import 'scss/adminStatistics/FloatButtonBar.scss';
 @import 'scss/Mobile.scss';
-
+//AGENT
+@import 'scss/agent/TargetList.styles.scss';
+@import 'scss/agent/myGlobalClass.scss';
+@import 'scss/agent/MyCard.styles.scss';
 html {
   scroll-behavior: smooth;
 }
@@ -3829,7 +3832,6 @@ span.edit {
   }
 }
 
-
 .main-menuu {
   position: fixed;
   top: 0;
@@ -3867,7 +3869,7 @@ span.edit {
           margin-left: 16px;
 
           &:before {
-            content: "";
+            content: '';
             position: absolute;
             width: 1px;
             background: #fff;
@@ -4026,7 +4028,7 @@ span.edit {
             background: transparent;
 
             &:before {
-              content: "";
+              content: '';
               background: transparent;
             }
           }
@@ -4056,7 +4058,6 @@ span.edit {
               margin: 8px 0;
               color: $new2Text;
             }
-
           }
         }
       }

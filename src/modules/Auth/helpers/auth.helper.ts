@@ -76,5 +76,5 @@ export const getClientName = () => {
 
 export const getAgentExtId = () => {
   //TODO IMPLEMENT
-  return '800943'
+  return '6'
 }

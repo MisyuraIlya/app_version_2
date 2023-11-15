@@ -9,10 +9,7 @@ import TargetsDashboard from '../components/TargetsDashboard'
 import { useMobile } from '../../Mobile/store/mobile.store'
 import AgentContainer from '../layout/AgentContainer'
 
-interface AgentDashboardProps {
-  children: ReactNode
-}
-const AgentDashboard: FC<AgentDashboardProps> = () => {
+const AgentDashboard = () => {
   const { isSuperAgent, isAdmin } = useAuth()
   const { isMobile } = useMobile()
   return (
