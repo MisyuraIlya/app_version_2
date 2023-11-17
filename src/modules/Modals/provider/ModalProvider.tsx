@@ -23,6 +23,9 @@ import { useSelectedProduct } from '../store/selecterdProduct.store'
 import EditTarget from '../agentComponents/EditTarget'
 import { useAgentProfileStore } from '../../Agent/store/agentProfile.store'
 import EditAndCreateVisit from '../agentComponents/EditAndCreateVisit'
+import ObjectiveList from '../agentComponents/ObjectiveList'
+import { useMyScheduleCalendar } from '../../Agent/store/ScheduleCalendar.store'
+import ObjectiveCreateModal from '../agentComponents/ObjectiveCreateModal'
 // Defines
 interface ModalContextType {
   openAuthModal: boolean
@@ -64,6 +67,8 @@ interface ModalContextType {
   visitModal: boolean
   setVisitModal: (bool: boolean) => void
   setVisitModalItem: (item: IAgentObjective) => void
+  setObjectItemModal: (item: IAgentObjective) => void
+  setObjectCreate: (bool: boolean) => void
 }
 const ModalContext = createContext<ModalContextType | null>(null)
 
@@ -82,7 +87,6 @@ interface ModalsProviderProps {
 const ModalsProvider: FC<ModalsProviderProps> = ({ children }) => {
   const [openAuthModal, setOpenAuthModal] = useState(false)
   const { setSelectedProd, loading } = useSelectedProduct()
-  const { setSelectedTarget, setSelectedVisit } = useAgentProfileStore()
   const [stockNotify, setStockNotify] = useState(false)
   const [addToCartNotify, setAddToCartNotify] = useState(false)
   const [openCartSettings, setOpenCartSettings] = useState(false)
@@ -101,9 +105,13 @@ const ModalsProvider: FC<ModalsProviderProps> = ({ children }) => {
   const [clientOptions, setClientOptions] = useState(false)
 
   //AGENTS
+  const { setSelectedTarget, setSelectedVisit } = useAgentProfileStore()
+  const { setSelectedObjectItem } = useMyScheduleCalendar()
   const [taskModal, setTaskModal] = useState(false)
   const [targetModal, setTargetModal] = useState(false)
   const [visitModal, setVisitModal] = useState(false)
+  const [objectModal, setObjectModal] = useState(false)
+  const [objectCreate, setObjectCreate] = useState(false)
 
   const openStockNotify = () => {
     setStockNotify(true)
@@ -155,6 +163,18 @@ const ModalsProvider: FC<ModalsProviderProps> = ({ children }) => {
     }
   }
 
+  const setObjectItemModal = (item: IAgentObjective) => {
+    setObjectModal(true)
+    setSelectedObjectItem(item)
+  }
+
+  const closeObjectItemModal = (bool: boolean) => {
+    setObjectModal(bool)
+    if (!bool) {
+      setSelectedObjectItem(null)
+    }
+  }
+
   const value = {
     stockNotify,
     addToCartNotify,
@@ -195,6 +215,8 @@ const ModalsProvider: FC<ModalsProviderProps> = ({ children }) => {
     visitModal,
     setVisitModal,
     setVisitModalItem,
+    setObjectItemModal,
+    setObjectCreate,
   }
 
   return (
@@ -242,6 +264,8 @@ const ModalsProvider: FC<ModalsProviderProps> = ({ children }) => {
       {/* implement AGENT MODALS */}
       <EditTarget active={targetModal} setActive={closeTargetModalItem} />
       <EditAndCreateVisit active={visitModal} setActive={closeVisitModalItem} />
+      <ObjectiveList active={objectModal} setActive={closeObjectItemModal} />
+      <ObjectiveCreateModal active={objectCreate} setActive={setObjectCreate} />
       {children}
     </ModalContext.Provider>
   )

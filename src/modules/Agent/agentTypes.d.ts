@@ -13,8 +13,9 @@ type objectiveTypes = 'visit' | 'task'
 interface IAgentObjective {
   id?: number
   agent: IUser
-  client: IUser
+  client?: IUser
   isCompleted: boolean
+  completedAt: strin
   title: string
   description: string
   week1: boolean
@@ -28,6 +29,7 @@ interface IAgentObjective {
   createdAt: string
   updatedAt: string
   objectiveType: objectiveTypes
+  subTusk: IAgentObjective[]
 }
 
 //MERGE VISIT WITH OBJECTIVE the same

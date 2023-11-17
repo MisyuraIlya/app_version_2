@@ -1,15 +1,29 @@
 import { create } from 'zustand'
-
+import moment from 'moment'
+import { agentSheduleCalendarService } from '../services/agentSheduleCalendar.service'
+import { getAgentExtId } from '../../Auth/helpers/auth.helper'
+import { onSuccessAlert } from '../../../shared/MySweetAlert'
+import { agentProfileService } from '../services/agentProfile.service'
 interface ScheduleCalendarState {
   loading: boolean
   weekFrom: string
   weekTo: string
-  ScheduleCalendarInfo: IScheduleCalendar[]
+  ScheduleCalendarInfo: IAgentObjective[]
   daysOfWeek: DayOfWeek[]
   hoursOfDay: HourOfDay[]
+  handleStatus: (id: number, status: boolean) => void
   fetchAgentCalendar: () => void
   switchCalendarBackWeek: () => void
   switchCalendarForwardWeek: () => void
+  selectedObjectItem: IAgentObjective | null
+  setSelectedObjectItem: (value: IAgentObjective | null) => void
+  createNewTask: (
+    hourFrom: string,
+    hourTo: string,
+    description: string,
+    date: string,
+    agent: IUser
+  ) => void
 }
 
 type DayOfWeek = 'ראשון' | 'שני' | 'שלישי' | 'רביעי' | 'חמישי' | 'שישי' | 'שבת'
@@ -35,13 +49,79 @@ export type HourOfDay =
 export const useMyScheduleCalendar = create<ScheduleCalendarState>(
   (set, get) => ({
     loading: false,
-    weekFrom: '',
-    weekTo: '',
-    switchCalendarBackWeek: () => {
-      console.log('back')
+    weekFrom: moment().weekday(0).format('L'),
+    weekTo: moment().endOf('week').format('L'),
+    handleStatus: async (id: number, status: boolean) => {
+      try {
+        set({ loading: true })
+        const response = await agentSheduleCalendarService.updateIsCompleted(
+          id,
+          status
+        )
+        onSuccessAlert('נתונים עודכנו בהצלחה', '')
+        get().fetchAgentCalendar()
+      } catch (e) {
+        console.log('[ERROR] update is completed')
+      } finally {
+        set({ loading: false })
+      }
     },
+    createNewTask: async (
+      hourFrom: string,
+      hourTo: string,
+      description: string,
+      date: string,
+      agent: IUser
+    ) => {
+      try {
+        console.log('agent', agent)
+        set({ loading: true })
+        let obj: IAgentObjective = {
+          agent: agent,
+          isCompleted: false,
+          completedAt: null,
+          title: '',
+          description,
+          week1: false,
+          week2: false,
+          week3: false,
+          week4: false,
+          hourFrom,
+          hourTo,
+          choosedDay: moment(date).locale('he').format('dddd'),
+          date,
+          createdAt: moment().format('DD-MM-YYYY'),
+          updatedAt: moment().format('DD-MM-YYYY'),
+          objectiveType: 'task',
+          subTusk: [],
+        }
+        await agentProfileService.createAgentObjective(obj)
+        await get().fetchAgentCalendar()
+      } catch (e) {
+        console.log('[ERROR]', e)
+      } finally {
+        set({ loading: false })
+      }
+    },
+    switchCalendarBackWeek: () => {
+      const weekFromUp = moment(get().weekFrom)
+        .subtract(1, 'week')
+        .day(0)
+        .format('L')
+      const weekToUp = moment(get().weekFrom)
+        .subtract(1, 'week')
+        .day(6)
+        .format('L')
+      set({ weekFrom: weekFromUp, weekTo: weekToUp })
+    },
+
     switchCalendarForwardWeek: () => {
-      console.log('forward')
+      const weekFromUp = moment(get().weekFrom)
+        .add(1, 'week')
+        .day(0)
+        .format('L')
+      const weekToUp = moment(get().weekFrom).add(1, 'week').day(6).format('L')
+      set({ weekFrom: weekFromUp, weekTo: weekToUp })
     },
 
     daysOfWeek: ['ראשון', 'שני', 'שלישי', 'רביעי', 'חמישי', 'שישי', 'שבת'],
@@ -64,10 +144,23 @@ export const useMyScheduleCalendar = create<ScheduleCalendarState>(
       '21:00',
     ],
     ScheduleCalendarInfo: [],
-
-    fetchAgentCalendar: () => {
-      get().weekFrom
-      get().weekTo
+    fetchAgentCalendar: async () => {
+      try {
+        set({ loading: true })
+        const response = await agentSheduleCalendarService.getAgentObjective(
+          getAgentExtId(),
+          get().weekFrom,
+          get().weekTo
+        )
+        set({ ScheduleCalendarInfo: response.data })
+      } catch (e) {
+        console.log('[ERROR] ffetch agent calendar')
+      } finally {
+        set({ loading: false })
+      }
     },
+    selectedObjectItem: null,
+    setSelectedObjectItem: (value: IAgentObjective | null) =>
+      set({ selectedObjectItem: value }),
   })
 )

@@ -1,7 +1,10 @@
 import moment from 'moment'
 import React, { useEffect, useState } from 'react'
 import MobileMyScheduleCalendar from './MobileMyScheduleCalendar'
-import { HourOfDay, useMyScheduleCalendar } from '../store/ScheduleCalendar.store'
+import {
+  HourOfDay,
+  useMyScheduleCalendar,
+} from '../store/ScheduleCalendar.store'
 import Loader from '../../../shared/Loader'
 import { ConvertHebrewNameDayToWeekDateByWeekName } from '../helpers/ScheduleCalendar.helper'
 import { useModals } from '../../Modals/provider/ModalProvider'
@@ -17,12 +20,11 @@ const MyScheduleCalendar = () => {
     weekTo,
     loading,
   } = useMyScheduleCalendar()
-  const { setTaskModal } = useModals()
+  const { setTaskModal, setObjectItemModal } = useModals()
   const { isMobile } = useMobile()
   useEffect(() => {
     fetchAgentCalendar()
   }, [])
-
   return (
     <>
       {!isMobile ? (
@@ -55,26 +57,32 @@ const MyScheduleCalendar = () => {
                     <div key={`${day}-${hour}`} className="cell">
                       {ScheduleCalendarInfo.map((event) => {
                         if (
-                          event.dayOfWeek === day &&
-                          event.startHour === hour
+                          event.choosedDay == day &&
+                          moment(event.hourFrom).format('HH:mm') == hour
                         ) {
-                            const eventDuration =
-                              hoursOfDay.indexOf(event.endHour as HourOfDay) - 
-                              hoursOfDay.indexOf(event.startHour as HourOfDay);
+                          const eventDuration =
+                            hoursOfDay.indexOf(
+                              moment(event.hourTo).format('HH:mm') as HourOfDay
+                            ) -
+                            hoursOfDay.indexOf(
+                              moment(event.hourFrom).format(
+                                'HH:mm'
+                              ) as HourOfDay
+                            )
                           return (
                             <div
-                              key={`${day}-${hour}-${event.startHour} event`}
-                              className={`event_${event.typeId}`}
+                              key={`${day}-${hour}-${event.hourFrom} event`}
+                              className={`event_1`}
                               style={{ height: `${eventDuration * 100}px` }}
-                              onClick={() => setTaskModal(true)}
+                              onClick={() => setObjectItemModal(event)}
                             >
                               <div className={`entire`}>
                                 <div className="head">
                                   <div className="hour_card">
-                                    {event.endHour}
+                                    {moment(event.hourTo).format('HH:mm')}
                                   </div>
                                   <div className="hour_card">
-                                    {event.startHour}
+                                    {moment(event.hourFrom).format('HH:mm')}
                                   </div>
                                 </div>
                                 <div className="cont_block">
@@ -82,7 +90,11 @@ const MyScheduleCalendar = () => {
                                     {event.subTusk ? (
                                       <h3>{event.subTusk.length} משולב</h3>
                                     ) : (
-                                      <h3>{event.type}</h3>
+                                      <h3>
+                                        {event.objectiveType == 'task'
+                                          ? 'משימה'
+                                          : 'ביקור'}
+                                      </h3>
                                     )}
                                   </div>
                                 </div>
@@ -100,7 +112,7 @@ const MyScheduleCalendar = () => {
           </div>
         </div>
       ) : (
-        <MobileMyScheduleCalendar/>
+        <MobileMyScheduleCalendar />
       )}
     </>
   )

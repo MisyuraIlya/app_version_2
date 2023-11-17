@@ -60,6 +60,7 @@ const EditAndCreateVisit: FC<EditAndCreateVisitProps> = ({
           agent: user,
           client: choosedClient,
           isCompleted: false,
+          completedAt: moment().format('YYYY-MM-DD'),
           title: '',
           description: '',
           week1: data.week1,
@@ -73,6 +74,7 @@ const EditAndCreateVisit: FC<EditAndCreateVisitProps> = ({
           objectiveType: 'visit',
           createdAt: moment().format('YYYY-MM-DD'),
           updatedAt: moment().format('YYYY-MM-DD'),
+          subTusk: [],
         }
         createVisit(obj)
       }

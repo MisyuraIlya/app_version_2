@@ -126,26 +126,26 @@ const MobileMyScheduleCalendar = () => {
                       <div key={`${day}-${hour}`} className="cell">
                         {ScheduleCalendarInfo.map((event) => {
                           if (
-                            event.dayOfWeek === day &&
-                            event.startHour === hour
+                            event.choosedDay === day &&
+                            event.hourFrom === hour
                           ) {
                             const eventDuration =
-                              hoursOfDay.indexOf(event.endHour as HourOfDay) - 
-                              hoursOfDay.indexOf(event.startHour as HourOfDay);
+                              hoursOfDay.indexOf(event.hourTo as HourOfDay) -
+                              hoursOfDay.indexOf(event.hourFrom as HourOfDay)
                             return (
                               <div
-                                key={`${day}-${hour}-${event.startHour} event`}
-                                className={`event_${event.typeId}`}
+                                key={`${day}-${hour}-${event.hourFrom} event`}
+                                className={`event_1`}
                                 style={{ height: `${eventDuration * 100}px` }}
                                 onClick={() => setTaskModal(true)}
                               >
                                 <div className={`entire`}>
                                   <div className="head">
                                     <div className="hour_card">
-                                      {event.endHour}
+                                      {event.hourTo}
                                     </div>
                                     <div className="hour_card">
-                                      {event.startHour}
+                                      {event.hourFrom}
                                     </div>
                                   </div>
                                   <div className="cont_block">
@@ -153,13 +153,13 @@ const MobileMyScheduleCalendar = () => {
                                       {event.subTusk ? (
                                         <h3>{event.subTusk.length} משולב</h3>
                                       ) : (
-                                        <h3>{event.type}</h3>
+                                        <h3>{event.objectiveType}</h3>
                                       )}
                                     </div>
                                     <div className="title_cont">
-                                      <p>
+                                      {/* <p>
                                         {event.mission} {event.visit}
-                                      </p>
+                                      </p> */}
                                     </div>
                                   </div>
                                 </div>

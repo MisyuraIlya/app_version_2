@@ -21,10 +21,16 @@ export const agentProfileService = {
   async createAgentObjective(
     object: IAgentObjective
   ): Promise<IAgentObjective> {
-    // @ts-ignore
-    object.agent = `/api/users/${object.agent.id}`
-    // @ts-ignore
-    object.client = `/api/users/${object.client.id}`
+    console.log('object', object)
+    if (object.agent) {
+      // @ts-ignore
+      object.agent = `/api/users/${object.agent.id}`
+    }
+
+    if (object.client) {
+      // @ts-ignore
+      object.client = `/api/users/${object.client.id}`
+    }
     const response = await axios.post(
       `${process.env.API}/api/agent_objectives`,
       object
