@@ -50,6 +50,7 @@ const ObjectiveCreateModal: FC<ObjectiveCreateModalProps> = ({
       /* @ts-ignore */
       user
     )
+    reset()
     setActive(false)
   }
   return (
