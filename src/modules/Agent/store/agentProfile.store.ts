@@ -23,6 +23,7 @@ interface AgentProfileStoreState {
   monthAgentSales: IMonthAgenthSale[]
 
   hydraPagination: hydraPagination
+  setPage: (page: string) => void
 
   //targets
   targets: IAgentTaget[]
@@ -38,6 +39,8 @@ interface AgentProfileStoreState {
   setSelectedVisit: (visit: IAgentObjective | null) => void
   visits: IAgentObjective[]
   getVisits: () => void
+  createVisit: (visit: IAgentObjective) => void
+  updateVisit: (visit: IAgentObjective) => void
   //
   searchValue: string
   setSearchValue: (value: string) => void
@@ -55,7 +58,7 @@ export const useAgentProfileStore = create<AgentProfileStoreState>(
     handleTask: (isDone: boolean) => {},
 
     monthAgentSales: [],
-    //target
+    // =========== target ===========
     choosedYear: moment().year().toString(),
     setChoosetYear: (value: string | undefined) => {
       set({ choosedYear: value ?? '' })
@@ -125,7 +128,9 @@ export const useAgentProfileStore = create<AgentProfileStoreState>(
         set({ loading: false })
       }
     },
-    //vists
+    //==========================
+
+    // =========== vists ===========
 
     visits: [],
     selectedVisit: null,
@@ -134,7 +139,10 @@ export const useAgentProfileStore = create<AgentProfileStoreState>(
     getVisits: async () => {
       try {
         set({ loading: true })
-        const response = await agentProfileService.getAgentObjective(1, 'visit')
+        const response = await agentProfileService.getAgentObjective(
+          get().hydraPagination.page,
+          'visit'
+        )
         const hydraHandler = HydraHandler.paginationHandler(response)
         set({ visits: response['hydra:member'], hydraPagination: hydraHandler })
       } catch (e) {
@@ -144,9 +152,42 @@ export const useAgentProfileStore = create<AgentProfileStoreState>(
       }
     },
 
+    createVisit: async (visit: IAgentObjective) => {
+      try {
+        set({ loading: true })
+        const response = await agentProfileService.createAgentObjective(visit)
+        get().getVisits()
+      } catch (e) {
+        console.log('[ERROR] fetch targets', e)
+      } finally {
+        set({ loading: false })
+      }
+    },
+
+    updateVisit: async (visit: IAgentObjective) => {
+      try {
+        set({ loading: true })
+        const response = await agentProfileService.updateAgentObjective(visit)
+        get().getVisits()
+      } catch (e) {
+        console.log('[ERROR] fetch targets', e)
+      } finally {
+        set({ loading: false })
+      }
+    },
+
+    //========================
     searchValue: '',
     setSearchValue: (value: string) => set({ searchValue: value }),
 
+    setPage: (page: string) => {
+      set((state) => ({
+        hydraPagination: {
+          ...state.hydraPagination,
+          page: page,
+        },
+      }))
+    },
     hydraPagination: {
       totalPages: '1',
       page: '1',

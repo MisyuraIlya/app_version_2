@@ -11,7 +11,7 @@ interface IAgentTaget {
 type objectiveTypes = 'visit' | 'task'
 
 interface IAgentObjective {
-  id: number
+  id?: number
   agent: IUser
   client: IUser
   isCompleted: boolean

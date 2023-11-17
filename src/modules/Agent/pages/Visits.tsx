@@ -6,14 +6,23 @@ import VisitsList from '../components/VisitsList'
 import MyInputV2 from '../../../shared/MyInputV2'
 import Pagination from '../../../shared/Pagination'
 import AgentContainer from '../layout/AgentContainer'
+import SideButton from '../../../shared/SideButton'
+import { useModals } from '../../Modals/provider/ModalProvider'
+import { useLocation } from 'react-router-dom'
 
 const Visits = () => {
-  const { searchValue, setSearchValue, hydraPagination, getVisits } =
+  const { searchValue, setSearchValue, hydraPagination, getVisits, setPage } =
     useAgentProfileStore()
-
+  const { setVisitModal } = useModals()
+  const location = useLocation()
   useEffect(() => {
+    const urlSearchParams = new URLSearchParams(location.search)
+    const page = urlSearchParams.get('page')
+    if (page) {
+      setPage(page?.toString())
+    }
     getVisits()
-  }, [])
+  }, [location.search])
   return (
     <div className="page-container myMarginTop agentVisitsPage">
       <AgentContainer>
@@ -43,6 +52,7 @@ const Visits = () => {
             <Pagination hydraPagination={hydraPagination} />
           </div>
         </AgentLayout>
+        <SideButton onClickBtn={() => setVisitModal(true)} imgLink="" />
       </AgentContainer>
     </div>
   )

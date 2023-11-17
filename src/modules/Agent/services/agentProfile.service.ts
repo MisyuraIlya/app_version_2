@@ -21,6 +21,10 @@ export const agentProfileService = {
   async createAgentObjective(
     object: IAgentObjective
   ): Promise<IAgentObjective> {
+    // @ts-ignore
+    object.agent = `/api/users/${object.agent.id}`
+    // @ts-ignore
+    object.client = `/api/users/${object.client.id}`
     const response = await axios.post(
       `${process.env.API}/api/agent_objectives`,
       object
@@ -30,9 +34,18 @@ export const agentProfileService = {
   async updateAgentObjective(
     object: IAgentObjective
   ): Promise<IAgentObjective> {
+    // @ts-ignore
+    object.agent = `/api/users/${object.agent.id}`
+    // @ts-ignore
+    object.client = `/api/users/${object.client.id}`
     const response = await axios.patch(
       `${process.env.API}/api/agent_objectives/${object.id}`,
-      object
+      object,
+      {
+        headers: {
+          'Content-Type': 'application/merge-patch+json',
+        },
+      }
     )
     return response.data
   },

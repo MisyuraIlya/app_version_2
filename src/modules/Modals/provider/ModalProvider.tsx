@@ -22,7 +22,7 @@ import AdminRightSideBar from '../adminComponents/AdminRightSideBar/AdminRightSi
 import { useSelectedProduct } from '../store/selecterdProduct.store'
 import EditTarget from '../agentComponents/EditTarget'
 import { useAgentProfileStore } from '../../Agent/store/agentProfile.store'
-import EditVisit from '../agentComponents/EditVisit'
+import EditAndCreateVisit from '../agentComponents/EditAndCreateVisit'
 // Defines
 interface ModalContextType {
   openAuthModal: boolean
@@ -149,7 +149,7 @@ const ModalsProvider: FC<ModalsProviderProps> = ({ children }) => {
   }
 
   const closeVisitModalItem = (bool: boolean) => {
-    setTargetModal(bool)
+    setVisitModal(bool)
     if (!bool) {
       setSelectedVisit(null)
     }
@@ -241,7 +241,7 @@ const ModalsProvider: FC<ModalsProviderProps> = ({ children }) => {
 
       {/* implement AGENT MODALS */}
       <EditTarget active={targetModal} setActive={closeTargetModalItem} />
-      <EditVisit active={visitModal} setActive={closeVisitModalItem} />
+      <EditAndCreateVisit active={visitModal} setActive={closeVisitModalItem} />
       {children}
     </ModalContext.Provider>
   )
