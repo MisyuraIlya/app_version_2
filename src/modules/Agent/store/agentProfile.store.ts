@@ -9,16 +9,24 @@ import {
   getUserFromStorage,
 } from '../../Auth/helpers/auth.helper'
 import moment from 'moment'
+import { agentSheduleCalendarService } from '../services/agentSheduleCalendar.service'
+import { AdminClinetsService } from '../../Admin/services/clients.service'
 
 interface AgentProfileStoreState {
   loading: boolean
   agentList: IUser[]
+
+  // ========== DASHBOARD =============
+  agentsList: IUser[]
+  fetchAgentsList: () => void
   agentPremormence: IPerformanceInfo | null
   objectives: IAgentObjective[]
   objectivesToday: ITodayObjectives | null
-  taskToday: IAgentTask[]
+  taskToday: IAgentObjective[]
+  fetchTaskToday: () => void
+
+  // ====================================
   choosedYear: string
-  handleTask: (isDone: boolean) => void
   setChoosetYear: (value: string | undefined) => void
   monthAgentSales: IMonthAgenthSale[]
 
@@ -50,12 +58,56 @@ export const useAgentProfileStore = create<AgentProfileStoreState>(
   (set, get) => ({
     loading: false,
     agentList: [],
+
+    // ========== DASHBOARD =============
+    agentsList: [],
+    fetchAgentsList: async () => {
+      try {
+        set({ loading: true })
+        const response = await AdminClinetsService.getAgents()
+        set({ agentList: response['hydra:member'] })
+      } catch (e) {
+        console.log('[ERROR]', e)
+      } finally {
+        set({ loading: false })
+      }
+    },
     agentPremormence: null,
     objectives: [],
     objectivesToday: null,
     taskToday: [],
 
-    handleTask: (isDone: boolean) => {},
+    fetchTaskToday: async () => {
+      try {
+        set({ loading: true })
+        const response = await agentSheduleCalendarService.getAgentObjective(
+          getAgentExtId(),
+          moment().format('YYYY-MM-DD'),
+          moment().format('YYYY-MM-DD')
+        )
+        let objectToday: ITodayObjectives = {
+          visitsTotal: response.data.filter(
+            (item) => item.objectiveType === 'visit'
+          ).length,
+          visitsCompleted: response.data.filter(
+            (item) => item.objectiveType === 'visit' && item.isCompleted
+          ).length,
+          objectiveTotal: response.data.filter(
+            (item) => item.objectiveType === 'task'
+          ).length,
+          objectiveCompleted: response.data.filter(
+            (item) => item.objectiveType === 'task' && item.isCompleted
+          ).length,
+        }
+        set({ objectivesToday: objectToday, taskToday: response.data })
+      } catch (e) {
+        console.log('[ERROR] - fetch task today', e)
+      } finally {
+        set({ loading: false })
+      }
+    },
+
+    // ====================================
 
     monthAgentSales: [],
     // =========== target ===========
@@ -97,7 +149,18 @@ export const useAgentProfileStore = create<AgentProfileStoreState>(
             }
           })
         })
-        set({ targets: res })
+
+        let chatData: IMonthAgenthSale[] = []
+        res.map((item) => {
+          let obj: IMonthAgenthSale = {
+            y: item.currentValue!,
+            x: item.month,
+            goals: +item.year!,
+          }
+          chatData.push(obj)
+        })
+
+        set({ targets: res, monthAgentSales: chatData })
       } catch (e) {
         console.log('[ERROR] fetch targets', e)
       } finally {

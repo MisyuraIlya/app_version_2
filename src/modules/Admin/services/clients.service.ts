@@ -18,7 +18,7 @@ export const AdminClinetsService = {
   ): Promise<UsersResponse> {
     if (all) {
       const response = await axios.get(
-        `${process.env.API}/api/users?itemsPerPage=10000&extId=${search}`
+        `${process.env.API}/api/users?itemsPerPage=10000&role=ROLE_USER&extId=${search}`
       )
       return response.data
     } else {
@@ -27,6 +27,12 @@ export const AdminClinetsService = {
       )
       return response.data
     }
+  },
+  async getAgents(): Promise<UsersResponse> {
+    const response = await axios.get(
+      `${process.env.API}/api/users?itemsPerPage=10000&role=ROLE_AGENT`
+    )
+    return response.data
   },
 
   async getClientItem(userId: string | number): Promise<IUser> {

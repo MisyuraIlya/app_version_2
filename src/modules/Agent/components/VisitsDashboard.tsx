@@ -55,11 +55,11 @@ const VisitsDashboard = () => {
               <h3>ביקורים</h3>
               <div className="text-wrap-cont">
                 <h4>בוצע</h4>
-                <Wrap>{objectivesToday?.visitsCompleted}</Wrap>
+                <Wrap>{objectivesToday?.visitsCompleted ?? 0}</Wrap>
               </div>
               <div className="text-wrap-cont">
                 <h4>לביצוע</h4>
-                <Wrap>{objectivesToday?.visitsTotal}</Wrap>
+                <Wrap>{objectivesToday?.visitsTotal ?? 0}</Wrap>
               </div>
             </div>
             <div className="apex-cont col-lg-7">
@@ -77,11 +77,11 @@ const VisitsDashboard = () => {
               <h3>משימות</h3>
               <div className="text-wrap-cont">
                 <h4>בוצע</h4>
-                <Wrap>{objectivesToday?.objectiveCompleted}</Wrap>
+                <Wrap>{objectivesToday?.objectiveCompleted ?? 0}</Wrap>
               </div>
               <div className="text-wrap-cont">
                 <h4>לביצוע</h4>
-                <Wrap>{objectivesToday?.objectiveTotal}</Wrap>
+                <Wrap>{objectivesToday?.objectiveTotal ?? 0}</Wrap>
               </div>
             </div>
             <div className="apex-cont col-lg-7">

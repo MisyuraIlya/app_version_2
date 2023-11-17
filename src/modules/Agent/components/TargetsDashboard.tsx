@@ -86,8 +86,8 @@ const TargetsDashboard = () => {
           </div>
           {window.innerWidth > 1050 ? (
             <>
-              {/* @ts-ignore */}
               <ReactApexChart
+                //  @ts-ignore
                 options={optionsDesktop}
                 series={seriesDesktop}
                 type="bar"
@@ -96,8 +96,8 @@ const TargetsDashboard = () => {
             </>
           ) : (
             <>
-              {/* @ts-ignore */}
               <ReactApexChart
+                // @ts-ignore
                 options={optionsMob}
                 series={seriesDesktop}
                 type="bar"

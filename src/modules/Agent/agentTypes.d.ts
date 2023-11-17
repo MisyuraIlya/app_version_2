@@ -112,9 +112,9 @@ interface ITodayObjectives {
 }
 
 interface IMonthAgenthSale {
-  total: number
-  month: number
-  year: number
+  y: number
+  x: string
+  goals: number
 }
 
 interface IScheduleCalendar {

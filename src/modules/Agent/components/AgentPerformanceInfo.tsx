@@ -24,10 +24,7 @@ const AgentPerformanceInfo = () => {
                     <h4 className="mainName">{user?.name}</h4>
                   </div>
                   {(isSuperAgent || isAdmin) && (
-                    <div
-                      className="agentsListMobBtn"
-                      onClick={() => triggerAgentListMob(true)}
-                    >
+                    <div className="agentsListMobBtn">
                       <span className="material-symbols-outlined">
                         list_alt
                       </span>
