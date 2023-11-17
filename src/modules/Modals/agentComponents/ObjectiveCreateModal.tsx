@@ -45,7 +45,9 @@ const ObjectiveCreateModal: FC<ObjectiveCreateModalProps> = ({
       data.hourFrom.value,
       data.hourTo.value,
       data.description,
+      /* @ts-ignore */
       moment(value).format('YYYY-MM-DD'),
+      /* @ts-ignore */
       user
     )
     setActive(false)
