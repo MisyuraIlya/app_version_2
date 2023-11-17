@@ -31,7 +31,7 @@ const MyScheduleCalendar = () => {
         <div className="weekly-scheduler myMarginBottom">
           <div className="header">
             <div className="cell img_time">
-              <img src={`${process.env.MEDIA}/agentApp/Time.png`} />
+              <span className="material-symbols-outlined">schedule</span>
             </div>
             {daysOfWeek.map((day, index) => (
               <div key={day} className="cell day">

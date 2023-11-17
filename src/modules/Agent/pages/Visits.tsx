@@ -9,20 +9,32 @@ import AgentContainer from '../layout/AgentContainer'
 import SideButton from '../../../shared/SideButton'
 import { useModals } from '../../Modals/provider/ModalProvider'
 import { useLocation } from 'react-router-dom'
+import { useDebounce } from 'use-debounce'
 
 const Visits = () => {
   const { searchValue, setSearchValue, hydraPagination, getVisits, setPage } =
     useAgentProfileStore()
   const { setVisitModal } = useModals()
   const location = useLocation()
+  const [valueDebounced] = useDebounce(searchValue, 1000)
+
   useEffect(() => {
     const urlSearchParams = new URLSearchParams(location.search)
     const page = urlSearchParams.get('page')
     if (page) {
       setPage(page?.toString())
     }
-    getVisits()
+    getVisits(searchValue)
   }, [location.search])
+
+  useEffect(() => {
+    if (valueDebounced) {
+      getVisits(valueDebounced)
+    }
+    if (valueDebounced == '') {
+      getVisits('')
+    }
+  }, [valueDebounced])
   return (
     <div className="page-container myMarginTop agentVisitsPage">
       <AgentContainer>
@@ -30,7 +42,7 @@ const Visits = () => {
           <div className="myPadding">
             <MyCard>
               <div className="flex-container myPadding">
-                <div className="col-lg-3 colMobile12 mobileAlign">
+                <div className="col-lg-5 colMobile12 mobileAlign">
                   <div className="">
                     <MyInputV2
                       placeholder={'חיפוש לפי לקוח'}

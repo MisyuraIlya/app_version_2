@@ -84,7 +84,7 @@ const TargetList = () => {
                       onClick={() => setTargetModalItem(item)}
                     >
                       <Wrap>
-                        <img src={`${process.env.MEDIA}/agentApp/Draw.svg`} />
+                        <span className="material-symbols-outlined">draw</span>
                       </Wrap>
                     </div>
                   )}

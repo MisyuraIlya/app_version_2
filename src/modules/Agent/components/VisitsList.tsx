@@ -6,6 +6,7 @@ import { useAgentProfileStore } from '../store/agentProfile.store'
 import Loader from '../../../shared/Loader'
 import { useAuth } from '../../Auth/store/useAuthStore'
 import { useModals } from '../../Modals/provider/ModalProvider'
+import moment from 'moment'
 const VisitsList = () => {
   const { loading, visits } = useAgentProfileStore()
   const { isSuperAgent, isAdmin } = useAuth()
@@ -47,9 +48,13 @@ const VisitsList = () => {
           return (
             <MyCard key={index}>
               <div className="flex-container">
-                <div className="col-lg-5 colMobile6 mobileAlign">
-                  <p>{item.client.name}</p>
-                </div>
+                {item?.client && (
+                  <div className="col-lg-5 colMobile6 mobileAlign">
+                    <p>
+                      {item?.client.extId} - {item?.client.name}
+                    </p>
+                  </div>
+                )}
                 <div className="col-lg-2 colMobile6 mobileAlign">
                   {/* <p>{item.client}</p> */}
                 </div>
@@ -59,7 +64,8 @@ const VisitsList = () => {
                 <div className="col-lg-1 colMobile3 mobileAlign">
                   {item.hourFrom && item.hourTo ? (
                     <p>
-                      {item.hourFrom} - {item.hourTo}
+                      {moment(item.hourFrom).format('HH')} -{' '}
+                      {moment(item.hourTo).format('HH')}
                     </p>
                   ) : (
                     <p>אין תאריכים</p>
@@ -71,7 +77,7 @@ const VisitsList = () => {
                 {(isSuperAgent || isAdmin) && (
                   <div className="col-lg-1 colMobile3 myCenterAlign mobileAlign modalBtn">
                     <Wrap onClick={() => setVisitModalItem(item)}>
-                      <img src={`${process.env.MEDIA}/agentApp/Draw.svg`} />
+                      <span className="material-symbols-outlined">draw</span>
                     </Wrap>
                   </div>
                 )}

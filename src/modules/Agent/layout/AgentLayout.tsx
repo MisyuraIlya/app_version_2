@@ -1,6 +1,5 @@
 import React, { ReactNode, FC } from 'react'
-// import InfoBanner from './infoBanner';
-
+import TabsBanner from './TabsBanner'
 interface AgentLayoutProps {
   children: ReactNode
 }
@@ -8,7 +7,7 @@ interface AgentLayoutProps {
 const AgentLayout: FC<AgentLayoutProps> = ({ children }) => {
   return (
     <div className="myLayout myDisplay">
-      {/* <InfoBanner/> */}
+      <TabsBanner />
       {children}
     </div>
   )

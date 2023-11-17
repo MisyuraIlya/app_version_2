@@ -46,7 +46,7 @@ interface AgentProfileStoreState {
   selectedVisit: IAgentObjective | null
   setSelectedVisit: (visit: IAgentObjective | null) => void
   visits: IAgentObjective[]
-  getVisits: () => void
+  getVisits: (search: string) => void
   createVisit: (visit: IAgentObjective) => void
   updateVisit: (visit: IAgentObjective) => void
   //
@@ -199,12 +199,13 @@ export const useAgentProfileStore = create<AgentProfileStoreState>(
     selectedVisit: null,
     setSelectedVisit: (visit: IAgentObjective | null) =>
       set({ selectedVisit: visit }),
-    getVisits: async () => {
+    getVisits: async (search: string = '') => {
       try {
         set({ loading: true })
         const response = await agentProfileService.getAgentObjective(
           get().hydraPagination.page,
-          'visit'
+          'visit',
+          search
         )
         const hydraHandler = HydraHandler.paginationHandler(response)
         set({ visits: response['hydra:member'], hydraPagination: hydraHandler })
@@ -219,7 +220,7 @@ export const useAgentProfileStore = create<AgentProfileStoreState>(
       try {
         set({ loading: true })
         const response = await agentProfileService.createAgentObjective(visit)
-        get().getVisits()
+        get().getVisits(get().searchValue)
       } catch (e) {
         console.log('[ERROR] fetch targets', e)
       } finally {
@@ -231,7 +232,7 @@ export const useAgentProfileStore = create<AgentProfileStoreState>(
       try {
         set({ loading: true })
         const response = await agentProfileService.updateAgentObjective(visit)
-        get().getVisits()
+        get().getVisits(get().searchValue)
       } catch (e) {
         console.log('[ERROR] fetch targets', e)
       } finally {

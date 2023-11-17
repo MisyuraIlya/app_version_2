@@ -75,19 +75,24 @@ const MobileMyScheduleCalendar = () => {
       <div className="myPadding myWidth">
         <div className="flex-container myCenterAlign">
           <div className="myPadding">
-            <img
-              src={`${process.env.MEDIA}/icon/RightArrow.png`}
+            <span
+              className="material-symbols-outlined"
               onClick={() => handlePreviousDay()}
-            />
+            >
+              arrow_forward
+            </span>
           </div>
           <div className="myPadding">
             <span>{todayName}</span>
           </div>
           <div className="myPadding">
-            <img
-              src={`${process.env.MEDIA}/agentApp/LeftArrow.png`}
+            <span
+              className="material-symbols-outlined"
+              style={{ cursor: 'pointer' }}
               onClick={() => handleNextDay()}
-            />
+            >
+              arrow_back
+            </span>
           </div>
         </div>
       </div>
@@ -95,7 +100,7 @@ const MobileMyScheduleCalendar = () => {
       <div className="weekly-scheduler">
         <div className="header">
           <div className="cell img_time">
-            <img src={`${process.env.MEDIA}/agentApp/Time.png`} />
+            <span className="material-symbols-outlined">schedule</span>
           </div>
           {daysOfWeek.map((day, index) => {
             if (day === todayName) {

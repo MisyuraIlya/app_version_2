@@ -11,10 +11,11 @@ interface AgentTargetResponse extends Hydra {
 export const agentProfileService = {
   async getAgentObjective(
     page: string | number,
-    type: objectiveTypes
+    type: objectiveTypes,
+    search: string
   ): Promise<AgentObjectiveResponse> {
     const response = await axios.get(
-      `${process.env.API}/api/agent_objectives?page=${page}&objectiveType=${type}`
+      `${process.env.API}/api/agent_objectives?page=${page}&objectiveType=${type}&client.extId=${search}`
     )
     return response.data
   },
