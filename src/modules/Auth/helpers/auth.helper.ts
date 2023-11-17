@@ -76,5 +76,13 @@ export const getClientName = () => {
 
 export const getAgentExtId = () => {
   //TODO IMPLEMENT
-  return '6'
+  return '1'
+}
+
+export const setChoosedAgentId = (agentId: string) => {
+  localStorage.setItem('choosedAgent', agentId)
+}
+
+export const getChoosedAgentId = () => {
+  return localStorage.getItem('choosedAgent') ?? null
 }

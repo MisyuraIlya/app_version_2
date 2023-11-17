@@ -6,6 +6,7 @@ import { MONTH_HEBREW_1 } from '../helpers/arrayOfMonths'
 import { agentProfileService } from '../services/agentProfile.service'
 import {
   getAgentExtId,
+  getChoosedAgentId,
   getUserFromStorage,
 } from '../../Auth/helpers/auth.helper'
 import moment from 'moment'
@@ -60,6 +61,7 @@ export const useAgentProfileStore = create<AgentProfileStoreState>(
     agentList: [],
 
     // ========== DASHBOARD =============
+
     agentsList: [],
     fetchAgentsList: async () => {
       try {
@@ -81,7 +83,7 @@ export const useAgentProfileStore = create<AgentProfileStoreState>(
       try {
         set({ loading: true })
         const response = await agentSheduleCalendarService.getAgentObjective(
-          getAgentExtId(),
+          getChoosedAgentId(),
           moment().format('YYYY-MM-DD'),
           moment().format('YYYY-MM-DD')
         )
@@ -135,7 +137,7 @@ export const useAgentProfileStore = create<AgentProfileStoreState>(
       try {
         set({ loading: true })
         const response = await agentProfileService.getAgentTargets(
-          getAgentExtId(),
+          getChoosedAgentId(),
           get().choosedYear
         )
         res.map((item) => {
@@ -205,7 +207,8 @@ export const useAgentProfileStore = create<AgentProfileStoreState>(
         const response = await agentProfileService.getAgentObjective(
           get().hydraPagination.page,
           'visit',
-          search
+          search,
+          getChoosedAgentId()
         )
         const hydraHandler = HydraHandler.paginationHandler(response)
         set({ visits: response['hydra:member'], hydraPagination: hydraHandler })

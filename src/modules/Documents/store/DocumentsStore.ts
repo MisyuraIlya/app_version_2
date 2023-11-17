@@ -235,7 +235,6 @@ export const useDocuments = create<DocumentsStore>((set, get) => ({
     set({ loading: true })
     try {
       let response = null
-      console.log('get().documentType', get().documentType)
       if (get().documentType === 'document') {
         response = await DocumentsService.GetDocuments(
           getClientExtId(),

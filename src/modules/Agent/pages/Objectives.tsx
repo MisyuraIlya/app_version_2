@@ -7,13 +7,15 @@ import AgentContainer from '../layout/AgentContainer'
 import { useMyScheduleCalendar } from '../store/ScheduleCalendar.store'
 import SideButton from '../../../shared/SideButton'
 import { useModals } from '../../Modals/provider/ModalProvider'
+import { useParams } from 'react-router-dom'
 
 const Objectives = () => {
   const { fetchAgentCalendar, weekFrom, weekTo } = useMyScheduleCalendar()
   const { setObjectCreate } = useModals()
+  const { id } = useParams()
   useEffect(() => {
     fetchAgentCalendar()
-  }, [weekFrom, weekTo])
+  }, [weekFrom, weekTo, id])
   return (
     <div className="page-container myMarginTop">
       <AgentContainer>

@@ -8,7 +8,7 @@ import Pagination from '../../../shared/Pagination'
 import AgentContainer from '../layout/AgentContainer'
 import SideButton from '../../../shared/SideButton'
 import { useModals } from '../../Modals/provider/ModalProvider'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useParams } from 'react-router-dom'
 import { useDebounce } from 'use-debounce'
 
 const Visits = () => {
@@ -17,7 +17,7 @@ const Visits = () => {
   const { setVisitModal } = useModals()
   const location = useLocation()
   const [valueDebounced] = useDebounce(searchValue, 1000)
-
+  const { id } = useParams()
   useEffect(() => {
     const urlSearchParams = new URLSearchParams(location.search)
     const page = urlSearchParams.get('page')
@@ -34,7 +34,7 @@ const Visits = () => {
     if (valueDebounced == '') {
       getVisits('')
     }
-  }, [valueDebounced])
+  }, [valueDebounced, id])
   return (
     <div className="page-container myMarginTop agentVisitsPage">
       <AgentContainer>

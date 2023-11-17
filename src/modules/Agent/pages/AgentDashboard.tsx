@@ -9,14 +9,15 @@ import TargetsDashboard from '../components/TargetsDashboard'
 import { useMobile } from '../../Mobile/store/mobile.store'
 import AgentContainer from '../layout/AgentContainer'
 import { useAgentProfileStore } from '../store/agentProfile.store'
+import { useParams } from 'react-router-dom'
 
 const AgentDashboard = () => {
-  const { isSuperAgent, isAdmin } = useAuth()
   const { isMobile } = useMobile()
   const { fetchTaskToday } = useAgentProfileStore()
+  const { id } = useParams()
   useEffect(() => {
     fetchTaskToday()
-  }, [])
+  }, [id])
   return (
     <div
       className={

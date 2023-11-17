@@ -1,19 +1,21 @@
 import React, { useEffect } from 'react'
 import Tabs, { Tab } from 'react-best-tabs'
-import { useLocation, useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate, useParams } from 'react-router-dom'
+import { setChoosedAgentId } from '../../Auth/helpers/auth.helper'
 const TabsBanner = () => {
   const location = useLocation()
   const navigate = useNavigate()
-
+  const { id } = useParams()
   const ReturnTabNumber = (tabName: string) => {
-    switch (tabName) {
-      case '/agentDashboard':
+    const split = tabName.split('/')
+    switch (split[1]) {
+      case 'agentDashboard':
         return 1
-      case '/objectives':
+      case 'objectives':
         return 2
-      case '/visits':
+      case 'visits':
         return 3
-      case '/target':
+      case 'target':
         return 4
     }
   }
@@ -21,16 +23,16 @@ const TabsBanner = () => {
   const handleTabsROuter = (tabNumber: number) => {
     switch (tabNumber) {
       case 1:
-        navigate(`/agentDashboard`)
+        navigate(`/agentDashboard/${id}`)
         break
       case 2:
-        navigate(`/objectives`)
+        navigate(`/objectives/${id}`)
         break
       case 3:
-        navigate(`/visits?page1`)
+        navigate(`/visits/${id}?page1`)
         break
       case 4:
-        navigate(`/target`)
+        navigate(`/target/${id}`)
         break
     }
   }
@@ -47,7 +49,10 @@ const TabsBanner = () => {
         }
       }
     }
-  }, [location.pathname])
+    if (id) {
+      setChoosedAgentId(id)
+    }
+  }, [location.pathname, id])
 
   return (
     <>

@@ -1,7 +1,10 @@
 import { create } from 'zustand'
 import moment from 'moment'
 import { agentSheduleCalendarService } from '../services/agentSheduleCalendar.service'
-import { getAgentExtId } from '../../Auth/helpers/auth.helper'
+import {
+  getAgentExtId,
+  getChoosedAgentId,
+} from '../../Auth/helpers/auth.helper'
 import { onSuccessAlert } from '../../../shared/MySweetAlert'
 import { agentProfileService } from '../services/agentProfile.service'
 interface ScheduleCalendarState {
@@ -148,7 +151,7 @@ export const useMyScheduleCalendar = create<ScheduleCalendarState>(
       try {
         set({ loading: true })
         const response = await agentSheduleCalendarService.getAgentObjective(
-          getAgentExtId(),
+          getChoosedAgentId(),
           get().weekFrom,
           get().weekTo
         )

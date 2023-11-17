@@ -12,10 +12,11 @@ export const agentProfileService = {
   async getAgentObjective(
     page: string | number,
     type: objectiveTypes,
-    search: string
+    search: string,
+    agentId: string | null
   ): Promise<AgentObjectiveResponse> {
     const response = await axios.get(
-      `${process.env.API}/api/agent_objectives?page=${page}&objectiveType=${type}&client.extId=${search}`
+      `${process.env.API}/api/agent_objectives?page=${page}&objectiveType=${type}&agent.id=${agentId}&client.extId=${search}`
     )
     return response.data
   },
@@ -64,7 +65,7 @@ export const agentProfileService = {
   },
 
   async getAgentTargets(
-    agentId: number | string,
+    agentId: number | string | null,
     year: string
   ): Promise<AgentTargetResponse> {
     const response = await axios.get(

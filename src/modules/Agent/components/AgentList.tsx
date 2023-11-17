@@ -1,17 +1,13 @@
 import React from 'react'
 import { useAgentProfileStore } from '../store/agentProfile.store'
 import { useAuth } from '../../Auth/store/useAuthStore'
-import { Link } from 'react-router-dom'
+import { Link, useLocation, useParams } from 'react-router-dom'
 
 const AgentsList = () => {
   const { agentList } = useAgentProfileStore()
-  const { user } = useAuth()
-  let scrollFunc = () => {
-    // setTimeout(() => {
-    // 	window.scrollTo(0, 0);
-    //     triggerAgentListMob(false);
-    // }, 200);
-  }
+  const { id } = useParams()
+  const { pathname } = useLocation()
+  const page = pathname.split('/')[1]
   return (
     <>
       <div className="agentsListMainCont">
@@ -21,15 +17,13 @@ const AgentsList = () => {
             {agentList && agentList.length
               ? agentList.map((item, index) => {
                   return (
-                    <Link
-                      key={index}
-                      to={'/agentDashboard/' + item.id}
-                      onClick={() => scrollFunc()}
-                    >
-                      <div className={index == 0 ? 'set-border' : ''}>
+                    <Link key={index} to={`/${page}/${item.id}`}>
+                      <div
+                        className={item?.id === Number(id) ? 'set-border' : ''}
+                      >
                         <div
                           className={
-                            user?.id == user?.id
+                            item?.id === Number(id)
                               ? 'AgentsListContRow active'
                               : 'AgentsListContRow'
                           }

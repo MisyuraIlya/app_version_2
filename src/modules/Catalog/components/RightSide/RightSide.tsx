@@ -11,14 +11,12 @@ import { useLocation, useNavigate } from 'react-router-dom'
 const RightSide = () => {
   const { categories } = useCategories()
   const { categoriesFilter } = useSearchStore()
-  // const {categoriesLvl1, categoriesLvl2, categoriesLvl3, getCategories} = useCatalog()
   const [open, setOpen] = useState(false)
   const { lvl1, lvl2, lvl3, page, parent, type, documentType } = useParams()
   const location = useLocation()
   const navigate = useNavigate()
 
   const isSearchDocument = documentType === 'search'
-  console.log('categories', categories)
   return (
     <>
       <div

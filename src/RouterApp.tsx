@@ -69,10 +69,10 @@ const RouterApp = () => {
 
           {/* AGENTS */}
           <Route path="/agentClients" element={<AgentClinets />} />
-          <Route path="/agentDashboard" element={<AgentDashboard />} />
-          <Route path="/objectives" element={<Objectives />} />
-          <Route path="/target" element={<Target />} />
-          <Route path="/visits" element={<Visits />} />
+          <Route path="/agentDashboard/:id" element={<AgentDashboard />} />
+          <Route path="/objectives/:id" element={<Objectives />} />
+          <Route path="/target/:id" element={<Target />} />
+          <Route path="/visits/:id" element={<Visits />} />
         </Route>
       </Routes>
     </>

@@ -6,15 +6,17 @@ import TargetList from '../components/TargetList'
 import AgentContainer from '../layout/AgentContainer'
 import { useAgentProfileStore } from '../store/agentProfile.store'
 import { useAuth } from '../../Auth/store/useAuthStore'
+import { useParams } from 'react-router-dom'
 
 const Target = () => {
   const { getTargets } = useAgentProfileStore()
   const { user } = useAuth()
+  const { id } = useParams()
   useEffect(() => {
     if (user?.id) {
       getTargets()
     }
-  }, [])
+  }, [id])
   return (
     <div className="page-container myMarginTop targetPageCls myMarginBottom agentTargetPage">
       <AgentContainer>

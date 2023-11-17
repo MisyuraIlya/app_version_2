@@ -9,7 +9,7 @@ interface AgentObjectiveResponse {
 
 export const agentSheduleCalendarService = {
   async getAgentObjective(
-    agentId: number | string,
+    agentId: number | string | null,
     dateFrom: string,
     dateTo: string
   ): Promise<AgentObjectiveResponse> {
