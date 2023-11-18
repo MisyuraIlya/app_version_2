@@ -1,10 +1,7 @@
 import { create } from 'zustand'
 import moment from 'moment'
 import { agentSheduleCalendarService } from '../services/agentSheduleCalendar.service'
-import {
-  getAgentExtId,
-  getChoosedAgentId,
-} from '../../Auth/helpers/auth.helper'
+import { getChoosedAgentId } from '../../Auth/helpers/auth.helper'
 import { onSuccessAlert } from '../../../shared/MySweetAlert'
 import { agentProfileService } from '../services/agentProfile.service'
 interface ScheduleCalendarState {

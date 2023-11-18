@@ -2,13 +2,18 @@ import React from 'react'
 import moment from 'moment'
 import { useAuth } from '../../../../Auth/store/useAuthStore'
 import { onAsk } from '../../../../../shared/MySweetAlert'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import { useCart } from '../../../../Cart/store/cart.store'
+import { useModals } from '../../../../Modals/provider/ModalProvider'
 
 const ProfileMenu = () => {
-  const { isAgent, user, isAdmin, logOut } = useAuth()
+  const { isClient, isAgent, user, isAdmin, client, logOut, setSelectClient } =
+    useAuth()
+  const { selectedMode } = useCart()
+  const navigate = useNavigate()
   let from = moment().subtract(1, 'months').format('YYYY-MM-DD')
   let to = moment().format('YYYY-MM-DD')
-
+  const { setAgentOptions } = useModals()
   let profileObj = [
     /*
         {
@@ -26,8 +31,8 @@ const ProfileMenu = () => {
       TitleEng: 'My Orders',
       Link: `/documentPage?page=1&from=${from}&to=${to}`,
       Img: 'storefront',
-      OnlyAgent: false,
-      OnlyAgentSuper: false,
+      OnlyAgent: true,
+      OnlyAgentSuper: true,
       OnlyDesktop: false,
       notForMisrad: false,
     },
@@ -137,6 +142,10 @@ const ProfileMenu = () => {
     }
   }
 
+  const logOutClient = () => {
+    setSelectClient(null)
+    navigate('/agentClients')
+  }
   return (
     <div id="MyProfileMenu-cont" className="MyProfileMenu-cont">
       <div className="MyProfileMenu-subcont">
@@ -151,75 +160,87 @@ const ProfileMenu = () => {
             {isAgent ? (
               <>
                 <p className="profile-cube-title">סוכן</p>
-                {/* <p>{JSON.parse(localStorage.agent).Name}</p> */}
+                <p>{client?.name}</p>
+                <p>{client?.extId}</p>
+                {isAgent && (
+                  <>
+                    {selectedMode == 'order' && (
+                      <p className="actions-title">{'הזמנה'}</p>
+                    )}
+                    {selectedMode == 'request' && (
+                      <p className="actions-title">{'ה.מחיר'}</p>
+                    )}
+                    {selectedMode == 'return' && (
+                      <p className="actions-title">{'החזרה'}</p>
+                    )}
+                  </>
+                )}
               </>
             ) : null}
-            {user ? (
+            {isClient && (
               <div className="userDet-client-cont">
                 <p className="profile-cube-title">לקוח</p>
-
-                <p>{user.name}</p>
-                <p>{user.extId}</p>
-                {/* {app.state.selectedMode ? 
-                                <>
-                                    {app.state.selectedMode==1 ?
-                                        <p className="actions-title">{"הזמנה"}</p>
-                                    :null}
-                                    {app.state.selectedMode==2 ?
-                                        <p className="actions-title">{"ה.מחיר"}</p>
-                                    :null}
-                                    {app.state.selectedMode==3 ?
-                                        <p className="actions-title" >{"החזרה"}</p>
-                                    :null}
-                                </>
-                            :null} */}
+                <p>{user?.name}</p>
+                <p>{user?.extId}</p>
               </div>
-            ) : null}
+            )}
           </div>
 
           <div className="userDet-sub-cont">
-            {/* { isAgent &&
-                        <div className="btn-cont col">
-                            <div className="logOutCont agent-actions" onClick={() => closeAndOpenActions()}>
-                                <p>{'פעולות'}</p>
-                            </div>
-                        </div>
-                    } */}
-            <div className="btn-cont col">
-              <div className="logOutCont" onClick={() => beforeLogOut()}>
-                <p>{isAgent ? 'התנתק מלקוח' : 'התנתק'}</p>
+            {isAgent && (
+              <div className="btn-cont col">
+                <div
+                  className="logOutCont agent-actions"
+                  onClick={() => setAgentOptions(true)}
+                >
+                  <p>{'פעולות'}</p>
+                </div>
               </div>
-            </div>
+            )}
+            {!client ? (
+              <div className="btn-cont col">
+                <div className="logOutCont" onClick={() => beforeLogOut()}>
+                  <p>{'התנתק'}</p>
+                </div>
+              </div>
+            ) : (
+              <div className="btn-cont col">
+                <div className="logOutCont" onClick={() => logOutClient()}>
+                  <p>{'התנתק מלקוח'}</p>
+                </div>
+              </div>
+            )}
           </div>
         </div>
         {user ? (
           <>
-            <Link to={'/profile'}>
-              <div className="MyProfile-row" onClick={() => close()}>
-                <span className="material-symbols-outlined search-img">
-                  {'person'}
-                </span>
-                <p>{'אזור אישי'}</p>
-              </div>
-            </Link>
+            {(isClient || client) && (
+              <Link to={'/profile'}>
+                <div className="MyProfile-row" onClick={() => close()}>
+                  <span className="material-symbols-outlined search-img">
+                    {'person'}
+                  </span>
+                  <p>{'אזור אישי'}</p>
+                </div>
+              </Link>
+            )}
+
             {user &&
               profileObj?.map((item, key) => {
-                if (!isAgent) {
-                  return (
-                    <Link key={key} to={item.Link}>
-                      <div
-                        key={key}
-                        className="MyProfile-row"
-                        onClick={() => close()}
-                      >
-                        <span className="material-symbols-outlined search-img">
-                          {item.Img}
-                        </span>
-                        <p>{item.Title}</p>
-                      </div>
-                    </Link>
-                  )
-                }
+                return (
+                  <Link key={key} to={item.Link}>
+                    <div
+                      key={key}
+                      className="MyProfile-row"
+                      onClick={() => close()}
+                    >
+                      <span className="material-symbols-outlined search-img">
+                        {item.Img}
+                      </span>
+                      <p>{item.Title}</p>
+                    </div>
+                  </Link>
+                )
               })}
           </>
         ) : null}

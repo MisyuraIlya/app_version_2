@@ -31,7 +31,7 @@ export const removeFromStorage = () => {
 
 export const saveToStorage = (data: IAuthResponse): void => {
   saveTokensStorage(data)
-  localStorage.setItem('user', JSON.stringify(data.user))
+  setUserLocalStorage(data.user)
 }
 
 export const getUserLocalStorage = (): IUser | null => {
@@ -42,21 +42,27 @@ export const setUserLocalStorage = (user: IUser): void => {
   localStorage.setItem('user', JSON.stringify(user))
 }
 
+export const getAgentLocalStorage = (): IUser | null => {
+  return localStorage.agent ? JSON.parse(localStorage.agent) : null
+}
+
+export const setAgentLocalStorage = (agent: IUser): void => {
+  localStorage.setItem('agent', JSON.stringify(agent))
+}
+
 export const getRole = () => {
   const user = getUserLocalStorage()
 
   if (user) {
-    const roles = user?.roles as Array<
-      'ROLE_ADMIN' | 'ROLE_USER' | 'ROLE_AGENT' | 'ROLE_SUPER_AGENT'
-    >
+    const role = user?.role
 
-    if (roles.includes('ROLE_ADMIN')) {
+    if (role == 'ROLE_ADMIN') {
       return 'ADMIN'
-    } else if (roles.includes('ROLE_SUPER_AGENT')) {
+    } else if (role == 'ROLE_SUPER_AGENT') {
       return 'SUPER_AGENT'
-    } else if (roles.includes('ROLE_AGENT')) {
+    } else if (role == 'ROLE_AGENT') {
       return 'AGENT'
-    } else if (roles.includes('ROLE_USER')) {
+    } else if (role == 'ROLE_USER') {
       return 'USER'
     } else {
       return null
@@ -65,18 +71,36 @@ export const getRole = () => {
 }
 
 export const getClientExtId = () => {
-  //TODO IMPLEMENT
-  return '800943'
+  if (localStorage.client) {
+    const user = JSON.parse(localStorage.client)
+    return user.extId
+  } else {
+    const user = JSON.parse(localStorage.user)
+    return user.extId
+  }
 }
 
 export const getClientName = () => {
-  //TODO IMPLEMENT
-  return '800943'
+  if (localStorage.client) {
+    const user = JSON.parse(localStorage.client)
+    return user.name
+  } else {
+    const user = JSON.parse(localStorage.user)
+    return user.name
+  }
 }
 
 export const getAgentExtId = () => {
-  //TODO IMPLEMENT
-  return '1'
+  if (localStorage.user) {
+    const user = JSON.parse(localStorage.client)
+    if (user.role == 'ROLE_AGENT') {
+      return user.extId
+    } else {
+      return null
+    }
+  } else {
+    return null
+  }
 }
 
 export const setChoosedAgentId = (agentId: string) => {

@@ -26,6 +26,7 @@ import EditAndCreateVisit from '../agentComponents/EditAndCreateVisit'
 import ObjectiveList from '../agentComponents/ObjectiveList'
 import { useMyScheduleCalendar } from '../../Agent/store/ScheduleCalendar.store'
 import ObjectiveCreateModal from '../agentComponents/ObjectiveCreateModal'
+import AgentOptions from '../agentComponents/AgentOptions'
 // Defines
 interface ModalContextType {
   openAuthModal: boolean
@@ -69,6 +70,7 @@ interface ModalContextType {
   setVisitModalItem: (item: IAgentObjective) => void
   setObjectItemModal: (item: IAgentObjective) => void
   setObjectCreate: (bool: boolean) => void
+  setAgentOptions: (bool: boolean) => void
 }
 const ModalContext = createContext<ModalContextType | null>(null)
 
@@ -112,6 +114,7 @@ const ModalsProvider: FC<ModalsProviderProps> = ({ children }) => {
   const [visitModal, setVisitModal] = useState(false)
   const [objectModal, setObjectModal] = useState(false)
   const [objectCreate, setObjectCreate] = useState(false)
+  const [agentOptions, setAgentOptions] = useState(false)
 
   const openStockNotify = () => {
     setStockNotify(true)
@@ -217,6 +220,7 @@ const ModalsProvider: FC<ModalsProviderProps> = ({ children }) => {
     setVisitModalItem,
     setObjectItemModal,
     setObjectCreate,
+    setAgentOptions,
   }
 
   return (
@@ -266,6 +270,7 @@ const ModalsProvider: FC<ModalsProviderProps> = ({ children }) => {
       <EditAndCreateVisit active={visitModal} setActive={closeVisitModalItem} />
       <ObjectiveList active={objectModal} setActive={closeObjectItemModal} />
       <ObjectiveCreateModal active={objectCreate} setActive={setObjectCreate} />
+      <AgentOptions active={agentOptions} setActive={setAgentOptions} />
       {children}
     </ModalContext.Provider>
   )

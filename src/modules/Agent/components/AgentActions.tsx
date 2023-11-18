@@ -1,61 +1,128 @@
-import React from 'react';
-import { useAuth } from '../../Auth/store/useAuthStore';
-import { useCart } from '../../Cart/store/cart.store';
-import { useNavigate } from 'react-router-dom';
-const AgentActions = () => {
-	const {isAgent} = useAuth()
-	const {setSelectedMode} = useCart()
-    const navigate = useNavigate()
-    return (
-		<>
-			{ isAgent &&
-				<div className="agent-actions-main-cont">
-					<div className="agent-actions-sub-cont">
-						<div className="Profile-slide-menu-cont">
-							<h1>{'פעולות'}</h1>
-							<div className='btns-cont'>
-								<div className="Profile-slide-sub" onClick={() => {setSelectedMode('order'); navigate('/CatalogView')}}>
-									<div className="Profile-slide-box">
-									<span className="material-symbols-outlined search-img">{'list_alt'}</span>
-									<h2>{'הזמנה'}</h2>
-									</div>
-								</div>
-								<div className="Profile-slide-sub" onClick={() => {setSelectedMode('return'); navigate('/CatalogView')}}>
-									<div className="Profile-slide-box">
-									<span className="material-symbols-outlined search-img">{'history'}</span>
-									<h2>{'החזרה'}</h2>
-									</div>
-								</div>
-								<div className="Profile-slide-sub" onClick={() => {setSelectedMode('request'); navigate('/CatalogView')}}>
-									<div className="Profile-slide-box">
-									<span className="material-symbols-outlined search-img">{'request_quote'}</span>
-									<h2>{'ה.מחיר'}</h2>
-									</div>
-								</div>
-								<div className="Profile-slide-sub">
-									<div className="Profile-slide-box">
-									<span className="material-symbols-outlined search-img">{'tour'}</span>
-									<h2>{'ביקור'}</h2>
-									</div>
-								</div>
-		
-								{/*
-								<div className="Profile-slide-sub" onClick={()=> setOrderMode(4)}>
-									<div className="Profile-slide-box">
-									<span className="material-symbols-outlined search-img">{'quiz'}</span>
-									<h2>{'שאלון'}</h2>
-									</div>
-								</div>
-								*/}
-							</div>
-						</div>
-					</div>
-				</div>
-			
-			}
-		</>
+import React, { FC } from 'react'
+import { useAuth } from '../../Auth/store/useAuthStore'
+import { useCart } from '../../Cart/store/cart.store'
+import { useNavigate } from 'react-router-dom'
+import { useModals } from '../../Modals/provider/ModalProvider'
+import { useAgentProfileStore } from '../store/agentProfile.store'
+import moment from 'moment'
+import { onSuccessAlert } from '../../../shared/MySweetAlert'
 
-    );
-};
+interface Action {
+  title: string
+  mode: IDocumentType
+  link: string
+  img: string
+}
 
-export default AgentActions;
+interface AgentActionsProps {
+  colsNumber: number
+}
+const AgentActions: FC<AgentActionsProps> = ({ colsNumber }) => {
+  const { isAgent, user, client } = useAuth()
+  const { setSelectedMode } = useCart()
+  const navigate = useNavigate()
+  const { setAgentOptions } = useModals()
+  const { createVisit } = useAgentProfileStore()
+
+  const handleCreateVisit = async () => {
+    if (user && client) {
+      let obj: IAgentObjective = {
+        agent: user,
+        client: client,
+        isCompleted: true,
+        completedAt: moment().format('YYYY-MM-DD'),
+        title: '',
+        description: '',
+        week1: false,
+        week2: false,
+        week3: false,
+        week4: false,
+        hourFrom: moment().subtract(1, 'hour').format('HH'),
+        hourTo: moment().format('HH'),
+        choosedDay: moment().locale('he').format('dddd'),
+        date: moment().format('YYYY-MM-DD'),
+        createdAt: moment().format('YYYY-MM-DD'),
+        updatedAt: moment().format('YYYY-MM-DD'),
+        objectiveType: 'visit',
+        subTusk: [],
+      }
+      // console.log('obj',obj)
+      await createVisit(obj)
+      onSuccessAlert('ביקור התווסף', '')
+    }
+  }
+  let actions: Action[] = [
+    {
+      title: 'הזמנה',
+      mode: 'order',
+      link: '/CatalogView',
+      img: 'list_alt',
+    },
+    {
+      title: 'החזרה',
+      mode: 'return',
+      link: '/CatalogView',
+      img: 'history',
+    },
+    {
+      title: 'ה.מחיר',
+      mode: 'request',
+      link: '/CatalogView',
+      img: 'request_quote',
+    },
+  ]
+  return (
+    <>
+      {isAgent && (
+        <div className="agent-actions-main-cont">
+          <div className="agent-actions-sub-cont">
+            <div className="Profile-slide-menu-cont">
+              <h1>{'פעולות'}</h1>
+              <div className="btns-cont flex-container">
+                {actions?.map((item) => (
+                  <div className={`col-lg-${colsNumber}`}>
+                    <div
+                      className="Profile-slide-sub"
+                      onClick={() => {
+                        setSelectedMode(item.mode)
+                        navigate(item.link)
+                        setAgentOptions(false)
+                      }}
+                      style={{ margin: '5px' }}
+                    >
+                      <div className="Profile-slide-box">
+                        <span className="material-symbols-outlined search-img">
+                          {item.img}
+                        </span>
+                        <h2>{item.title}</h2>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+                <div className={`col-lg-${colsNumber}`}>
+                  <div
+                    className="Profile-slide-sub"
+                    style={{ margin: '5px' }}
+                    onClick={() => {
+                      handleCreateVisit()
+                      setAgentOptions(false)
+                    }}
+                  >
+                    <div className="Profile-slide-box">
+                      <span className="material-symbols-outlined search-img">
+                        {'tour'}
+                      </span>
+                      <h2>{'ביקור'}</h2>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+    </>
+  )
+}
+
+export default AgentActions

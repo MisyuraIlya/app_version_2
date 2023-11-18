@@ -2,10 +2,6 @@ import React from 'react'
 import { useAuth } from '../../../Auth/store/useAuthStore'
 import { useCart } from '../../store/cart.store'
 // import { getCurrentUserId } from '../../../Auth/helpers/getCurrentUserId';
-import {
-  getClientExtId,
-  getUserFromStorage,
-} from '../../../Auth/helpers/auth.helper'
 import MainSummary from '../MainSummary/MainSummary'
 import CustomSummary from '../CustomSummary/CustomSummary'
 import SendOrderButton from '../SendOrderButton/SendOrderButton'

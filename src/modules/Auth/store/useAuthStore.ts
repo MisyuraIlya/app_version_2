@@ -1,6 +1,7 @@
 import { create } from 'zustand'
 import { AuthService } from '../services/auth.service'
 import {
+  getAgentLocalStorage,
   getRefreshToken,
   getRole,
   getUserLocalStorage,
@@ -9,15 +10,22 @@ import {
   updateAccessToken,
 } from '../helpers/auth.helper'
 import { onErrorAlert, onSuccessAlert } from '../../../shared/MySweetAlert'
+import {
+  getClientStorage,
+  removeClientStorage,
+  setClientStorage,
+} from '../../Agent/helpers/localstorage'
 
 interface AuthState {
   loading: boolean
-  isUser: boolean
+  isClient: boolean
   isAdmin: boolean
   isAgent: boolean
   isSuperAgent: boolean
   isUserBlocked: boolean
   user: IUser | null
+  client: IUser | null
+  setSelectClient: (client: IUser | null) => void
   action: ActionType
   setAction: (value: ActionType) => void
   userExtId: string
@@ -49,13 +57,21 @@ type ActionType =
 export const useAuth = create<AuthState>((set, get) => ({
   // STATES
   loading: false,
-  isUser: getRole() === 'USER',
+  isClient: getRole() === 'USER',
   isAdmin: getRole() === 'ADMIN',
   isAgent: getRole() === 'AGENT',
   isSuperAgent: getRole() === 'SUPER_AGENT',
   isUserBlocked: getUserLocalStorage()?.isBlocked ?? false,
   user: getUserLocalStorage(),
-
+  client: getClientStorage(),
+  setSelectClient: (client: IUser | null) => {
+    set({ client: client })
+    if (client) {
+      setClientStorage(client)
+    } else {
+      removeClientStorage()
+    }
+  },
   // states for auth modals
   action: 'login',
   setAction: (value: ActionType) => set({ action: value }),

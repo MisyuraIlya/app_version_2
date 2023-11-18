@@ -7,7 +7,7 @@ import { useAuth } from '../../../../../../Auth/store/useAuthStore'
 
 const ProductAddToCart = () => {
   const { selectedProd, isFetchOnline, loading } = useSelectedProduct()
-  const { isUser } = useAuth()
+  const { isClient } = useAuth()
   const { selectedMode, getCartItem, Maam } = useCart()
   const cartItem: ICart | null = getCartItem(selectedProd)
   return (
@@ -19,7 +19,7 @@ const ProductAddToCart = () => {
           ) : null}
 
           <div className="add-cont col-lg-4">
-            {selectedProd.finalPrice && selectedMode && isUser ? (
+            {selectedProd.finalPrice && selectedMode && isClient ? (
               <div className="actions flex-container">
                 {cartItem?.sku && (
                   <div className="added">

@@ -12,8 +12,8 @@ const ProfilePage = () => {
       <div className="Profile-page-subcont">
         <MyProfile />
         {isAgent && <AgentMyProfile />}
-        <ClientFinance/>
-        <AgentActions/>
+        <ClientFinance />
+        <AgentActions colsNumber={3} />
       </div>
     </div>
   )

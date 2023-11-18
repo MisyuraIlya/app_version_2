@@ -5,7 +5,6 @@ import { removeClientStorage, setClientStorage } from '../helpers/localstorage'
 import { MONTH_HEBREW_1 } from '../helpers/arrayOfMonths'
 import { agentProfileService } from '../services/agentProfile.service'
 import {
-  getAgentExtId,
   getChoosedAgentId,
   getUserFromStorage,
 } from '../../Auth/helpers/auth.helper'
@@ -222,6 +221,8 @@ export const useAgentProfileStore = create<AgentProfileStoreState>(
     createVisit: async (visit: IAgentObjective) => {
       try {
         set({ loading: true })
+        visit.hourFrom = visit.hourFrom + ':00'
+        visit.hourTo = visit.hourTo + ':00'
         const response = await agentProfileService.createAgentObjective(visit)
         get().getVisits(get().searchValue)
       } catch (e) {

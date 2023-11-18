@@ -10,6 +10,7 @@ interface IUser {
   updatedAt: string
   discount: number
   roles: Array<'ROLE_ADMIN' | 'ROLE_USER' | 'ROLE_AGENT' | 'ROLE_SUPER_AGENT'>
+  role: 'ROLE_ADMIN' | 'ROLE_USER' | 'ROLE_AGENT' | 'ROLE_SUPER_AGENT'
 }
 
 interface ITokens {
@@ -18,7 +19,7 @@ interface ITokens {
 }
 interface IAuthResponse extends ITokens {
   status: string
-  user: User
+  user: IUser
 }
 
 interface IDefaultAuthResponse {
