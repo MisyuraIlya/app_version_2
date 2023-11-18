@@ -27,6 +27,8 @@ import ObjectiveList from '../agentComponents/ObjectiveList'
 import { useMyScheduleCalendar } from '../../Agent/store/ScheduleCalendar.store'
 import ObjectiveCreateModal from '../agentComponents/ObjectiveCreateModal'
 import AgentOptions from '../agentComponents/AgentOptions'
+import AgentsModal from '../adminComponents/AgentsModal/AgentsModal'
+import { useClientStore } from '../../Admin/store/ClientsStore'
 // Defines
 interface ModalContextType {
   openAuthModal: boolean
@@ -64,6 +66,8 @@ interface ModalContextType {
   targetModal: boolean
   setTargetModal: (bool: boolean) => void
   setTargetModalItem: (item: IAgentTaget) => void
+  setAgentsModalItem: (item: IUser) => void
+  setAgentsModal: (bool: boolean) => void
 
   visitModal: boolean
   setVisitModal: (bool: boolean) => void
@@ -102,9 +106,11 @@ const ModalsProvider: FC<ModalsProviderProps> = ({ children }) => {
   const [leftSideBar, setLeftSideBar] = useState(false)
 
   //ADMINS
+  const { setSelectedAgent } = useClientStore()
   const [gallery, setGallery] = useState(false)
   const [clientsInfo, setClientsInfo] = useState(false)
   const [clientOptions, setClientOptions] = useState(false)
+  const [agentsModal, setAgentsModal] = useState(false)
 
   //AGENTS
   const { setSelectedTarget, setSelectedVisit } = useAgentProfileStore()
@@ -178,6 +184,18 @@ const ModalsProvider: FC<ModalsProviderProps> = ({ children }) => {
     }
   }
 
+  const setAgentsModalItem = (item: IUser) => {
+    setAgentsModal(true)
+    setSelectedAgent(item)
+  }
+
+  const closeAgentsModalItem = (bool: boolean) => {
+    setAgentsModal(bool)
+    if (!bool) {
+      setSelectedAgent(null)
+    }
+  }
+
   const value = {
     stockNotify,
     addToCartNotify,
@@ -221,6 +239,8 @@ const ModalsProvider: FC<ModalsProviderProps> = ({ children }) => {
     setObjectItemModal,
     setObjectCreate,
     setAgentOptions,
+    setAgentsModal,
+    setAgentsModalItem,
   }
 
   return (
@@ -264,6 +284,7 @@ const ModalsProvider: FC<ModalsProviderProps> = ({ children }) => {
       <Gallery active={gallery} setActive={setGallery} />
       <ClientsInfo active={clientsInfo} setActive={setClientsInfo} />
       <ClientOptions active={clientOptions} setActive={setClientOptions} />
+      <AgentsModal active={agentsModal} setActive={closeAgentsModalItem} />
 
       {/* implement AGENT MODALS */}
       <EditTarget active={targetModal} setActive={closeTargetModalItem} />
@@ -271,6 +292,7 @@ const ModalsProvider: FC<ModalsProviderProps> = ({ children }) => {
       <ObjectiveList active={objectModal} setActive={closeObjectItemModal} />
       <ObjectiveCreateModal active={objectCreate} setActive={setObjectCreate} />
       <AgentOptions active={agentOptions} setActive={setAgentOptions} />
+
       {children}
     </ModalContext.Provider>
   )

@@ -15,6 +15,7 @@ const MyInput: FC<MyInputProps> = ({
   name,
   type,
   placeholder,
+  disabled,
 }) => {
   return (
     <div className="clientsAgentSearchWrapper">
@@ -23,7 +24,7 @@ const MyInput: FC<MyInputProps> = ({
           type={type}
           {...register(name)}
           placeholder={placeholder}
-          disabled
+          disabled={disabled}
         />
         <span className="material-symbols-outlined search-img">
           {googleIcons}

@@ -30,7 +30,7 @@ export const AdminClinetsService = {
   },
   async getAgents(): Promise<UsersResponse> {
     const response = await axios.get(
-      `${process.env.API}/api/users?itemsPerPage=10000&role=ROLE_AGENT`
+      `${process.env.API}/api/users?itemsPerPage=10000&role[]=ROLE_AGENT&role[]=ROLE_SUPER_AGENT`
     )
     return response.data
   },
@@ -40,36 +40,19 @@ export const AdminClinetsService = {
     return response.data
   },
 
-  async updateClient(user: IUser): Promise<IUser> {
-    const response = await axios.patch(
-      `${process.env.API}/api/users/${user.id}`,
-      user,
-      {
-        headers: {
-          'Content-Type': 'application/merge-patch+json',
-        },
-      }
+  async createClient(user: IUser): Promise<IUser> {
+    const response = await axios.post(
+      `${process.env.API}/auth/createAgent`,
+      user
     )
     return response.data
   },
 
-  async updateAuth(
-    extId: string,
-    username: string,
-    password: string
-  ): Promise<updateAuthResponse> {
-    const response = await axios.put(
-      `${process.env.API}/auth/registration`,
-      {
-        extId,
-        username,
-        password,
-      },
-      {
-        headers: {
-          'Content-Type': 'application/merge-patch+json',
-        },
-      }
+  async updateClient(user: IUser): Promise<IUser> {
+    delete user.roles
+    const response = await axios.post(
+      `${process.env.API}/auth/updateUser`,
+      user
     )
     return response.data
   },

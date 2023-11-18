@@ -103,7 +103,7 @@ const EditAndCreateVisit: FC<EditAndCreateVisitProps> = ({
           </div>
           <div className="col-lg-12 ">
             <div className="myPadding">
-              {selectedVisit?.client.name ? (
+              {selectedVisit && selectedVisit?.client?.name ? (
                 <div className="MyInput">
                   <div className="flex-container myCenterAlign cardInput">
                     <div className="col-lg-10 input">

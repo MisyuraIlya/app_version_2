@@ -48,6 +48,16 @@ const ClientsInfo: FC<ClientsInfoProps> = ({ active, setActive }) => {
                 </div>
               </div>
             ) : null}
+            {selectedClient?.passwordUnencrypted ? (
+              <div className="flex-container row-cont">
+                <div className="col-lg-4 title">
+                  <p>סיסמא</p>
+                </div>
+                <div className="col-lg-8 value">
+                  <p>{selectedClient?.passwordUnencrypted}</p>
+                </div>
+              </div>
+            ) : null}
             {selectedClient?.phone ? (
               <div className="flex-container row-cont">
                 <div className="col-lg-4 title">

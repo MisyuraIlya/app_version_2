@@ -14,19 +14,22 @@ const ClientsFilter = () => {
     if (activeSearch) {
       getClients()
     }
+    if (!search) {
+      getClients()
+    }
   }, [valueDebounced])
   return (
     <div className="filter flex-container">
       <div className="col-lg-2">
-        <p onClick={() => navigate(-1)}>
-          <span className="material-symbols-outlined">arrow_forward</span>
-          <span>חזור</span>
-        </p>
         <p>{'נמצאו ' + totalClients + ' לקוחות'}</p>
       </div>
       <div style={{ display: 'flex' }} className="col-lg-10">
         <div className="col-lg-4">
-            <SearchInput search={search} setSearch={setSearch} onActive={setActiveSearch} />
+          <SearchInput
+            search={search}
+            setSearch={setSearch}
+            onActive={setActiveSearch}
+          />
         </div>
 
         <div className="col-lg-7">

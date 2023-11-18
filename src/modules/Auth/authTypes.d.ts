@@ -1,7 +1,7 @@
 interface IUser {
-  id: number
+  id?: number
   extId: string
-  email: string
+  email: string | null
   isRegistered: boolean
   isBlocked: boolean
   name: string
@@ -9,8 +9,12 @@ interface IUser {
   createdAt: string
   updatedAt: string
   discount: number
-  roles: Array<'ROLE_ADMIN' | 'ROLE_USER' | 'ROLE_AGENT' | 'ROLE_SUPER_AGENT'>
+  roles?: Array<'ROLE_ADMIN' | 'ROLE_USER' | 'ROLE_AGENT' | 'ROLE_SUPER_AGENT'>
   role: 'ROLE_ADMIN' | 'ROLE_USER' | 'ROLE_AGENT' | 'ROLE_SUPER_AGENT'
+  isAllowOrder: boolean
+  isAllowAllClients: boolean
+  passwordUnencrypted: string | null
+  password?: string
 }
 
 interface ITokens {

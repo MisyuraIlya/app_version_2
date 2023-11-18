@@ -16,7 +16,8 @@ type ClientOptionsForm = {
 }
 
 const ClientOptions: FC<ClientOptionsProps> = ({ active, setActive }) => {
-  const { selectedClient, updateClient, updateAuth } = useClientStore()
+  const { selectedClient, updateClient } = useClientStore()
+
   const {
     register,
     handleSubmit,
@@ -26,10 +27,20 @@ const ClientOptions: FC<ClientOptionsProps> = ({ active, setActive }) => {
 
   const handleClock = async (data: ClientOptionsForm) => {
     if (data.passwordSecond) {
-      await updateAuth(data.username, data.passwordSecond)
+      if (selectedClient) {
+        const updated = selectedClient
+        updated.email = data.username
+        updated.passwordUnencrypted = data.passwordSecond
+        await updateClient(updated)
+      }
     } else {
-      await updateAuth(data.username, data.password)
+      if (selectedClient) {
+        const updated = selectedClient
+        updated.passwordUnencrypted = data.password
+        await updateClient(updated)
+      }
     }
+    setActive(false)
     reset()
   }
 
@@ -45,7 +56,8 @@ const ClientOptions: FC<ClientOptionsProps> = ({ active, setActive }) => {
     let newUser = selectedClient
     if (newUser && selectedClient) {
       newUser.isRegistered = false
-      newUser.email = ''
+      newUser.passwordUnencrypted = null
+      newUser.email = null
       await updateClient(newUser)
     }
   }
@@ -113,6 +125,7 @@ const ClientOptions: FC<ClientOptionsProps> = ({ active, setActive }) => {
                 </div>
                 <div className="col-lg-8 MyCenetred">
                   <MyInput
+                    disabled={false}
                     googleIcons={'password'}
                     type={'text'}
                     placeholder={'סיסמה חדשה'}
@@ -149,6 +162,7 @@ const ClientOptions: FC<ClientOptionsProps> = ({ active, setActive }) => {
                 </div>
                 <div className="col-lg-8 MyCenetred">
                   <MyInput
+                    disabled={false}
                     googleIcons={'person'}
                     type={'text'}
                     placeholder={'שם משתמש'}
@@ -166,6 +180,7 @@ const ClientOptions: FC<ClientOptionsProps> = ({ active, setActive }) => {
                 </div>
                 <div className="col-lg-8 MyCenetred">
                   <MyInput
+                    disabled={false}
                     googleIcons={'password'}
                     type={'text'}
                     placeholder={'סיסמה חדשה'}

@@ -10,16 +10,18 @@ interface useClientStoreState {
   totalClients: number
   hydraPagination: hydraPagination
   search: string
+  selectedAgent: null | IUser
 }
 
 interface useClientStoreActions {
   setClients: (arr: IUser[]) => void
   setSelectedClient: (client: IUser | null) => void
   getClients: (all?: boolean) => Promise<void>
+  createClient: (user: IUser) => Promise<void>
   updateClient: (user: IUser) => Promise<void>
-  updateAuth: (username: string, password: string) => Promise<void>
   setSearch: (value: string) => void
   setPage: (page: string) => void
+  setSelectedAgent: (item: IUser | null) => void
 }
 
 export const useClientStore = create<
@@ -52,6 +54,16 @@ export const useClientStore = create<
       set({ loading: false })
     }
   },
+  createClient: async (user: IUser) => {
+    set({ loading: true })
+    try {
+      const response = await AdminClinetsService.createClient(user)
+    } catch (e) {
+      console.log('[error]', e)
+    } finally {
+      set({ loading: false })
+    }
+  },
   updateClient: async (user) => {
     set({ loading: true })
     try {
@@ -63,28 +75,7 @@ export const useClientStore = create<
       set({ loading: false })
     }
   },
-  updateAuth: async (username, password) => {
-    set({ loading: true })
-    try {
-      const response = await AdminClinetsService.updateAuth(
-        get().selectedClient?.extId || '',
-        username,
-        password
-      )
-      if (response.status === 'success') {
-        onSuccessAlert('לקוח נוצר בהצלחה', '')
-      } else {
-        onErrorAlert('שגיאה ביצירת לקוח', response.message)
-      }
-    } catch (e) {
-      console.log('[error]', e)
-    } finally {
-      set({ loading: false })
-      await get().getClients()
-    }
-  },
   totalClients: 0,
-  //   page: 1,
   setPage: (page: string) => {
     set((state) => ({
       hydraPagination: {
@@ -93,6 +84,8 @@ export const useClientStore = create<
       },
     }))
   },
+  selectedAgent: null,
+  setSelectedAgent: (item: IUser | null) => set({ selectedAgent: item }),
   hydraPagination: {
     totalPages: '1',
     page: '1',

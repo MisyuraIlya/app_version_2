@@ -81,12 +81,12 @@ const sidebarAdmin = [
       Password: false
     },*/
 
-  //   {
-  // 		Title: 'סוכנים',
-  // 		Link: '/agents',
-  // 	 	Img: 'agent.svg',
-  // 	 	Password: false
-  // 	 },
+  {
+    Title: 'סוכנים',
+    Link: '/admin/agents',
+    Img: 'support_agent',
+    Password: false,
+  },
   //   {
   //           Title: 'דאשבורד',
   //           Link: '/admin/statistics/1',

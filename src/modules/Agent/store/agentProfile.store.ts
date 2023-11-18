@@ -14,10 +14,9 @@ import { AdminClinetsService } from '../../Admin/services/clients.service'
 
 interface AgentProfileStoreState {
   loading: boolean
-  agentList: IUser[]
 
   // ========== DASHBOARD =============
-  agentsList: IUser[]
+  agentList: IUser[]
   fetchAgentsList: () => void
   agentPremormence: IPerformanceInfo | null
   objectives: IAgentObjective[]
@@ -57,11 +56,9 @@ interface AgentProfileStoreState {
 export const useAgentProfileStore = create<AgentProfileStoreState>(
   (set, get) => ({
     loading: false,
-    agentList: [],
 
     // ========== DASHBOARD =============
-
-    agentsList: [],
+    agentList: [],
     fetchAgentsList: async () => {
       try {
         set({ loading: true })

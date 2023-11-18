@@ -22,6 +22,7 @@ import AgentDashboard from './modules/Agent/pages/AgentDashboard'
 import Objectives from './modules/Agent/pages/Objectives'
 import Target from './modules/Agent/pages/Target'
 import Visits from './modules/Agent/pages/Visits'
+import AgentsPage from './modules/Admin/pages/AgentsPage'
 
 const RouterApp = () => {
   return (
@@ -48,6 +49,7 @@ const RouterApp = () => {
           <Route path="/historyItemPage/:id" element={<HistoryItemPage />} />
           <Route path="/historyPage" element={<HistoryPage />} />
           <Route path="/kartessetPage" element={<KartessetPage />} />
+          {/* ======================== */}
 
           {/* ADMINS */}
           <Route
@@ -65,6 +67,7 @@ const RouterApp = () => {
             element={<OrderItemPage />}
           />
           <Route path="/admin/notification" element={<NotificationPage />} />
+          <Route path="/admin/agents" element={<AgentsPage />} />
           {/* ======================== */}
 
           {/* AGENTS */}
@@ -73,6 +76,7 @@ const RouterApp = () => {
           <Route path="/objectives/:id" element={<Objectives />} />
           <Route path="/target/:id" element={<Target />} />
           <Route path="/visits/:id" element={<Visits />} />
+          {/* ======================== */}
         </Route>
       </Routes>
     </>
