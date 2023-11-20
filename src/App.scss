@@ -3541,7 +3541,7 @@ span.edit {
             content: '*';
             width: 20px;
             height: 20px;
-            color: rgb(241, 68, 68);
+            color: red;
             position: absolute;
             right: -20px;
             top: 15px;
@@ -3605,7 +3605,42 @@ span.edit {
   &.findUser {
     .pop-details {
       .prod-info-cont {
+        margin: 0 16px;
         margin-bottom: 150px;
+        input {
+          width: 93%;
+        }
+        h4 {
+          color: $new2;
+          margin: 0;
+          margin-bottom: 8px;
+        }
+      }
+      .doc-type,
+      .price-type {
+        margin-bottom: 16px;
+        h4 {
+          color: $new2;
+          margin: 0;
+          margin-bottom: 8px;
+        }
+        .type-cont {
+          display: inline-block;
+          p {
+            margin: 0;
+            margin-left: 16px;
+            padding: 8px 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            &.active {
+              color: black;
+              background: #f3f5f9;
+            }
+            &:hover {
+              //color:$new2;
+            }
+          }
+        }
       }
     }
   }

@@ -8,4 +8,6 @@ interface ICart {
   total: float
 }
 
-type IDocumentType = 'order' | 'request' | 'return'
+type IDocumentType = 'order' | 'request' | 'return' | 'draft'
+
+type IPriceMode = 'selfPrice' | 'updatedPrice'

@@ -65,11 +65,6 @@ export const useDocuments = create<DocumentsStore>((set, get) => ({
 
   //========== PAGINATION =============
   totalPages: 0,
-  // page:0,
-  // setPage:(value) => set({page:value}),
-  // lastPage:0,
-  // nextPage:0,
-  // previousPage:0,
   hydraPagination: {
     totalPages: '1',
     page: '1',
