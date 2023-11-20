@@ -53,6 +53,12 @@ const OrdersList = () => {
                 <th className="col-cont">
                   <p>גורם מאשר</p>
                 </th>
+                <th className="col-cont">
+                  <p>נשלח</p>
+                </th>
+                <th className="col-cont">
+                  <p>ERP</p>
+                </th>
               </tr>
               {orders?.map((element, index) => {
                 return <OrderItem element={element} index={index} />

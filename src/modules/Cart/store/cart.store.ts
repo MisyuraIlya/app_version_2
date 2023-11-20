@@ -1,7 +1,7 @@
 import { create } from 'zustand'
 import { setProductLocalstorage } from '../helpers/localstorage'
 import {
-  getAgentExtId,
+  getAgentId,
   getClientExtId,
   getClientName,
   getUserFromStorage,
@@ -171,7 +171,7 @@ export const useCart = create<useCartState>((set, get) => ({
         get().comment,
         getClientExtId(),
         get().calculateFinalPrice(),
-        getAgentExtId() ? true : false,
+        getAgentId(),
         false,
         get().discount,
         get().selectedMode,
