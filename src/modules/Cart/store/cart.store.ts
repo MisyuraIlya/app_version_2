@@ -2,12 +2,15 @@ import { create } from 'zustand'
 import { setProductLocalstorage } from '../helpers/localstorage'
 import {
   getAgentId,
+  getAgentLocalStorage,
   getClientExtId,
   getClientName,
   getUserFromStorage,
 } from '../../Auth/helpers/auth.helper'
 import CartServices from '../services/cart.services'
 import { onErrorAlert, onSuccessAlert } from '../../../shared/MySweetAlert'
+import moment from 'moment'
+import { AdminOrderService } from '../../Admin/services/orders.service'
 
 interface useCartState {
   loading: boolean
@@ -46,6 +49,7 @@ interface useCartState {
   calculatePriceAfterDiscount: () => number
   calculateTax: () => number
   calculateFinalPrice: () => number
+  saveDarft: () => void
 }
 
 export const useCart = create<useCartState>((set, get) => ({
@@ -196,6 +200,49 @@ export const useCart = create<useCartState>((set, get) => ({
     }
   },
 
+  saveDarft: async () => {
+    const cart = get().cart
+    try {
+      set({ loading: true })
+      const totalPrice = cart.reduce(
+        (acc, item) => acc + item.quantity * item.price,
+        0
+      )
+      //  @ts-ignore
+      const objHistory: IHistory = {
+        //  @ts-ignore
+        user: `/api/users/${getUserFromStorage().id}`,
+        total: totalPrice,
+        orderStatus: 'draft',
+        createdAt: moment().format('YYYY-MM-DD'),
+        updatedAt: moment().format('YYYY-MM-DD'),
+        isSendErp: false,
+        isBuyByCreditCard: false,
+        //  @ts-ignore
+        agent: getAgentId() ? `/api/users/${getAgentId()}` : null,
+        documentType: 'draft',
+      }
+
+      const historyId = await AdminOrderService.createHistory(objHistory)
+      cart.map(async (item) => {
+        let objDetailed: IHistoryDetailed = {
+          //  @ts-ignore
+          history: `/api/histories/${historyId.id}`,
+          //  @ts-ignore
+          product: `/api/products/${item.product.id}`,
+          singlePrice: item.price,
+          quantity: item.quantity,
+          discount: 0,
+          total: item.total,
+        }
+        await AdminOrderService.createHistoryDetailed(objDetailed)
+      })
+    } catch (e) {
+      console.log('[ERROR]', e)
+    } finally {
+      set({ loading: false })
+    }
+  },
   // ========== ALL CALCULATIONS ==========
 
   calculateProductByQuantityAndPackage: (cart: ICart) => {

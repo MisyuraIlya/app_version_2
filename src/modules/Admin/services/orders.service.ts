@@ -27,4 +27,21 @@ export const AdminOrderService = {
     )
     return response.data
   },
+
+  async createHistory(history: IHistory): Promise<IHistory> {
+    const response = await axios.post(
+      `${process.env.API}/api/histories`,
+      history
+    )
+    return response.data
+  },
+  async createHistoryDetailed(
+    historyDetailed: IHistoryDetailed
+  ): Promise<IHistoryDetailed> {
+    const response = await axios.post(
+      `${process.env.API}/api/history_detaileds`,
+      historyDetailed
+    )
+    return response.data
+  },
 }

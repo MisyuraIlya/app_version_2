@@ -18,9 +18,11 @@ const RestoreCartModal: FC<RestoreCartModalProps> = ({ active, setActive }) => {
     selectedPriceMode,
     setSelectedPriceMode,
   } = useCart()
+
   const handleChooseClient = (user: IUser) => {}
+
   return (
-    <ModalWrapper active={active} setActive={setActive} height={60} width={20}>
+    <ModalWrapper active={active} setActive={setActive} height={60} width={30}>
       <div className="tablePopUp docs findUser">
         {loading && <Loader />}
         <div className="pop-details">

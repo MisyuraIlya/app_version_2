@@ -105,8 +105,8 @@ export const getAgentExtId = () => {
 
 export const getAgentId = () => {
   if (localStorage.user) {
-    const user = JSON.parse(localStorage.client)
-    if (user.role == 'ROLE_AGENT') {
+    const user = JSON.parse(localStorage.user)
+    if (user.role == 'ROLE_AGENT' || user.role == 'ROLE_SUPER_AGENT') {
       return user.id
     } else {
       return null

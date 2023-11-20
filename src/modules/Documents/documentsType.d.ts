@@ -1,21 +1,21 @@
 interface IHistory {
-  id: number
-  orderExtId: string
+  id: ?(number | null)
+  orderExtId?: string
   user: IUser
-  deliveryDate: string
-  discount: number
+  deliveryDate?: string
+  discount?: number
   total: number
-  orderComment: string
+  orderComment?: string
   orderStatus: OrderStatus
   createdAt: string
   updatedAt: string
-  deliveryPrice: number
-  historyDetaildes: IHistoryDetailed
+  deliveryPrice?: number
+  historyDetaileds?: IHistoryDetailed[]
   documentType: IDocumentType
-  agent: IUser
-  isBuyByCredirCard: boolean
-  isSendErp: boolean
-  sendErpAt: string
+  agent?: IUser | null
+  isBuyByCredirCard?: boolean
+  isSendErp?: boolean
+  sendErpAt?: string
 }
 
 interface IHistoryDetailed {

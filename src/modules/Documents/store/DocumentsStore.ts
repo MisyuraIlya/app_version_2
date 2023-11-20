@@ -293,14 +293,14 @@ export const useDocuments = create<DocumentsStore>((set, get) => ({
         })
       } else if (get().documentType === 'historyItem') {
         response = await DocumentsService.GetHistoryItem(id)
-        set({ orderItems: response['hydra:member'] })
-        //  set({
-        //     totalTax: response?.total * 0.17,
-        //     itemsLength: response.historyDetaileds.length,
-        //     totalPriceAfterTax: response?.total,
-        //     totalAfterDiscount: response?.total,
-        //     totalPrecent: response?.discount ? response?.discount : 0,
-        //  })
+        set({ orderItems: response.historyDetaileds })
+        set({
+          totalTax: response?.total * 0.17,
+          itemsLength: response.historyDetaileds?.length,
+          totalPriceAfterTax: response?.total,
+          totalAfterDiscount: response?.total,
+          totalPrecent: response?.discount ? response?.discount : 0,
+        })
       }
     } catch (e) {
       console.error('[ERROR] fetch documents', e)

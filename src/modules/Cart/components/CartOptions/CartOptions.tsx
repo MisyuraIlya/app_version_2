@@ -6,8 +6,11 @@ import { useNavigate } from 'react-router-dom'
 import moment from 'moment'
 
 const CartOptions = () => {
-  const { cart, setCart, selectedMode, setSelectedMode, sendOrder } = useCart()
+  const { cart, setCart, selectedMode, saveDarft } = useCart()
   const navigate = useNavigate()
+  let from = moment().subtract(1, 'months').format('YYYY-MM-DD')
+  let to = moment().format('YYYY-MM-DD')
+
   const askDelete = async () => {
     const ask = await onAsk('האם אתה בטוח?', 'כל המוצרים בעגלה יימחקו')
     if (ask) {
@@ -22,14 +25,12 @@ const CartOptions = () => {
       'טיוטה תשמר וסל הקניות הנוכחי יתרוקן'
     )
     if (ask) {
-      setSelectedMode('draft')
-      sendOrder()
+      saveDarft()
+      navigate(`/historyPage?page=1&from=${from}&to=${to}`)
     }
   }
 
   const handleToDraft = () => {
-    let from = moment().subtract(1, 'months').format('YYYY-MM-DD')
-    let to = moment().format('YYYY-MM-DD')
     navigate(`/historyPage?page=1&from=${from}&to=${to}`)
   }
 

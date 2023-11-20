@@ -56,9 +56,7 @@ export const DocumentsService = {
     )
     return response.data
   },
-  async GetHistoryItem(
-    documentId: string | number
-  ): Promise<HistoryDetailedResponse> {
+  async GetHistoryItem(documentId: string | number): Promise<IHistory> {
     const response = await axios.get(
       `${process.env.API}/api/histories/${documentId}`
     )

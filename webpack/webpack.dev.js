@@ -14,8 +14,8 @@ module.exports = {
   plugins: [
     new ReactRefreshWebpackPlugin(),
     new webpack.DefinePlugin({
-      'process.env.API': JSON.stringify('https://digiaws.net/ceremonitea'),
-      'process.env.MEDIA': JSON.stringify('http://ctb2b.co.il'),
+      'process.env.API': JSON.stringify('http://localhost:8080'),
+      'process.env.MEDIA': JSON.stringify('http://localhost:8080'),
     }),
   ],
 }

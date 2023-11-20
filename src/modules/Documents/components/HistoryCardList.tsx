@@ -3,6 +3,7 @@ import { useDocuments } from '../store/DocumentsStore'
 import { numberWithCommas } from '../../../helpers/numberWithCommas'
 const HistoryCardList = () => {
   const { showCalendar, orderItems, searchValue } = useDocuments()
+  console.log('orderItems', orderItems)
   return (
     <div
       className={
