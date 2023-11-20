@@ -12,6 +12,10 @@ interface IHistory {
   deliveryPrice: number
   historyDetaildes: IHistoryDetailed
   documentType: IDocumentType
+  agent: IUser
+  isBuyByCredirCard: boolean
+  isSendErp: boolean
+  sendErpAt: string
 }
 
 interface IHistoryDetailed {

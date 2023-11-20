@@ -1,3 +1,4 @@
+import moment from 'moment'
 import React, { FC } from 'react'
 import { useNavigate } from 'react-router-dom'
 interface OrderItemProps {
@@ -52,6 +53,14 @@ const OrderItem: FC<OrderItemProps> = ({ element, index }) => {
       </th>
       <th className="col-cont">
         {/* <p>{element.SuperAgentName ? element.SuperAgentName : '-'}</p> */}
+      </th>
+      <th className="col-cont">
+        {element?.sendErpAt && (
+          <p>{moment(element?.sendErpAt).format('DD-MM-YYYY HH:mm')}</p>
+        )}
+      </th>
+      <th className="col-cont col-approved">
+        <p>{element?.isSendErp ? 'נמצא' : 'לא נמצא'}</p>
       </th>
     </tr>
   )

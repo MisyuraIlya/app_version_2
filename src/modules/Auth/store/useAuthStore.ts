@@ -59,7 +59,7 @@ export const useAuth = create<AuthState>((set, get) => ({
   loading: false,
   isClient: getRole() === 'USER',
   isAdmin: getRole() === 'ADMIN',
-  isAgent: getRole() === 'AGENT',
+  isAgent: getRole() === 'AGENT' || getRole() === 'SUPER_AGENT',
   isSuperAgent: getRole() === 'SUPER_AGENT',
   isUserBlocked: getUserLocalStorage()?.isBlocked ?? false,
   user: getUserLocalStorage(),

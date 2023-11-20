@@ -1,7 +1,7 @@
 import { create } from 'zustand'
 import { setProductLocalstorage } from '../helpers/localstorage'
 import {
-  getAgentExtId,
+  getAgentId,
   getClientExtId,
   getClientName,
   getUserFromStorage,
@@ -131,7 +131,7 @@ export const useCart = create<useCartState>((set, get) => ({
   },
 
   selectedMode: 'order', // 1 - order | 2 - Request | 3 - Return
-  setSelectedMode: (type:IDocumentType ) => set({selectedMode: type}),
+  setSelectedMode: (type: IDocumentType) => set({ selectedMode: type }),
   CartTitle: () => {
     let totalTitle = 'סיכום'
     if (get().selectedMode == 'order') {
@@ -170,7 +170,7 @@ export const useCart = create<useCartState>((set, get) => ({
         get().comment,
         getClientExtId(),
         get().calculateFinalPrice(),
-        getAgentExtId() ? true : false,
+        getAgentId(),
         false,
         get().discount,
         get().selectedMode,

@@ -103,6 +103,19 @@ export const getAgentExtId = () => {
   }
 }
 
+export const getAgentId = () => {
+  if (localStorage.user) {
+    const user = JSON.parse(localStorage.client)
+    if (user.role == 'ROLE_AGENT') {
+      return user.id
+    } else {
+      return null
+    }
+  } else {
+    return null
+  }
+}
+
 export const setChoosedAgentId = (agentId: string) => {
   localStorage.setItem('choosedAgent', agentId)
 }
