@@ -2,15 +2,35 @@ import React from 'react'
 import { useCart } from '../../store/cart.store'
 import { onAsk } from '../../../../shared/MySweetAlert'
 import { removeProductsFromStorage } from '../../helpers/localstorage'
-const CartOptions = () => {
-  const { cart, setCart, saveAsDraft, goToDrafts, selectedMode } = useCart()
+import { useNavigate } from 'react-router-dom'
+import moment from 'moment'
 
+const CartOptions = () => {
+  const { cart, setCart, selectedMode, setSelectedMode, sendOrder } = useCart()
+  const navigate = useNavigate()
   const askDelete = async () => {
     const ask = await onAsk('האם אתה בטוח?', 'כל המוצרים בעגלה יימחקו')
     if (ask) {
       setCart([])
       removeProductsFromStorage()
     }
+  }
+
+  const handleSaveAsDraft = async () => {
+    const ask = await onAsk(
+      'שמור הזמנה כטיוטה?',
+      'טיוטה תשמר וסל הקניות הנוכחי יתרוקן'
+    )
+    if (ask) {
+      setSelectedMode('draft')
+      sendOrder()
+    }
+  }
+
+  const handleToDraft = () => {
+    let from = moment().subtract(1, 'months').format('YYYY-MM-DD')
+    let to = moment().format('YYYY-MM-DD')
+    navigate(`/historyPage?page=1&from=${from}&to=${to}`)
   }
 
   return (
@@ -20,16 +40,16 @@ const CartOptions = () => {
           <p onClick={() => askDelete()}>מחק סל</p>
         </div>
       )}
-      {/* {cart.length > 0 && selectedMode == 1 ?
-            <div className="draft-btn-cont">
-                <p onClick={() => saveAsDraft()}>שמור טיוטה</p>
-            </div>
-            : null} */}
-      {/* {selectedMode == 1 ?
-            <div className="draft-btn-cont">
-                <p onClick={() => goToDrafts()}>טען טיוטה</p>
-            </div>
-        : null} */}
+      {cart.length > 0 && selectedMode == 'order' ? (
+        <div className="draft-btn-cont">
+          <p onClick={() => handleSaveAsDraft()}>שמור טיוטה</p>
+        </div>
+      ) : null}
+      {selectedMode == 'order' ? (
+        <div className="draft-btn-cont">
+          <p onClick={() => handleToDraft()}>טען טיוטה</p>
+        </div>
+      ) : null}
     </div>
   )
 }

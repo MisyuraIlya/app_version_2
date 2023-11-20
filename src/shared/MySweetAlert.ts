@@ -30,7 +30,7 @@ export const onInfoAlert = (title: string, message: string) => {
   })
 }
 
-export const onAsk = (title: string, message: string) => {
+export const onAsk = async (title: string, message: string) => {
   return Swal.fire({
     title: title,
     showCancelButton: true,

@@ -29,6 +29,7 @@ import ObjectiveCreateModal from '../agentComponents/ObjectiveCreateModal'
 import AgentOptions from '../agentComponents/AgentOptions'
 import AgentsModal from '../adminComponents/AgentsModal/AgentsModal'
 import { useClientStore } from '../../Admin/store/ClientsStore'
+import RestoreCartModal from '../agentComponents/RestoreCartModal'
 // Defines
 interface ModalContextType {
   openAuthModal: boolean
@@ -75,6 +76,7 @@ interface ModalContextType {
   setObjectItemModal: (item: IAgentObjective) => void
   setObjectCreate: (bool: boolean) => void
   setAgentOptions: (bool: boolean) => void
+  setRestoreCartModal: (bool: boolean) => void
 }
 const ModalContext = createContext<ModalContextType | null>(null)
 
@@ -121,6 +123,7 @@ const ModalsProvider: FC<ModalsProviderProps> = ({ children }) => {
   const [objectModal, setObjectModal] = useState(false)
   const [objectCreate, setObjectCreate] = useState(false)
   const [agentOptions, setAgentOptions] = useState(false)
+  const [restoreCartModal, setRestoreCartModal] = useState(false)
 
   const openStockNotify = () => {
     setStockNotify(true)
@@ -241,6 +244,7 @@ const ModalsProvider: FC<ModalsProviderProps> = ({ children }) => {
     setAgentOptions,
     setAgentsModal,
     setAgentsModalItem,
+    setRestoreCartModal,
   }
 
   return (
@@ -292,7 +296,10 @@ const ModalsProvider: FC<ModalsProviderProps> = ({ children }) => {
       <ObjectiveList active={objectModal} setActive={closeObjectItemModal} />
       <ObjectiveCreateModal active={objectCreate} setActive={setObjectCreate} />
       <AgentOptions active={agentOptions} setActive={setAgentOptions} />
-
+      <RestoreCartModal
+        active={restoreCartModal}
+        setActive={setRestoreCartModal}
+      />
       {children}
     </ModalContext.Provider>
   )

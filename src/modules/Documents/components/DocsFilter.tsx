@@ -3,6 +3,8 @@ import { useDocuments } from '../store/DocumentsStore'
 import moment from 'moment'
 import { useCart } from '../../Cart/store/cart.store'
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
+import { useModals } from '../../Modals/provider/ModalProvider'
+import { useAuth } from '../../Auth/store/useAuthStore'
 const DocsFilter = () => {
   const {
     dateFrom,
@@ -20,6 +22,7 @@ const DocsFilter = () => {
   } = useDocuments()
   const navigate = useNavigate()
   const location = useLocation()
+  const { isAdmin, isAgent, isSuperAgent } = useAuth()
   // const {location,push} = useHistory()
   const isDocumentPage = location.pathname.includes('documentPage')
   const isKartessetPage = location.pathname.includes('kartessetPage')
@@ -28,13 +31,18 @@ const DocsFilter = () => {
   const isHistoryItemPage = location.pathname.includes('historyItemPage')
   const { id } = useParams()
   const { cart, setCart } = useCart()
+  const { setRestoreCartModal } = useModals()
 
   const handleResoreCart = async () => {
-    if (id) {
-      const res = await handleRestoreCartFunction(id)
-      if (res) {
-        setCart(res)
-        navigate('/cart')
+    if (!isAdmin || !isAgent || !isSuperAgent) {
+      setRestoreCartModal(true)
+    } else {
+      if (id) {
+        const res = await handleRestoreCartFunction(id)
+        if (res) {
+          setCart(res)
+          navigate('/cart')
+        }
       }
     }
   }

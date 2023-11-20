@@ -13,6 +13,7 @@ interface useCartState {
   loading: boolean
   cart: ICart[]
   selectedMode: IDocumentType
+  selectedPriceMode: IPriceMode
   comment: string
   sendNoApproval: boolean
   specialSettingsPop: boolean
@@ -32,11 +33,10 @@ interface useCartState {
   changeQuantity: (sku: string, quantity: number) => void
   avoidNullInCart: (sku: string) => void
   CartTitle: () => string
-  saveAsDraft: () => void
-  goToDrafts: () => void
   setSendNoApproval: (bool: boolean) => void
   setSpecialSettingsPop: (bool: boolean) => void
   setSelectedMode: (type: IDocumentType) => void
+  setSelectedPriceMode: (value: IPriceMode) => void
   setComment: (value: string) => void
   sendOrder: () => Promise<void>
   calculateProductByQuantityAndPackage: (product: ICart) => string | number
@@ -131,7 +131,10 @@ export const useCart = create<useCartState>((set, get) => ({
   },
 
   selectedMode: 'order', // 1 - order | 2 - Request | 3 - Return
-  setSelectedMode: (type:IDocumentType ) => set({selectedMode: type}),
+  selectedPriceMode: 'updatedPrice',
+  setSelectedPriceMode: (value: IPriceMode) =>
+    set({ selectedPriceMode: value }),
+  setSelectedMode: (type: IDocumentType) => set({ selectedMode: type }),
   CartTitle: () => {
     let totalTitle = 'סיכום'
     if (get().selectedMode == 'order') {
@@ -145,8 +148,6 @@ export const useCart = create<useCartState>((set, get) => ({
     console.log('totalTitle', totalTitle)
     return totalTitle
   },
-  saveAsDraft: () => {},
-  goToDrafts: () => {},
   priceBefore: 0,
   deliveryPrice: 250,
   deliveryDate: '2023-11-21', //TODO
