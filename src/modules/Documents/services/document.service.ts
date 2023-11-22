@@ -66,16 +66,10 @@ export const DocumentsService = {
   async RestoreCart(
     documentType: string,
     userExtId: string,
-    documentNumber: string
+    documentNumber: string,
+    PriceMode: IPriceMode
   ): Promise<ICart[] | null> {
-    const response = await axios.get(
-      `${process.env.API}/api/restoreCart/${documentType}/${userExtId}/${documentNumber}`,
-      {
-        headers: {
-          Accept: 'application/json',
-        },
-      }
-    )
+    const response = await axios.get(`${process.env.API}/api/restoreCart/${documentType}/${PriceMode}/${userExtId}/${documentNumber}`)
     if (response.data) {
       return response.data['hydra:member']
     } else {

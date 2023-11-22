@@ -4,6 +4,7 @@ import { useDocuments } from '../../Documents/store/DocumentsStore'
 import Loader from '../../../shared/Loader'
 import { useCart } from '../../Cart/store/cart.store'
 import ClientsSearch from '../../../shared/ClientsSearch'
+import { useNavigate } from 'react-router-dom'
 
 type RestoreCartModalProps = {
   active: boolean
@@ -11,15 +12,23 @@ type RestoreCartModalProps = {
 }
 
 const RestoreCartModal: FC<RestoreCartModalProps> = ({ active, setActive }) => {
-  const { handleRestoreCartFunction, loading } = useDocuments()
+  const navigate  = useNavigate()
+  const { handleRestoreCartFunction, loading,selectedPriceMode,setSelectedPriceMode } = useDocuments()
   const {
     setSelectedMode,
     selectedMode,
-    selectedPriceMode,
-    setSelectedPriceMode,
+    setCart
   } = useCart()
-
   const handleChooseClient = (user: IUser) => {}
+
+  const handleRestoreCart = async () => {
+    const res = await handleRestoreCartFunction()
+    if (res) {
+      setCart(res)
+      navigate('/cart')
+      setActive(false)
+    }
+  }
 
   return (
     <ModalWrapper active={active} setActive={setActive} height={60} width={30}>
@@ -102,7 +111,7 @@ const RestoreCartModal: FC<RestoreCartModalProps> = ({ active, setActive }) => {
           </div>
         </div>
         <div className="MyButton">
-          <button onClick={() => handleRestoreCartFunction()}>אישור</button>
+          <button onClick={() => handleRestoreCart()}>אישור</button>
         </div>
       </div>
     </ModalWrapper>

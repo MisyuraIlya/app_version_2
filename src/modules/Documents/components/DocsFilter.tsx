@@ -38,7 +38,7 @@ const DocsFilter = () => {
       setRestoreCartModal(true)
     } else {
       if (id) {
-        const res = await handleRestoreCartFunction(id)
+        const res = await handleRestoreCartFunction()
         if (res) {
           setCart(res)
           navigate('/cart')

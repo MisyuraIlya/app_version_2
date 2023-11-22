@@ -16,7 +16,6 @@ interface useCartState {
   loading: boolean
   cart: ICart[]
   selectedMode: IDocumentType
-  selectedPriceMode: IPriceMode
   comment: string
   sendNoApproval: boolean
   specialSettingsPop: boolean
@@ -39,7 +38,6 @@ interface useCartState {
   setSendNoApproval: (bool: boolean) => void
   setSpecialSettingsPop: (bool: boolean) => void
   setSelectedMode: (type: IDocumentType) => void
-  setSelectedPriceMode: (value: IPriceMode) => void
   setComment: (value: string) => void
   sendOrder: () => Promise<void>
   calculateProductByQuantityAndPackage: (product: ICart) => string | number
@@ -135,9 +133,6 @@ export const useCart = create<useCartState>((set, get) => ({
   },
 
   selectedMode: 'order', // 1 - order | 2 - Request | 3 - Return
-  selectedPriceMode: 'updatedPrice',
-  setSelectedPriceMode: (value: IPriceMode) =>
-    set({ selectedPriceMode: value }),
   setSelectedMode: (type: IDocumentType) => set({ selectedMode: type }),
   CartTitle: () => {
     let totalTitle = 'סיכום'

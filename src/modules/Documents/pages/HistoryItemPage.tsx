@@ -7,7 +7,7 @@ import DocsTotal from '../components/DocsTotal'
 import HistoryCardList from '../components/HistoryCardList'
 import Loader from '../../../shared/Loader'
 const HistoryItemPage = () => {
-  const { loading, getOrderItems, setDocumentType } = useDocuments()
+  const { loading, getOrderItems, setDocumentType, setDocumentId } = useDocuments()
 
   const { id } = useParams()
 
@@ -15,6 +15,7 @@ const HistoryItemPage = () => {
     setDocumentType('historyItem')
     if (id) {
       getOrderItems(id)
+      setDocumentId(id)
     }
   }, [])
   return (

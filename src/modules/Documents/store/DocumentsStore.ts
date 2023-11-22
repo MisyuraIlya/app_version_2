@@ -35,11 +35,14 @@ interface DocumentsStore {
   setSelectedDocument: (value: string) => void
   documentType: string
   setDocumentType: (value: string) => void
-  //   handleSearchClick: () => void;
+  documentId:''
+  setDocumentId:(value: string) => void
+  selectedPriceMode: IPriceMode
+  setSelectedPriceMode: (value: IPriceMode) => void
   searchValue: string
   setSearchValue: (value: string) => void
   downloadDocument: (value: string, documentNumber: string) => Promise<void>
-  handleRestoreCartFunction: (documentNumber: string) => Promise<ICart[] | null>
+  handleRestoreCartFunction: () => Promise<ICart[] | null>
   //========================================
 
   //========== DATA ===============
@@ -104,10 +107,11 @@ export const useDocuments = create<DocumentsStore>((set, get) => ({
   },
   documentType: '',
   setDocumentType: (value: string) => set({ documentType: value }),
-  // handleSearchClick:() => {
-
-  // },
-  searchValue: '',
+  documentId:'',
+  setDocumentId:(value: string) => set({documentId: value}),
+  selectedPriceMode: 'updatedPrice',
+  setSelectedPriceMode: (value: IPriceMode) => set({ selectedPriceMode: value }),
+  searchValue: "",
   setSearchValue: (value: string) => set({ searchValue: value }),
   downloadDocument: async (value: string, documentNumber: string) => {
     // try {
@@ -184,9 +188,7 @@ export const useDocuments = create<DocumentsStore>((set, get) => ({
     //     set({loading:false})
     // }
   },
-  handleRestoreCartFunction: async (
-    documentNumber: string
-  ): Promise<ICart[] | null> => {
+  handleRestoreCartFunction: async (): Promise<ICart[] | null> => {
     try {
       set({ loading: true })
       let response: ICart[] | null = null
@@ -198,7 +200,8 @@ export const useDocuments = create<DocumentsStore>((set, get) => ({
         response = await DocumentsService.RestoreCart(
           'online',
           getClientExtId(),
-          documentNumber
+          get().documentId,
+          get().selectedPriceMode
         )
       }
 
@@ -209,9 +212,11 @@ export const useDocuments = create<DocumentsStore>((set, get) => ({
         response = await DocumentsService.RestoreCart(
           'history',
           getClientExtId(),
-          documentNumber
+          get().documentId,
+          get().selectedPriceMode
         )
       }
+
       return response
     } catch (e) {
       console.error('[ERROR] fetch restored cart', e)

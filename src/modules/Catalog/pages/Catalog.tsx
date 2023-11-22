@@ -27,12 +27,10 @@ const Catalog = () => {
     clearPaginationSearch,
     findProductsByValue,
   } = useSearchStore()
-  // const {setCart} = useCart()
   const isSearchDocument = documentType === 'search'
 
   useEffect(() => {
     setCatalogParameters(lvl1 ?? '0', lvl2 ?? '0', lvl3 ?? '0', location.search)
-    // setCart(getProductsLocalStorage())
     if (!isSearchDocument) {
       setSavedValue('')
       setCategoriesFilter([])

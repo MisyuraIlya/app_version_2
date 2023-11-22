@@ -6,7 +6,7 @@ import { useParams } from 'react-router-dom'
 import DocsTotal from '../components/DocsTotal'
 import Loader from '../../../shared/Loader'
 const DocumentsItemPage = () => {
-  const { loading, getOrderItems, setDocumentType } = useDocuments()
+  const { loading, getOrderItems, setDocumentType, setDocumentId } = useDocuments()
 
   const { id } = useParams()
 
@@ -14,6 +14,7 @@ const DocumentsItemPage = () => {
     setDocumentType('documentItem')
     if (id) {
       getOrderItems(id)
+      setDocumentId(id)
     }
   }, [])
   return (
