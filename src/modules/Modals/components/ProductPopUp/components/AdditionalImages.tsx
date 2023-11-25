@@ -52,7 +52,7 @@ const AdditionalImages = () => {
                       <img
                         className="img"
                         src={
-                          process.env.MEDIA +
+                          process.env.REACT_APP_MEDIA +
                           '/product/' +
                           element?.mediaObject?.filePath
                         }
@@ -60,7 +60,7 @@ const AdditionalImages = () => {
                     ) : (
                       <img
                         className="img"
-                        src={process.env.MEDIA + 'placeholder.jpg'}
+                        src={process.env.REACT_APP_MEDIA + 'placeholder.jpg'}
                       />
                     )}
                   </div>

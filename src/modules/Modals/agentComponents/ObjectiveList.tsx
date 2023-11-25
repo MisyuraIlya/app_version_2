@@ -178,7 +178,7 @@ const ObjectiveList: FC<ObjectiveListProps> = ({ active, setActive }) => {
                       <div className="myPadding">
                         <BigButton
                           googleIcon="check_circle"
-                          imgLink={`${process.env.MEDIA}/agentApp/VIcon.png`}
+                          imgLink={`${process.env.REACT_APP_MEDIA}/agentApp/VIcon.png`}
                           color={'suc'}
                           onClickBtn={() =>
                             handleStatusFunc(selectedObjectItem!.id!, true)
@@ -188,7 +188,7 @@ const ObjectiveList: FC<ObjectiveListProps> = ({ active, setActive }) => {
                       <div className="myPadding">
                         <BigButton
                           googleIcon="block"
-                          imgLink={`${process.env.MEDIA}/agentApp/+Icon.png`}
+                          imgLink={`${process.env.REACT_APP_MEDIA}/agentApp/+Icon.png`}
                           color={'fal'}
                           onClickBtn={() =>
                             handleStatusFunc(selectedObjectItem!.id!, false)

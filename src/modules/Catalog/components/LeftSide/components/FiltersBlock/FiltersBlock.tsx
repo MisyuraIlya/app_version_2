@@ -78,7 +78,7 @@ const FiltersBlock = () => {
           {/* {isAgent && ((params.props.match.params.lvl2 && params.props.match.params.lvl2!='0') || params.props.match.params.type.includes('brand')) ?
               <div className="file-main-cont">
                 <div className="file-cont" onClick={()=> params.downloadExcelPdf('xls', params.breadCrumbsNav)}>
-                  <img src={process.env.MEDIA + 'icons/excel.svg'} />
+                  <img src={process.env.REACT_APP_MEDIA + 'icons/excel.svg'} />
                 </div>
                 <div className="file-cont" onClick={()=> params.downloadExcelPdf('pdf', params.breadCrumbsNav)}>
                   <span className="material-symbols-outlined">picture_as_pdf</span>
@@ -117,7 +117,7 @@ const FiltersBlock = () => {
               >
                 <p>{prodsPerPage}</p>
                 <img
-                  src={process.env.MEDIA + '/icon/down-chevron.svg'}
+                  src={process.env.REACT_APP_MEDIA + '/icon/down-chevron.svg'}
                   alt=""
                 />
               </div>
@@ -144,7 +144,7 @@ const FiltersBlock = () => {
               >
                 <p>{sortProdSetting}</p>
                 <img
-                  src={process.env.MEDIA + '/icon/down-chevron.svg'}
+                  src={process.env.REACT_APP_MEDIA + '/icon/down-chevron.svg'}
                   alt=""
                 />
               </div>

@@ -42,7 +42,7 @@ const RightComponent = () => {
                   <div className="img" style={{ cursor: 'pointer' }}>
                     <Link to={'/'}>
                       {/* TODO CHANGEee */}
-                      <img src={`${process.env.MEDIA}/logo.png`} alt="" />
+                      <img src={`${process.env.REACT_APP_MEDIA}/logo.png`} alt="" />
                     </Link>
                   </div>
                 </li>

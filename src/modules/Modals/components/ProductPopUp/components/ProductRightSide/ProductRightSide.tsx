@@ -38,10 +38,10 @@ const ProductRightSide = () => {
       {selectedProd.defaultImagePath ? (
         <img
           className="img  col-lg-12"
-          src={`${process.env.MEDIA}/product/${selectedProd.defaultImagePath}`}
+          src={`${process.env.REACT_APP_MEDIA}/product/${selectedProd.defaultImagePath}`}
         />
       ) : (
-        <img className="img" src={`${process.env.MEDIA}/placeholder.jpg`} />
+        <img className="img" src={`${process.env.REACT_APP_MEDIA}/placeholder.jpg`} />
       )}
       <div className="additional-img-cont col-lg-11">
         {selectedProd?.imagePath?.length > 1 && <AdditionalImages />}

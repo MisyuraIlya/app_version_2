@@ -72,7 +72,7 @@ const RegistrationForm = () => {
         </div>
         <span>
           אנא קרא והסכם{' '}
-          <a target="_blank" href={process.env.MEDIA + '/privacy_policy.pdf'}>
+          <a target="_blank" href={process.env.REACT_APP_MEDIA + '/privacy_policy.pdf'}>
             לתנאי השימוש
           </a>
         </span>

@@ -25,10 +25,10 @@ const BasicInfo: FC<BasicInfoProps> = ({ product }) => {
         ) : product.defaultImagePath ? (
           <img
             className="img"
-            src={`${process.env.MEDIA}/product/${product.defaultImagePath}`}
+            src={`${process.env.REACT_APP_MEDIA}/product/${product.defaultImagePath}`}
           />
         ) : (
-          <img className="img" src={`${process.env.MEDIA}/placeholder.jpg`} />
+          <img className="img" src={`${process.env.REACT_APP_MEDIA}/placeholder.jpg`} />
         )}
       </div>
       {loading ? (

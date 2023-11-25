@@ -98,7 +98,7 @@ const NearestObjectives = () => {
                                     <div className="BigButton-cont">
                                       <BigButton
                                         googleIcon="check_circle"
-                                        imgLink={`${process.env.MEDIA}/icon/VIcon.png`}
+                                        imgLink={`${process.env.REACT_APP_MEDIA}/icon/VIcon.png`}
                                         color={'suc'}
                                         onClickBtn={() =>
                                           handleStatusLocal(item.id!, true)
@@ -108,7 +108,7 @@ const NearestObjectives = () => {
                                     <div className="BigButton-cont">
                                       <BigButton
                                         googleIcon="block"
-                                        imgLink={`${process.env.MEDIA}/icon/+Icon.png`}
+                                        imgLink={`${process.env.REACT_APP_MEDIA}/icon/+Icon.png`}
                                         color={'fal'}
                                         onClickBtn={() =>
                                           handleStatusLocal(item.id!, false)

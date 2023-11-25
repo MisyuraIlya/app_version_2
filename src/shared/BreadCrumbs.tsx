@@ -14,7 +14,7 @@ const BreadCrumbs = () => {
           <div className="col-lg-6">
             <ul>
               <li>
-                {/* <Link to="/"><img src={process.env.MEDIA + '/icon/home.svg'} alt=""/></Link> */}
+                {/* <Link to="/"><img src={process.env.REACT_APP_MEDIA + '/icon/home.svg'} alt=""/></Link> */}
               </li>
               {/* {true ?
                             <>

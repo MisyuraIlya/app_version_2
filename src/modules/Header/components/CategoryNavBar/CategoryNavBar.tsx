@@ -79,7 +79,7 @@ const CategoryNavBar = () => {
                         <div className="col-lg-3">
                           <div className="banner animated pulse">
                             {/* <Link to={element.Link ? element.Link : '/'}> */}
-                            {/* <img src={`${process.env.MEDIA}/banner/${element.Banner}`} alt="" /> */}
+                            {/* <img src={`${process.env.REACT_APP_MEDIA}/banner/${element.Banner}`} alt="" /> */}
                             {/* </Link> */}
                           </div>
                         </div>

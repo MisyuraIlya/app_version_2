@@ -25,7 +25,7 @@ const MobileHeader: FC<MobileHeaderProps> = ({
       </div>
       <div className="main-logo-mobile">
         <Link to="/">
-          <img src={process.env.MEDIA + '/logo.png'} />
+          <img src={process.env.REACT_APP_MEDIA + '/logo.png'} />
         </Link>
       </div>
       <div>

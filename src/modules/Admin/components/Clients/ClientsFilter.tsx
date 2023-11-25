@@ -37,7 +37,7 @@ const ClientsFilter = () => {
             className="filter-ul"
             style={{
               backgroundImage:
-                'url(' + process.env.MEDIA + '/icons/filter.svg)',
+                'url(' + process.env.REACT_APP_MEDIA + '/icons/filter.svg)',
             }}
           >
             {/* HERE FILTER BY SOMETHING */}

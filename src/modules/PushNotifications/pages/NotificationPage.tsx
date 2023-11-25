@@ -17,7 +17,7 @@ const NotificationPage = () => {
         <div className="flex-container">
           <div className="add-mobile">
             <button onClick={() => createItem(null)}>
-              <img src={process.env.MEDIA + '/icon/plus-white.svg'} />
+              <img src={process.env.REACT_APP_MEDIA + '/icon/plus-white.svg'} />
               <span>צור הודעה חדשה</span>
             </button>
           </div>

@@ -16,11 +16,11 @@ const GalaxtVideo = () => {
 			playsInline
 			webkit-playsInline
 			x-webkit-airplay="allow"
-			poster="${process.env.MEDIA}/poster.jpg"
+			poster="${process.env.REACT_APP_MEDIA}/poster.jpg"
 			className="video-background">
 			{window.innerWidth > 1200 ?
-				<source src="${process.env.MEDIA}/video.mp4" type="video/mp4" /> :
-				<source src="${process.env.MEDIA}/video.webm" type="video/webm" />	}
+				<source src="${process.env.REACT_APP_MEDIA}/video.mp4" type="video/mp4" /> :
+				<source src="${process.env.REACT_APP_MEDIA}/video.webm" type="video/webm" />	}
 			</video>
 			`,
         }}

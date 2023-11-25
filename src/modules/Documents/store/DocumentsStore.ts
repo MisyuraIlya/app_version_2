@@ -156,7 +156,7 @@ export const useDocuments = create<DocumentsStore>((set, get) => ({
     //                 discount: item.discount,
     //                 totalBeforeTax:  item.total * 0.17,
     //                 totalPrice: item.total,
-    //                 image: process.env.MEDIA + item?.product?.defaultImagePath ,
+    //                 image: process.env.REACT_APP_MEDIA + item?.product?.defaultImagePath ,
     //             }
     //             documents.push(obj)
     //         })

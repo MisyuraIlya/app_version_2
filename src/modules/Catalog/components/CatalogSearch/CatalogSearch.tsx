@@ -81,7 +81,7 @@ const CatalogSearch = () => {
                             src={
                               item.defaultImagePath
                                 ? item.defaultImagePath
-                                : process.env.MEDIA +
+                                : process.env.REACT_APP_MEDIA +
                                   'products/' +
                                   item.defaultImagePath
                             }

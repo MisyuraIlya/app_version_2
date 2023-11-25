@@ -33,13 +33,13 @@ const NotificationItem: FC<NotificationItemProps> = ({ element, index }) => {
             {element?.image?.filePath ? (
               <img
                 src={
-                  process.env.MEDIA +
+                  process.env.REACT_APP_MEDIA +
                   '/notifications/' +
                   element?.image?.filePath
                 }
               />
             ) : (
-              <img src={process.env.MEDIA + '/placeholder.jpg'} />
+              <img src={process.env.REACT_APP_MEDIA + '/placeholder.jpg'} />
             )}
           </div>
         </div>

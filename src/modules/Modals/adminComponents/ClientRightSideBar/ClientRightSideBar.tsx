@@ -18,7 +18,7 @@ const ClientRightSideBar: FC<ClientRightSideBarProps> = ({
             <ul className={!active ? 'to-left' : ''}>
               <li className="logo" onClick={() => setActive(false)}>
                 <Link to="/">
-                  <img src={process.env.MEDIA + 'logo.png'} />
+                  <img src={process.env.REACT_APP_MEDIA + 'logo.png'} />
                 </Link>
               </li>
               <Link to="/">

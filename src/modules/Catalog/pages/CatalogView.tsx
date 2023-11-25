@@ -29,7 +29,7 @@ const CatalogView = () => {
                                 <div key={index} className="col-lg-3">
                                     <Link to={ (`/client/catalog/${element.id}/0/0?page=1`)}>
                                         <div className="wrapper">
-                                            <img src={element?.MediaObject?.filePath ? `${process.env.MEDIA}/category/${element?.MediaObject?.filePath}`: `${process.env.MEDIA}/placeholder.jpg`} />
+                                            <img src={element?.MediaObject?.filePath ? `${process.env.REACT_APP_MEDIA}/category/${element?.MediaObject?.filePath}`: `${process.env.REACT_APP_MEDIA}/placeholder.jpg`} />
                                             <h2>{element?.title}</h2>
                                         </div>
                                     </Link>

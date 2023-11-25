@@ -30,7 +30,7 @@ const NotificationCard: FC<NotificationCardProps> = ({ element, index }) => {
                 {element.is_read === 1 ? (
                   <div>
                     <img
-                      src={process.env.MEDIA + '/icon/readAll.svg'}
+                      src={process.env.REACT_APP_MEDIA + '/icon/readAll.svg'}
                       className="isRead"
                       onClick={() => handleIsRead(element.id, false)}
                     />
@@ -57,13 +57,13 @@ const NotificationCard: FC<NotificationCardProps> = ({ element, index }) => {
               {open ? (
                 <img
                   className="arrow"
-                  src={process.env.MEDIA + '/icon/arrow_cat_down.svg'}
+                  src={process.env.REACT_APP_MEDIA + '/icon/arrow_cat_down.svg'}
                   onClick={() => setOpen(false)}
                 />
               ) : (
                 <img
                   className="arrow"
-                  src={process.env.MEDIA + '/icon/arrow_left.svg'}
+                  src={process.env.REACT_APP_MEDIA + '/icon/arrow_left.svg'}
                   onClick={() => setOpen(true)}
                 />
               )}
@@ -81,7 +81,7 @@ const NotificationCard: FC<NotificationCardProps> = ({ element, index }) => {
                 {element.img && (
                   <div>
                     <img
-                      src={`${process.env.MEDIA}/notifications/${element.img}`}
+                      src={`${process.env.REACT_APP_MEDIA}/notifications/${element.img}`}
                     />
                   </div>
                 )}

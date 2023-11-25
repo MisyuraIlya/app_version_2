@@ -75,7 +75,7 @@ const CartList = () => {
                           <img
                             className="img"
                             src={
-                              process.env.MEDIA +
+                              process.env.REACT_APP_MEDIA +
                               '/product/' +
                               element?.product?.defaultImagePath
                             }
@@ -84,7 +84,7 @@ const CartList = () => {
                         ) : (
                           <img
                             className="img"
-                            src={process.env.MEDIA + 'placeholder.jpg'}
+                            src={process.env.REACT_APP_MEDIA + 'placeholder.jpg'}
                             onClick={() => selectProduct(element?.product)}
                           />
                         )}

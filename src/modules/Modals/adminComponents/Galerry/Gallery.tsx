@@ -102,7 +102,7 @@ const Gallery: FC<GalleryProps> = ({ active, setActive }) => {
                 <img
                   className="main-img"
                   src={
-                    `${process.env.MEDIA}/product/` +
+                    `${process.env.REACT_APP_MEDIA}/product/` +
                     item?.mediaObject?.filePath
                   }
                 />

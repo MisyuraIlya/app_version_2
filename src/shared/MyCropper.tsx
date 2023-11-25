@@ -81,7 +81,7 @@ const MyCropper: FC<MyCropperProps> = ({
           </div>
         </ul>
         <div style={{ position: 'absolute', top: '0', zIndex: '-1' }}>
-          <img src={`${process.env.MEDIA}/${itemImage}`} />
+          <img src={`${process.env.REACT_APP_MEDIA}/${itemImage}`} />
         </div>
       </div>
 

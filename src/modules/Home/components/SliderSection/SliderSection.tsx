@@ -73,10 +73,10 @@ const SliderSection: FC<SliderSectionProps> = ({
                         className="img"
                         src={
                           element?.MediaObject?.filePath
-                            ? process.env.MEDIA +
+                            ? process.env.REACT_APP_MEDIA +
                               '/category/' +
                               element?.MediaObject?.filePath
-                            : process.env.MEDIA + '/placeholder.jpg'
+                            : process.env.REACT_APP_MEDIA + '/placeholder.jpg'
                         }
                       />
                     </div>
