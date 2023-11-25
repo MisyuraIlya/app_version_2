@@ -1,5 +1,6 @@
 const webpack = require('webpack')
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin')
+const Dotenv = require('dotenv-webpack');
 
 module.exports = {
   mode: 'development',
@@ -13,9 +14,6 @@ module.exports = {
   },
   plugins: [
     new ReactRefreshWebpackPlugin(),
-    new webpack.DefinePlugin({
-      'process.env.API': JSON.stringify('http://localhost:8080'),
-      'process.env.MEDIA': JSON.stringify('http://localhost:8080'),
-    }),
+    new Dotenv(),
   ],
 }

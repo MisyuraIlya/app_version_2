@@ -21,7 +21,7 @@ interface OneSignalServerNotificationResponse {
 export const NotificationsServices = {
   async createItem(object: INotification): Promise<INotification> {
     const response = await axios.post(
-      `${process.env.API}/api/notifications`,
+      `${process.env.REACT_APP_API}/api/notifications`,
       object
     )
     return response.data
@@ -29,7 +29,7 @@ export const NotificationsServices = {
 
   async updateItem(object: INotification): Promise<INotification> {
     const response = await axios.patch(
-      `${process.env.API}/api/notifications/${object.id}`,
+      `${process.env.REACT_APP_API}/api/notifications/${object.id}`,
       object,
       {
         headers: {
@@ -42,19 +42,19 @@ export const NotificationsServices = {
 
   async deleteItem(id: number | string): Promise<void> {
     const response = await axios.delete(
-      `${process.env.API}/api/notifications/${id}`
+      `${process.env.REACT_APP_API}/api/notifications/${id}`
     )
     return response.data
   },
 
   async fetchNotifications(): Promise<GetNotificationResponse> {
-    const response = await axios.get(`${process.env.API}/api/notifications`)
+    const response = await axios.get(`${process.env.REACT_APP_API}/api/notifications`)
     return response.data
   },
 
   async sendNotification(data: ISendNotification) {
     const response = await axios.post(
-      `${process.env.API}/api/notifications/send`,
+      `${process.env.REACT_APP_API}/api/notifications/send`,
       data
     )
     return response.data

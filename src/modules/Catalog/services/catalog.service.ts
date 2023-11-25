@@ -24,20 +24,20 @@ export const CatalogServices = {
     searchParams: string
   ): Promise<GetCatalogResponse> {
     const response = await axios.get(
-      `${process.env.API}/api/catalog/${lvl1}/${lvl2}/${lvl3}${searchParams}`
+      `${process.env.REACT_APP_API}/api/catalog/${lvl1}/${lvl2}/${lvl3}${searchParams}`
     )
     return response.data
   },
 
   async GetCategories(userExId: string): Promise<GetCategoriesResponse> {
     const response = await axios.get(
-      `${process.env.API}/api/categoriesApp?userExtId=${userExId}`
+      `${process.env.REACT_APP_API}/api/categoriesApp?userExtId=${userExId}`
     )
     return response.data
   },
 
   async GetCategoriesAll(): Promise<GetCategoriesResponse> {
-    const response = await axios.get(`${process.env.API}/api/categories`)
+    const response = await axios.get(`${process.env.REACT_APP_API}/api/categories`)
     return response.data
   },
 
@@ -46,7 +46,7 @@ export const CatalogServices = {
     searchValue: string
   ): Promise<GetCategoriesResponse> {
     const response = await axios.get(
-      `${process.env.API}/api/categoriesApp?userExtId=${userExId}&search=${searchValue}`,
+      `${process.env.REACT_APP_API}/api/categoriesApp?userExtId=${userExId}&search=${searchValue}`,
       {
         headers: {
           Accept: 'application/json',
@@ -64,7 +64,7 @@ export const CatalogServices = {
     userExId: string
   ): Promise<GetCategoriesAttribute> {
     const response = await axios.get(
-      `${process.env.API}/api/attribute/${lvl1}/${lvl2}/${lvl3}?userExtId=${userExId}&search=${searchValue}`
+      `${process.env.REACT_APP_API}/api/attribute/${lvl1}/${lvl2}/${lvl3}?userExtId=${userExId}&search=${searchValue}`
     )
     return response.data
   },
@@ -74,7 +74,7 @@ export const CatalogServices = {
     sku: string
   ): Promise<GetPurchaseHistoryItem> {
     const response = await axios.get(
-      `${process.env.API}/api/purchaseHistory/${userExId}/${sku}`
+      `${process.env.REACT_APP_API}/api/purchaseHistory/${userExId}/${sku}`
     )
     return response.data
   },

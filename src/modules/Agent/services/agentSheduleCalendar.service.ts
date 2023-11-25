@@ -14,7 +14,7 @@ export const agentSheduleCalendarService = {
     dateTo: string
   ): Promise<AgentObjectiveResponse> {
     const response = await axios.get(
-      `${process.env.API}/api/calendar/${agentId}/${moment(dateFrom).format(
+      `${process.env.REACT_APP_API}/api/calendar/${agentId}/${moment(dateFrom).format(
         'YYYY-MM-DD'
       )}/${moment(dateTo).format('YYYY-MM-DD')}`
     )
@@ -23,7 +23,7 @@ export const agentSheduleCalendarService = {
 
   async updateIsCompleted(id: number, isCompleted: boolean) {
     const response = await axios.patch(
-      `${process.env.API}/api/agent_objectives/${id}`,
+      `${process.env.REACT_APP_API}/api/agent_objectives/${id}`,
       {
         isCompleted,
         completedAt: moment().format('YYYY-MM-DD'),

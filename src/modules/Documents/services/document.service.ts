@@ -21,7 +21,7 @@ export const DocumentsService = {
     page: string | number
   ): Promise<DocumentsResponse> {
     const response = await axios.get(
-      `${process.env.API}/api/documents?userExId=${userExId}&from=${fromDate}&to=${toDate}&documentType=${documentType}&page=${page}`
+      `${process.env.REACT_APP_API}/api/documents?userExId=${userExId}&from=${fromDate}&to=${toDate}&documentType=${documentType}&page=${page}`
     )
     return response.data
   },
@@ -30,7 +30,7 @@ export const DocumentsService = {
     documentNumber: number | string
   ): Promise<IDocumentItems> {
     const response = await axios.get(
-      `${process.env.API}/api/documents/${documentNumber}`
+      `${process.env.REACT_APP_API}/api/documents/${documentNumber}`
     )
     return response.data
   },
@@ -41,7 +41,7 @@ export const DocumentsService = {
     toDate: string
   ): Promise<ICartesset> {
     const response = await axios.get(
-      `${process.env.API}/api/cartessets/${userExId}?from=${fromDate}&to=${toDate}`
+      `${process.env.REACT_APP_API}/api/cartessets/${userExId}?from=${fromDate}&to=${toDate}`
     )
     return response.data
   },
@@ -52,13 +52,13 @@ export const DocumentsService = {
     toDate: string
   ): Promise<HistoriesResponse> {
     const response = await axios.get(
-      `${process.env.API}/api/histories?createdAt[before]=${toDate}&createdAt[after]=${fromDate}&user.extId=${userExId}`
+      `${process.env.REACT_APP_API}/api/histories?createdAt[before]=${toDate}&createdAt[after]=${fromDate}&user.extId=${userExId}`
     )
     return response.data
   },
   async GetHistoryItem(documentId: string | number): Promise<IHistory> {
     const response = await axios.get(
-      `${process.env.API}/api/histories/${documentId}`
+      `${process.env.REACT_APP_API}/api/histories/${documentId}`
     )
     return response.data
   },
@@ -69,7 +69,7 @@ export const DocumentsService = {
     documentNumber: string,
     PriceMode: IPriceMode
   ): Promise<ICart[] | null> {
-    const response = await axios.get(`${process.env.API}/api/restoreCart/${documentType}/${PriceMode}/${userExtId}/${documentNumber}`)
+    const response = await axios.get(`${process.env.REACT_APP_API}/api/restoreCart/${documentType}/${PriceMode}/${userExtId}/${documentNumber}`)
     if (response.data) {
       return response.data['hydra:member']
     } else {
@@ -78,11 +78,11 @@ export const DocumentsService = {
   },
 
   async createPdf(data: IPdfDocument) {
-    const response = await axios.post(`${process.env.API}/api/pdf`, data)
+    const response = await axios.post(`${process.env.REACT_APP_API}/api/pdf`, data)
     return response.data
   },
   async createXl(data: IPdfDocument) {
-    const response = await axios.post(`${process.env.API}/api/xl`, data)
+    const response = await axios.post(`${process.env.REACT_APP_API}/api/xl`, data)
     return response.data
   },
 }

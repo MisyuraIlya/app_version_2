@@ -27,8 +27,8 @@ module.exports = {
 			filename: 'main.css'
 		}),
     new webpack.DefinePlugin({
-      'process.env.API': JSON.stringify('https://ctb2b.co.il'),
-      'process.env.MEDIA': JSON.stringify('https://ctb2b.co.il/media'),
+      'process.env.REACT_APP_API': JSON.stringify('https://ctb2b.co.il'),
+      'process.env.REACT_APP_MEDIA': JSON.stringify('https://ctb2b.co.il/media'),
     }),
   ],
 

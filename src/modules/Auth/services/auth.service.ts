@@ -2,7 +2,7 @@ import axios from 'axios'
 
 export const AuthService = {
   async login(username: string, password: string): Promise<IAuthResponse> {
-    const response = await axios.post(`${process.env.API}/api/auth`, {
+    const response = await axios.post(`${process.env.REACT_APP_API}/api/auth`, {
       username,
       password,
     })
@@ -10,7 +10,7 @@ export const AuthService = {
     return response.data
   },
   async getAccessToken(refreshToken: string): Promise<IAuthResponse> {
-    const response = await axios.post(`${process.env.API}/api/auth/refresh`, {
+    const response = await axios.post(`${process.env.REACT_APP_API}/api/auth/refresh`, {
       refresh_token: refreshToken,
     })
     return response.data
@@ -19,7 +19,7 @@ export const AuthService = {
     userExId: string,
     phone: string
   ): Promise<IValidationResponse> {
-    const response = await axios.post(`${process.env.API}/auth/validation`, {
+    const response = await axios.post(`${process.env.REACT_APP_API}/auth/validation`, {
       exId: userExId,
       phone,
     })
@@ -30,7 +30,7 @@ export const AuthService = {
     username: string,
     password: string
   ): Promise<IDefaultAuthResponse> {
-    const response = await axios.put(`${process.env.API}/auth/registration`, {
+    const response = await axios.put(`${process.env.REACT_APP_API}/auth/registration`, {
       extId,
       username,
       password,
@@ -40,7 +40,7 @@ export const AuthService = {
 
   async restorePasswordStepOne(email: string): Promise<IDefaultAuthResponse> {
     const response = await axios.post(
-      `${process.env.API}/auth/restorePasswordStepOne`,
+      `${process.env.REACT_APP_API}/auth/restorePasswordStepOne`,
       {
         email,
       }
@@ -54,7 +54,7 @@ export const AuthService = {
     password: string
   ): Promise<IDefaultAuthResponse> {
     const response = await axios.post(
-      `${process.env.API}/auth/restorePasswordStepTwo`,
+      `${process.env.REACT_APP_API}/auth/restorePasswordStepTwo`,
       {
         email,
         token,

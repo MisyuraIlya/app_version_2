@@ -16,7 +16,7 @@ export const agentProfileService = {
     agentId: string | null
   ): Promise<AgentObjectiveResponse> {
     const response = await axios.get(
-      `${process.env.API}/api/agent_objectives?page=${page}&objectiveType=${type}&agent.id=${agentId}&client.extId=${search}`
+      `${process.env.REACT_APP_API}/api/agent_objectives?page=${page}&objectiveType=${type}&agent.id=${agentId}&client.extId=${search}`
     )
     return response.data
   },
@@ -34,7 +34,7 @@ export const agentProfileService = {
       object.client = `/api/users/${object.client.id}`
     }
     const response = await axios.post(
-      `${process.env.API}/api/agent_objectives`,
+      `${process.env.REACT_APP_API}/api/agent_objectives`,
       object
     )
     return response.data
@@ -47,7 +47,7 @@ export const agentProfileService = {
     // @ts-ignore
     object.client = `/api/users/${object.client.id}`
     const response = await axios.patch(
-      `${process.env.API}/api/agent_objectives/${object.id}`,
+      `${process.env.REACT_APP_API}/api/agent_objectives/${object.id}`,
       object,
       {
         headers: {
@@ -59,7 +59,7 @@ export const agentProfileService = {
   },
   async deleteAgentObjective(id: number | string): Promise<void> {
     const response = await axios.delete(
-      `${process.env.API}/api/agent_objectives/${id}`
+      `${process.env.REACT_APP_API}/api/agent_objectives/${id}`
     )
     return response.data
   },
@@ -69,7 +69,7 @@ export const agentProfileService = {
     year: string
   ): Promise<AgentTargetResponse> {
     const response = await axios.get(
-      `${process.env.API}/api/agent_targets?agent.id=${agentId}&year=${year}`
+      `${process.env.REACT_APP_API}/api/agent_targets?agent.id=${agentId}&year=${year}`
     )
     return response.data
   },
@@ -77,7 +77,7 @@ export const agentProfileService = {
     // @ts-ignore
     object.agent = `/api/users/${object.agent.id}`
     const response = await axios.post(
-      `${process.env.API}/api/agent_targets`,
+      `${process.env.REACT_APP_API}/api/agent_targets`,
       object
     )
     return response.data
@@ -86,7 +86,7 @@ export const agentProfileService = {
     // @ts-ignore
     object.agent = `/api/users/${object.agent.id}`
     const response = await axios.patch(
-      `${process.env.API}/api/agent_targets/${object.id}`,
+      `${process.env.REACT_APP_API}/api/agent_targets/${object.id}`,
       object,
       {
         headers: {
@@ -98,7 +98,7 @@ export const agentProfileService = {
   },
   async deleteAgentTarget(id: number | string): Promise<void> {
     const response = await axios.delete(
-      `${process.env.API}/api/agent_objectives/${id}`
+      `${process.env.REACT_APP_API}/api/agent_objectives/${id}`
     )
     return response.data
   },

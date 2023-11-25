@@ -25,7 +25,7 @@ const CartServices = {
       deliveryDate,
       products,
     }
-    const response = await axios.post(`${process.env.API}/api/send_orders`, obj)
+    const response = await axios.post(`${process.env.REACT_APP_API}/api/send_orders`, obj)
     return response.data
   },
 }

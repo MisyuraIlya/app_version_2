@@ -7,7 +7,7 @@ interface productResponse extends Hydra {
 export const AdminProductService = {
   async createNewImage(product: any): Promise<IImagePath> {
     const response = await axios.post(
-      `${process.env.API}/api/product_images`,
+      `${process.env.REACT_APP_API}/api/product_images`,
       product
     )
 
@@ -16,7 +16,7 @@ export const AdminProductService = {
 
   async updateProduct(product: any): Promise<IProduct> {
     const response = await axios.patch(
-      `${process.env.API}/api/products/${product.id}`,
+      `${process.env.REACT_APP_API}/api/products/${product.id}`,
       product,
       {
         headers: {
@@ -30,7 +30,7 @@ export const AdminProductService = {
 
   async deleteImage(imageId: number | string) {
     const response = await axios.delete(
-      `${process.env.API}/api/product_images/${imageId}`
+      `${process.env.REACT_APP_API}/api/product_images/${imageId}`
     )
 
     return response.data
@@ -42,7 +42,7 @@ export const AdminProductService = {
     lvl3: number | string
   ): Promise<productResponse> {
     const response = await axios.get(
-      `${process.env.API}/api/catalog/${lvl1}/${lvl2}/${lvl3}?itemsPerPage=10000`
+      `${process.env.REACT_APP_API}/api/catalog/${lvl1}/${lvl2}/${lvl3}?itemsPerPage=10000`
     )
     return response.data
   },

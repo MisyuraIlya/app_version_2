@@ -112,3 +112,4 @@ root:true,
 
 22. npm install --save-dev sass-loader sass webpack --save-dev
 23. npm i --save-dev mini-css-extract-plugin
+24. npm install dotenv-webpack --save-dev
