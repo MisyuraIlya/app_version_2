@@ -1,6 +1,8 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+require('dotenv').config();
+
 module.exports = {
   entry: path.resolve(__dirname, '..', './src/index.tsx'),
   resolve: {
@@ -34,7 +36,15 @@ module.exports = {
         use: [
           "style-loader",
           "css-loader",
-          "sass-loader",
+          {
+            loader: "sass-loader",
+            options: {
+              additionalData: `
+              $primary:${process.env.REACT_APP_PRIMARY};
+              $secondary:${process.env.REACT_APP_SECONDARY};
+              `,
+            },
+          },
         ],
       },
     ],

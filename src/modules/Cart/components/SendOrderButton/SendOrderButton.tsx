@@ -1,7 +1,6 @@
 import React from 'react'
 import { useAuth } from '../../../Auth/store/useAuthStore'
 import { useCart } from '../../store/cart.store'
-import { CART_CONFIG } from '../../config/custom'
 import { useModals } from '../../../Modals/provider/ModalProvider'
 
 const SendOrderButton = () => {
@@ -22,7 +21,7 @@ const SendOrderButton = () => {
   return (
     <div>
       {!isUserBlocked &&
-      ((cart.length > 0 && CART_CONFIG.MIN_PRICE <= priceBeforeTax()) ||
+      ((cart.length > 0 && +process.env.MINIMUM_DELIVERY_PRICE! <= priceBeforeTax()) ||
         selectedMode != 'order') ? (
         <div className="pay-btn-cont">
           <div className={!comment ? 'comments empty' : 'comments'}>

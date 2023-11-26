@@ -2,7 +2,6 @@ import React from 'react'
 import { useCart } from '../../store/cart.store'
 import { useAuth } from '../../../Auth/store/useAuthStore'
 import { getUserFromStorage } from '../../../Auth/helpers/auth.helper'
-import { CART_CONFIG } from '../../config/custom'
 import { useModals } from '../../../Modals/provider/ModalProvider'
 const MainSummary = () => {
   const { isUserBlocked } = useAuth()
@@ -10,7 +9,6 @@ const MainSummary = () => {
     setSpecialSettingsPop,
     selectedMode,
     cart,
-    deliveryPrice,
     discount,
     totalBasket,
     comment,
@@ -63,7 +61,7 @@ const MainSummary = () => {
 
         <li>
           <span className="title">דמי משלוח</span>
-          <span className="price">{deliveryPrice}</span>
+          <span className="price">{process.env.DELIVERY_PRICE}</span>
         </li>
 
         <li>
@@ -109,11 +107,11 @@ const MainSummary = () => {
         </div>
         } */}
 
-      {CART_CONFIG.MIN_PRICE > priceBeforeTax() && selectedMode == 'order' ? (
+      {+process.env.MINIMUM_DELIVERY_PRICE! > priceBeforeTax() && selectedMode == 'order' ? (
         <div className="minPrice-class">
           <p>
             {'עליך לצבור עוד ' +
-              Math.abs(priceBeforeTax() - CART_CONFIG.MIN_PRICE).toFixed(1) +
+              Math.abs(priceBeforeTax() - +process.env.MINIMUM_DELIVERY_PRICE!).toFixed(1) +
               ' ש״ח עד למינימום הזמנה'}
           </p>
         </div>

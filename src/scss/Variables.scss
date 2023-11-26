@@ -9,8 +9,8 @@ $myMain: #24426b;
 $main-bg: #fff;
 $superGrey: #6b7a99;
 
-$c1: #1f1f1f;
-$c2: #867751; //#eb048a;
+$c1: $primary;
+$c2: $secondary; //#eb048a;
 $c3: #ff5880;
 $brown: #fff;
 
@@ -19,7 +19,7 @@ $alert2: #97406345;
 
 $themeColor: 000000;
 
-$categoryStripeBackground: #867751;
+$categoryStripeBackground: $primary;
 $new1: #24426b;
 $new2: #24426b; //41436A
 $new2Text: #393021; //41436A

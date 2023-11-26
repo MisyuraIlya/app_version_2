@@ -20,7 +20,6 @@ interface useCartState {
   sendNoApproval: boolean
   specialSettingsPop: boolean
   b2bPickupDiscount: number
-  deliveryPrice: number
   deliveryDate: string
   discount: number
   Maam: number
@@ -148,7 +147,6 @@ export const useCart = create<useCartState>((set, get) => ({
     return totalTitle
   },
   priceBefore: 0,
-  deliveryPrice: 250,
   deliveryDate: '2023-11-21', //TODO
   discount: 7,
   Maam: 17,
@@ -174,7 +172,7 @@ export const useCart = create<useCartState>((set, get) => ({
         false,
         get().discount,
         get().selectedMode,
-        get().deliveryPrice,
+        +process.env.DELIVERY_PRICE!,
         get().deliveryDate,
         get().cart
       )
@@ -267,12 +265,12 @@ export const useCart = create<useCartState>((set, get) => ({
       ? getUserFromStorage().discount
       : 0
     let first = priceBefore * discount
-    // if(CART_CONFIG.ADD_DISCOUNT_AFTER_PRICE.ENABLED){
-    // 	if(priceBefore >= CART_CONFIG.ADD_DISCOUNT_AFTER_PRICE.PRICE_MAX) {
-    // 		let newPrecent = discount + CART_CONFIG.ADD_DISCOUNT_AFTER_PRICE.PRECENT
-    // 		first = priceBefore * newPrecent
-    // 	}
-    // }
+    if(process.env.IS_MUST_DELIVERY_PRICE == 'true'){
+    	if(priceBefore >= +process.env.MAX_PRICE_FOR_DISCOUNT!) {
+    		let newPrecent = discount + +process.env.DISCOUNT_PRECENT_FOR_MAX_PRICE!
+    		first = priceBefore * newPrecent
+    	}
+    }
     let second = first / 100
     return second
   },
@@ -282,11 +280,11 @@ export const useCart = create<useCartState>((set, get) => ({
     let discount = getUserFromStorage().discount
       ? getUserFromStorage().discount
       : 0
-    // if(CART_CONFIG.ADD_DISCOUNT_AFTER_PRICE.ENABLED){
-    // 	if(priceBefore >= CART_CONFIG.ADD_DISCOUNT_AFTER_PRICE.PRICE_MAX) {
-    // 		discount = discount + CART_CONFIG.ADD_DISCOUNT_AFTER_PRICE.PRECENT
-    // 	}
-    // }
+    if(process.env.IS_MUST_DELIVERY_PRICE == 'true'){
+    	if(priceBefore >= +process.env.MAX_PRICE_FOR_DISCOUNT!) {
+    		discount = discount + +process.env.DISCOUNT_PRECENT_FOR_MAX_PRICE!
+    	}
+    }
     return discount
   },
 
@@ -305,7 +303,7 @@ export const useCart = create<useCartState>((set, get) => ({
     return (
       get().calculatePriceAfterDiscount() +
       get().calculateTax() +
-      get().deliveryPrice
+      +process.env.DELIVERY_PRICE!
     )
   },
 }))
