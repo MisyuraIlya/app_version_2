@@ -6,11 +6,7 @@ const VideoSection = () => {
     <section id="page1-my" className="section entry-section">
       <GalaxtVideo />
       <div className={true ? 'showcase animated fadeInDown' : 'showcase'}>
-        <h1 className="h1-2">
-          {
-            'חליטות תה מיוחדות ומוצרי ומארזי חליטות תה מהודרים לקהל הפרטי והעסקי'
-          }
-        </h1>
+        <h1 className="h1-2">{process.env.REACT_APP_DESCRIPTION}</h1>
         <Link to={'/client/catalog/1/0/0?page=1'}>
           <div className="button-cls">
             <p>{'לקטלוג המלא'}</p>

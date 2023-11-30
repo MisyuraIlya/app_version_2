@@ -32,7 +32,7 @@ const CategoryNavBar = () => {
                       : 'main-li'
                   }
                 >
-                  <Link to={`/client/catalog/${element.id}/0/0`}>
+                  <Link to={`/client/catalog/${element.id}/0/0?page=1`}>
                     <p>{element.title}</p>
                   </Link>
 

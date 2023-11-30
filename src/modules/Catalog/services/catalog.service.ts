@@ -24,7 +24,7 @@ export const CatalogServices = {
     searchParams: string
   ): Promise<GetCatalogResponse> {
     const response = await axios.get(
-      `${process.env.REACT_APP_API}/api/catalog/${lvl1}/${lvl2}/${lvl3}${searchParams}`
+      `${process.env.REACT_APP_API}/api/catalog/${lvl1}/${lvl2}/${lvl3}${searchParams}&userExtId=852187`
     )
     return response.data
   },
@@ -37,7 +37,9 @@ export const CatalogServices = {
   },
 
   async GetCategoriesAll(): Promise<GetCategoriesResponse> {
-    const response = await axios.get(`${process.env.REACT_APP_API}/api/categories`)
+    const response = await axios.get(
+      `${process.env.REACT_APP_API}/api/categories`
+    )
     return response.data
   },
 
